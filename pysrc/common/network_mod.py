@@ -12,11 +12,11 @@ class Network(nn.Module):
         self.relu = nn.ReLU()
         self.pool = nn.MaxPooling2d(2, stride=2)
 
-        self.conv1 = nn.Conv2d(   1,  64, 3) //Input Image is 672*672*1
+        self.conv1 = nn.Conv2d(   1,  64, 3) #Input Image is 672*672*1
         self.conv2 = nn.Conv2d(  64, 128, 4)
         self.conv3 = nn.Conv2d( 128, 256, 3)
         self.conv4 = nn.Conv2d( 256, 512, 3)
-        self.conv5 = nn.Conv2d( 512, 1024 3)
+        self.conv5 = nn.Conv2d( 512, 1024, 3)
 
         self.fc1 = nn.Linear(19*19*1024, 65522)
         self.fc2 = nn.Linear( 65522, 65522)

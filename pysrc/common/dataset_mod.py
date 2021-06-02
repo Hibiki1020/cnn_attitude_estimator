@@ -126,7 +126,7 @@ class ClassOriginaldataset(data.Dataset):
 
     def __getitem__(self, index):
         img_path = self.data_list[index][0]
-        rp_list = self.data[index][3:6]
+        rp_list = self.data[index][5:7]
         rp_list_float = [float(num) for num in rp_list]
         rp_list = self.float_to_array(rp_list_float) #Convert to 32400 array
 
