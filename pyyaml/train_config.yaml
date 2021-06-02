@@ -11,7 +11,7 @@ train:
   - "ccc"
 valid:
   - "ddd"
-csv_name: "pose_camera.csv"
+csv_name: "image_attitude.csv"
 
 index_csv_path: "../index_dict/index_dict_360range_step2deg.csv"
 
