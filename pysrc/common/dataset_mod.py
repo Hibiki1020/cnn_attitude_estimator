@@ -1,8 +1,10 @@
 import torch.utils.data as data
 from PIL import Image
 import numpy as np
+import math
+import csv
 
-import array_generator
+#バグが一切存在してはいけないプログラム。要確認
 
 class ClassOriginaldataset(data.Dataset):
     def __init__(self, data_list, transform, phase, index_dict_path):
@@ -18,9 +20,26 @@ class ClassOriginaldataset(data.Dataset):
             for row in reader:
                 self.index_dict.append(row)
 
+    def get_distance(x1, y1, x2, y2):
+        d = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+        return d
+    
+    def norm(X, M, m, max, min):
+        y = (X-min)/(max-min)*(M-m) + m
+        return y
+
+    def search_index(self, roll, pitch):
+        index = -1
+        for row in self.index_dict:
+            if roll==row[0] and pitch==row[1]:
+                index = row[4]
+                break
+        
+        return index
+
     def float_to_array(self, rp_list_float):
-        roll_deg = rp_list_float[0]/M_PI*180.0
-        pitch_deg = rp_list_float[1]/M_PI*180.0
+        roll_deg = rp_list_float[0]/3.141592*180.0
+        pitch_deg = rp_list_float[1]/3.141592*180.0
 
         upper_roll = 0.0
         lower_roll = 0.0
@@ -65,7 +84,42 @@ class ClassOriginaldataset(data.Dataset):
                 upper_pitch = tmp_pitch
                 lower_pitch = upper_pitch - 2.0
 
+        r_ud = [upper_roll, upper_pitch]
+        r_ud_dist = self.get_distance(roll_deg, pitch_deg, r_ud[0], r_ud[1])
 
+        r_up = [lower_roll, upper_pitch]
+        r_up_dist = self.get_distance(roll_deg, pitch_deg, r_up[0], r_up[1])
+        
+        l_ud = [upper_roll, lower_pitch]
+        l_ud_dist = self.get_distance(roll_deg, pitch_deg, l_ud[0], l_ud[1])
+        
+        l_up = [lower_roll, lower_pitch]
+        l_up_dist = self.get_distance(roll_deg, pitch_deg, l_up[0], l_up[1])
+
+        values_tmp = [1.0/r_ud_dist, 1.0/r_up_dist, 1.0/l_ud_dist, 1.0/r_up_dist]
+        tmp_min = min(values_tmp)
+        tmp_max = max(values_tmp)
+
+        values = [self.norm(values_tmp[0], 1.0, 0.0, tmp_max, tmp_min), self.norm(values_tmp[1], 1.0, 0.0, tmp_max, tmp_min), self.norm(values_tmp[2], 1.0, 0.0, tmp_max, tmp_min), self.norm(values_tmp[3], 1.0, 0.0, tmp_max, tmp_min)]
+        #r_ud r_up l_ud l_up
+        
+        array = [32761]
+        for i in range(len(array)):
+            array[i] = 0.0
+        
+        tmp_index = self.search_index( str(int(r_ud[0])), str(int(r_ud[1])) )
+        array[tmp_index] = values[0]
+
+        tmp_index = self.search_index( str(int(r_up[0])), str(int(r_up[1])) )
+        array[tmp_index] = values[1]
+
+        tmp_index = self.search_index( str(int(l_ud[0])), str(int(l_ud[1])) )
+        array[tmp_index] = values[2]
+
+        tmp_index = self.search_index( str(int(l_up[0])), str(int(l_up[1])) )
+        array[tmp_index] = values[3]
+
+        return array
 
     def __len__(self):
         return len(self.data_list)
@@ -74,7 +128,7 @@ class ClassOriginaldataset(data.Dataset):
         img_path = self.data_list[index][0]
         rp_list = self.data[index][3:6]
         rp_list_float = [float(num) for num in rp_list]
-        rp_list = float_to_array(rp_list_float) #Convert to 32400 array
+        rp_list = self.float_to_array(rp_list_float) #Convert to 32400 array
 
         img_pil = Image.open(img_path)
         rp_numpy = np.array(rp_list)
