@@ -1,0 +1,26 @@
+method_name: "regression"
+
+save_top_path: "/home/dnn_attitude_predictor_with_image/2021_06_02"
+weights_path: "/weights"
+log_path: "/log"
+graph_path: "/graph"
+
+train:
+  - "aaa"
+  - "bbb"
+  - "ccc"
+valid:
+  - "ddd"
+
+csv_name: "pose_camera.csv"
+
+hyperparameter:
+  resize: 224
+  mean_element: 0.5
+  std_element: 0.5
+  hor_fov_deg: 70
+  optimizer_name: "Adam"
+  lr_cnn: 1e-5
+  lr_fc: 1e-4
+  batch_size: 100
+  num_epochs: 110
