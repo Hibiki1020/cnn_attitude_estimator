@@ -1,0 +1,17 @@
+method_name: "frame_infer"
+
+infer_dataset_top_directory: "/home/ssd_dir/aaaaaa/aaaa/"
+csv_name: "image_attitude.csv"
+
+weights_top_directory: "/home/ssd_dir/aaaaaa/"
+weights_file_name: "weights.csv"
+
+infer_log_top_directory: "/home/ssd_dir/aaa/"
+infer_log_file_name: "frame_infer_relust.csv"
+
+frame_id: "base_link"
+
+window_size: 672
+mean_element: 0.5
+std_element: 0.5
+dropout_rate: 0.1

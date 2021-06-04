@@ -1,5 +1,5 @@
-FROM vistart/cuda:10.0-cudnn7-devel-ubuntu20.04
-# FROM nvidia/cuda:11.0-devel-ubuntu20.04
+#FROM vistart/cuda:10.0-cudnn7-devel-ubuntu20.04
+FROM nvidia/cuda:11.0-devel-ubuntu20.04
 
 ########## nvidia-docker1 hooks ##########
 LABEL com.nvidia.volumes.needed="nvidia_driver"
@@ -9,13 +9,15 @@ ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64:${LD_LIBRARY_P
 ## Avoiding "Country of origin for the keyboard" 
 ## in "apt-get install -y ros-noetic-desktop-full"
 ENV DEBIAN_FRONTEND=noninteractive
+
 ########## time zone ##########
 ##### UTC #####
-RUN echo 'Etc/UTC' > /etc/timezone && \
-    ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
-	apt-get update && \
-	apt-get install -q -y --no-install-recommends tzdata && \
-	rm -rf /var/lib/apt/lists/*
+#RUN echo 'Etc/UTC' > /etc/timezone && \
+#    ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
+#	apt-get update && \
+#	apt-get install -q -y --no-install-recommends tzdata && \
+#	rm -rf /var/lib/apt/lists/*
+
 ##### Asia/Tokyo #####
 # RUN echo 'Asia/Tokyo' > /etc/timezone && \
 #     ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
@@ -29,6 +31,19 @@ RUN apt-get update && apt-get install -y \
 	unzip \
 	git \
 	build-essential
+########## PyTorch ##########
+# RUN apt-get update && apt-get install -y python3-pip &&\
+# 	pip3 install torch torchvision
+RUN apt-get update && \
+	apt-get install -y \
+		python3-pip && \
+	pip3 install \
+		torch==1.5.0 torchvision==0.6.0 \
+		tqdm \
+		matplotlib \
+		tensorflow \
+		tensorboardX
+		# torch==1.0.1 torchvision==0.2.2
 ########## ROS Noetic insatall ##########
 ## NOTE: "lsb_release" -> "lsb-release"
 RUN apt-get update && apt-get install -y lsb-release &&\
@@ -47,19 +62,6 @@ RUN mkdir -p /home/ros_catkin_ws/src && \
 	echo "export ROS_WORKSPACE=/home/ros_catkin_ws" >> ~/.bashrc
 ## cmk
 RUN echo "function cmk(){\n	lastpwd=\$OLDPWD \n	cpath=\$(pwd) \n cd /home/ros_catkin_ws \n catkin_make \$@ \n cd \$cpath \n	OLDPWD=\$lastpwd \n}" >> ~/.bashrc
-########## PyTorch ##########
-# RUN apt-get update && apt-get install -y python3-pip &&\
-# 	pip3 install torch torchvision
-RUN apt-get update && \
-	apt-get install -y \
-		python3-pip && \
-	pip3 install \
-		torch==1.5.0 torchvision==0.6.0 \
-		tqdm \
-		matplotlib \
-		tensorflow \
-		tensorboardX
-		# torch==1.0.1 torchvision==0.2.2
 ########## dnn_attitude_estimation ##########
 ##### NO cache #####
 ARG CACHEBUST=1
