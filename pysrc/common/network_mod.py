@@ -18,7 +18,8 @@ class Network(nn.Module):
         self.conv4 = nn.Conv2d( 256, 512, 3)
         self.conv5 = nn.Conv2d( 512, 1024, 3)
 
-        dim_fc_in = 1024 * 19 * 19
+        self.dim_fc_in = 1024 * 19 * 19
+        self.dim_fc_out = dim_fc_out
 
         #test code
         self.fc1 = nn.Linear(dim_fc_in, 100)
@@ -60,8 +61,8 @@ class Network(nn.Module):
 
         x = self.fc3(x)
 
-        l2norm = torch.norm( x[:, :32400], p=2, dim=1, keepdims=True)
-        x[: , :32400] = torch.div( x[: , :32400].clone(), l2norm)
+        l2norm = torch.norm( x[:, :self.dim_fc_out], p=2, dim=1, keepdims=True)
+        x[: , :self.dim_fc_out] = torch.div( x[: , :self.dim_fc_out].clone(), l2norm)
 
         return x
 
