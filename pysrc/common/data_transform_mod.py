@@ -6,12 +6,14 @@ import math
 
 import torch
 from torchvision import transforms
+from torchvision.transforms.transforms import Resize
 
 class DataTransform():
     def __init__(self, resize, mean, std):
         self.mean = mean
         self.std = std
         self.img_transform = transforms.Compose([
+            transforms.Resize(resize),
             transforms.ToTensor(),
             transforms.Normalize(mean, std)
         ])

@@ -61,6 +61,7 @@ if __name__ == '__main__':
     valid_sequences = CFG["valid"]
 
     #get hyperparameter for learning
+    original_size = CFG["original_size"]
     resize = CFG["hyperparameter"]["resize"]
     mean_element = CFG["hyperparameter"]["mean_element"]
     std_element = CFG["hyperparameter"]["std_element"]
