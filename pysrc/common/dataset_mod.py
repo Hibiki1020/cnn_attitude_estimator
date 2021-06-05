@@ -101,7 +101,7 @@ class ClassOriginaldataset(data.Dataset):
         tmp_max = max(values_tmp)
 
         valuestmp = [self.norm(values_tmp[0], 1.0, 0.0, tmp_max, tmp_min), self.norm(values_tmp[1], 1.0, 0.0, tmp_max, tmp_min), self.norm(values_tmp[2], 1.0, 0.0, tmp_max, tmp_min), self.norm(values_tmp[3], 1.0, 0.0, tmp_max, tmp_min)]
-        values = [valuestmp[0]/np.average(values_tmp), valuestmp[1]/np.average(values_tmp), valuestmp[2]/np.average(values_tmp), valuestmp[3]/np.average(values_tmp),]
+        values = [valuestmp[0]/np.average(valuestmp), valuestmp[1]/np.average(valuestmp), valuestmp[2]/np.average(valuestmp), valuestmp[3]/np.average(valuestmp),]
         #r_ud r_up l_ud l_up
         print(values)
         array = [32761]
