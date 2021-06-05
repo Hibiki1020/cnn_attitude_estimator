@@ -13,7 +13,7 @@ valid:
   - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_02_image70000/"
 csv_name: "image_attitude.csv"
 
-index_csv_path: "../index_dict/index_dict_360range_step2deg.csv"
+index_csv_path: "home/ros_catkin_ws/src/cnn_attitude_estimator/index_dict/index_dict_360range_step2deg.csv"
 
 hyperparameter:
   resize: 224
