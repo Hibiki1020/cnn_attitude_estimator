@@ -22,7 +22,7 @@ class Network(nn.Module):
         self.dim_fc_out = dim_fc_out
 
         #test code
-        self.fc1 = nn.Linear(dim_fc_in, 100)
+        self.fc1 = nn.Linear(self.dim_fc_in, 100)
         self.fc2 = nn.Linear( 100, dim_fc_out)
         self.fc3 = nn.Linear( dim_fc_out, dim_fc_out)
 
