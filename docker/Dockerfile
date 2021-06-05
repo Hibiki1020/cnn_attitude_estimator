@@ -66,4 +66,9 @@ RUN echo "function cmk(){\n	lastpwd=\$OLDPWD \n	cpath=\$(pwd) \n cd /home/ros_ca
 ##### NO cache #####
 ARG CACHEBUST=1
 
-WORKDIR /home/ros_catkin_ws
+RUN cd /home/ros_catkin_ws/src && \
+		git clone https://github.com/Hibiki1020/cnn_attitude_estimator.git && \
+		cd /home/ros_catkin_ws && \
+		catkin_make
+
+WORKDIR /home/ros_catkin_ws/src/cnn_attitude_estimator
