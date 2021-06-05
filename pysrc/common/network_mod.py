@@ -10,7 +10,7 @@ class Network(nn.Module):
         super(Network, self).__init__()
 
         self.relu = nn.ReLU()
-        self.pool = nn.MaxPooling2d(2, stride=2)
+        self.pool = nn.MaxPool2d(2, stride=2)
 
         self.conv1 = nn.Conv2d(   1,  64, 3) #Input Image is 672*672*1
         self.conv2 = nn.Conv2d(  64, 128, 4)
