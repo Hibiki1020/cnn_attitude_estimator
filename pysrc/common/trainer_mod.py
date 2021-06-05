@@ -100,7 +100,6 @@ class Trainer:
         str_hyperparameter = method_name \
             + str(len(self.dataloaders_dict["train"].dataset)) + "train" \
             + str(len(self.dataloaders_dict["valid"].dataset)) + "valid" \
-            + str(dataset.transform.resize) + "resize" \
             + str(dataset.transform.mean[0]) + "mean" \
             + str(dataset.transform.std[0]) + "std" \
             + optimizer_name \
