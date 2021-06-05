@@ -53,6 +53,7 @@ class Network(nn.Module):
         x = self.relu(x)
         x = self.pool(x)
 
+        print(self.fc1)
         x = self.fc1(x)
         x = self.dropout(x)
 
