@@ -1,16 +1,16 @@
 method_name: "regression"
 
-save_top_path: "/home/dnn_attitude_predictor_with_image/2021_06_02"
+save_top_path: "/home/ssd_dir/cnn_attitude_estimator_log
 weights_path: "/weights"
 log_path: "/log"
 graph_path: "/graph"
 
 train:
-  - "aaa"
-  - "bbb"
-  - "ccc"
+  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_02_image140000/"
+  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_03_image140000/"
+  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_04_image140000/"
 valid:
-  - "ddd"
+  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_02_image70000/"
 csv_name: "image_attitude.csv"
 
 index_csv_path: "../index_dict/index_dict_360range_step2deg.csv"
@@ -24,4 +24,4 @@ hyperparameter:
   lr_cnn: 1e-5
   lr_fc: 1e-4
   batch_size: 100
-  num_epochs: 110
+  num_epochs: 4

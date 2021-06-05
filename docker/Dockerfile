@@ -69,6 +69,6 @@ ARG CACHEBUST=1
 RUN cd /home/ros_catkin_ws/src && \
 		git clone https://github.com/Hibiki1020/cnn_attitude_estimator.git && \
 		cd /home/ros_catkin_ws && \
-		catkin_make
+		/bin/bash -c "source /opt/ros/noetic/setup.bash; catkin_make"
 
 WORKDIR /home/ros_catkin_ws/src/cnn_attitude_estimator
