@@ -20,9 +20,13 @@ class Network(nn.Module):
 
         dim_fc_in = 1024 * 19 * 19
 
-        self.fc1 = nn.Linear(dim_fc_in, dim_fc_out)
-        self.fc2 = nn.Linear( dim_fc_out, dim_fc_out)
+        self.fc1 = nn.Linear(dim_fc_in, 100)
+        self.fc2 = nn.Linear( 100, dim_fc_out)
         self.fc3 = nn.Linear( dim_fc_out, dim_fc_out)
+
+        #self.fc1 = nn.Linear(dim_fc_in, dim_fc_out)
+        #self.fc2 = nn.Linear( dim_fc_out, dim_fc_out)
+        #self.fc3 = nn.Linear( dim_fc_out, dim_fc_out)
 
         self.dropout = nn.Dropout(p=dropout_rate)
     
