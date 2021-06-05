@@ -20,11 +20,11 @@ class ClassOriginaldataset(data.Dataset):
             for row in reader:
                 self.index_dict.append(row)
 
-    def get_distance(x1, y1, x2, y2):
+    def get_distance(self, x1, y1, x2, y2):
         d = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
         return d
     
-    def norm(X, M, m, max, min):
+    def norm(self, X, M, m, max, min):
         y = (X-min)/(max-min)*(M-m) + m
         return y
 
