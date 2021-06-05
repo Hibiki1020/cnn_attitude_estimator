@@ -84,7 +84,6 @@ if __name__ == '__main__':
             resize,
             ([mean_element, mean_element, mean_element]),
             ([std_element, std_element, std_element]),
-            hor_fov_deg = hor_fov_deg
         ),
         phase = "train"
     )
@@ -95,7 +94,6 @@ if __name__ == '__main__':
             resize,
             ([mean_element, mean_element, mean_element]),
             ([std_element, std_element, std_element]),
-            hor_fov_deg = hor_fov_deg
         ),
         phase = "valid"
     )
