@@ -16,9 +16,9 @@ class Network(nn.Module):
         self.conv2 = nn.Conv2d(  64, 128, 4)
         self.conv3 = nn.Conv2d( 128, 256, 3)
         self.conv4 = nn.Conv2d( 256, 512, 3)
-        self.conv5 = nn.Conv2d( 512, 1024, 3)
+        self.conv5 = nn.Conv2d( 512, 512, 3)
 
-        self.fc1 = nn.Linear(1024 * 19 * 19, 32761)
+        self.fc1 = nn.Linear(512 * 19 * 19, 32761)
         self.fc2 = nn.Linear( 32761, 32761)
         self.fc3 = nn.Linear( 32761, 32761)
 
