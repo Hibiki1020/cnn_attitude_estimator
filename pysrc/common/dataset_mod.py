@@ -107,17 +107,17 @@ class ClassOriginaldataset(data.Dataset):
         for i in range(len(array)):
             array[i] = 0.0
         
-        tmp_index = self.search_index( str(int(r_ud[0])), str(int(r_ud[1])) )
-        array[tmp_index] = str(values[0])
+        tmp_index = int(self.search_index( str(int(r_ud[0])), str(int(r_ud[1])) ))
+        array[tmp_index] = values[0]
 
         tmp_index = self.search_index( str(int(r_up[0])), str(int(r_up[1])) )
-        array[tmp_index] = str(values[1])
+        array[tmp_index] = values[1]
 
         tmp_index = self.search_index( str(int(l_ud[0])), str(int(l_ud[1])) )
-        array[tmp_index] = str(values[2])
+        array[tmp_index] = values[2]
 
         tmp_index = self.search_index( str(int(l_up[0])), str(int(l_up[1])) )
-        array[tmp_index] = str(values[3])
+        array[tmp_index] = values[3]
 
         return array
 
