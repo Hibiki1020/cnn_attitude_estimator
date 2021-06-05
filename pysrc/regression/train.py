@@ -70,8 +70,8 @@ if __name__ == '__main__':
     lr_fc = float(CFG["hyperparameter"]["lr_fc"])
     batch_size = CFG["hyperparameter"]["batch_size"]
     num_epochs = CFG["hyperparameter"]["num_epochs"]
-    d_rate = CFG["hyperparameter"]["dropout_rate"]
-    dim_out = CFG["hyperparameter"]["dim_fc_out"]
+    d_rate = float(CFG["hyperparameter"]["dropout_rate"])
+    dim_out = int(CFG["hyperparameter"]["dim_fc_out"])
 
     try:
         print("Copy files to %s for further reference." % log_path)
