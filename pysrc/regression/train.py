@@ -104,7 +104,7 @@ if __name__ == '__main__':
     )
 
     ##Network
-    net = network_mod.Network(dim_fc_out, dropout_rate)
+    net = network_mod.Network(resize, dim_fc_out, dropout_rate)
 
 
     ##Criterion

@@ -6,7 +6,7 @@ from torchvision import models
 import torch.nn as nn
 
 class Network(nn.Module):
-    def __init__(self, dim_fc_out, dropout_rate):
+    def __init__(self, resize, dim_fc_out, dropout_rate):
         super(Network, self).__init__()
 
         self.relu = nn.ReLU()
@@ -18,9 +18,11 @@ class Network(nn.Module):
         self.conv4 = nn.Conv2d( 256, 512, 3)
         self.conv5 = nn.Conv2d( 512, 512, 3)
 
-        self.fc1 = nn.Linear(512 * 19 * 19, 32761)
-        self.fc2 = nn.Linear( 32761, 32761)
-        self.fc3 = nn.Linear( 32761, 32761)
+        dim_fc_in = 1024*(resize//32)*(resize//32)
+
+        self.fc1 = nn.Linear(512 * 19 * 19, dim_fc_out)
+        self.fc2 = nn.Linear( dim_fc_out, dim_fc_out)
+        self.fc3 = nn.Linear( dim_fc_out, dim_fc_out)
 
         self.dropout = nn.Dropout(p=dropout_rate)
     
