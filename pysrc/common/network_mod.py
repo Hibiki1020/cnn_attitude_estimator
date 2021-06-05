@@ -20,7 +20,7 @@ class Network(nn.Module):
 
         dim_fc_in = 1024*(resize//32)*(resize//32)
 
-        self.fc1 = nn.Linear(512 * 19 * 19, dim_fc_out)
+        self.fc1 = nn.Linear(dim_fc_in, dim_fc_out)
         self.fc2 = nn.Linear( dim_fc_out, dim_fc_out)
         self.fc3 = nn.Linear( dim_fc_out, dim_fc_out)
 
