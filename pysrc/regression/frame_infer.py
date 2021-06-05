@@ -84,7 +84,7 @@ if __name__ == '__main__':
         '--frame_infer_config', '-fic',
         type=str,
         required=False,
-        default='../../pyyaml/frame_infer_config.yaml'
+        default="../../pyyaml/frame_infer_config.yaml"
     )
 
     FLAGS, unparsed = parser.parse_args()

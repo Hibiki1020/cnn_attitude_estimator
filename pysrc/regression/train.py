@@ -34,7 +34,7 @@ if __name__ == '__main__':
         '--train_cfg', '-c',
         type=str,
         required=False,
-        default='/home/ros_catkin_ws/src/cnn_attitude_estimator/pyyaml/train_config.yaml',
+        default="../../pyyaml/train_config.yaml",
         help='Train hyperparameter config file',
     )
 
