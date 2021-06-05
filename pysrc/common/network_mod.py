@@ -6,7 +6,7 @@ from torchvision import models
 import torch.nn as nn
 
 class Network(nn.Module):
-    def __init__(self, dim_fc_out=32761, dropout_rate):
+    def __init__(self, dim_fc_out, dropout_rate):
         super(Network, self).__init__()
 
         self.relu = nn.ReLU()
