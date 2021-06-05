@@ -35,6 +35,7 @@ class ClassOriginaldataset(data.Dataset):
                 index = row[4]
                 break
         
+        print(index)
         return index
 
     def float_to_array(self, rp_list_float):
@@ -107,7 +108,7 @@ class ClassOriginaldataset(data.Dataset):
         for i in range(len(array)):
             array[i] = 0.0
         
-        tmp_index = int(self.search_index( str(int(r_ud[0])), str(int(r_ud[1])) ))
+        tmp_index = self.search_index( str(int(r_ud[0])), str(int(r_ud[1])) )
         array[tmp_index] = values[0]
 
         tmp_index = self.search_index( str(int(r_up[0])), str(int(r_up[1])) )
