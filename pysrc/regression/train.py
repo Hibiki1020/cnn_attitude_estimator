@@ -102,7 +102,7 @@ if __name__ == '__main__':
     )
 
     ##Network
-    net = network_mod.Network(resize, dim_fc_out=3, dropout_rate=0.1, use_pretrained_vgg=True)
+    net = network_mod.Network(resize, dim_out=32761, dropout_rate=0.1)
 
 
     ##Criterion
