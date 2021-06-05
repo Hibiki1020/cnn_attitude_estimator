@@ -18,7 +18,7 @@ class Network(nn.Module):
         self.conv4 = nn.Conv2d( 256, 512, 3)
         self.conv5 = nn.Conv2d( 512, 1024, 3)
 
-        self.dim_fc_in = 1024*(resize//32)*(resize//32)
+        self.dim_fc_in = 1024*19*19
         self.dim_fc_out = dim_fc_out
 
         #test code
@@ -53,6 +53,7 @@ class Network(nn.Module):
         x = self.relu(x)
         x = self.pool(x)
 
+        print(self.fc1)
         x = self.fc1(x)
         x = self.dropout(x)
 
