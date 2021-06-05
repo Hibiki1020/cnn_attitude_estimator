@@ -70,6 +70,8 @@ if __name__ == '__main__':
     lr_fc = float(CFG["hyperparameter"]["lr_fc"])
     batch_size = CFG["hyperparameter"]["batch_size"]
     num_epochs = CFG["hyperparameter"]["num_epochs"]
+    dropout_rate = CFG["hyperparameter"]["dropout_rate"]
+    dim_fc_out = CFG["hyperparameter"]["dim_fc_out"]
 
     try:
         print("Copy files to %s for further reference." % log_path)
@@ -102,7 +104,7 @@ if __name__ == '__main__':
     )
 
     ##Network
-    net = network_mod.Network(resize, dim_fc_out=32761, dropout_rate=0.1)
+    net = network_mod.Network(resize, dim_fc_out, dropout_rate)
 
 
     ##Criterion
