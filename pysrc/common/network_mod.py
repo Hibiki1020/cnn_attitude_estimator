@@ -33,36 +33,36 @@ class Network(nn.Module):
         self.dropout = nn.Dropout(p=dropout_rate)
     
     def forward(self, x):
-        x = self.conv1(x)
-        x = self.relu(x)
-        x = self.pool(x)
+        x1 = self.conv1(x)
+        x2 = self.relu(x1)
+        x3 = self.pool(x2)
 
-        x = self.conv2(x)
-        x = self.relu(x)
-        x = self.pool(x)
+        x4 = self.conv2(x3)
+        x5 = self.relu(x4)
+        x6 = self.pool(x5)
 
-        x = self.conv3(x)
-        x = self.relu(x)
-        x = self.pool(x)
+        x7 = self.conv3(x6)
+        x8 = self.relu(x7)
+        x9 = self.pool(x8)
 
-        x = self.conv4(x)
-        x = self.relu(x)
-        x = self.pool(x)
+        x10 = self.conv4(x9)
+        x11 = self.relu(x10)
+        x12 = self.pool(x11)
 
-        x = self.conv5(x)
-        x = self.relu(x)
-        x = self.pool(x)
+        x13 = self.conv5(x12)
+        x14 = self.relu(x13)
+        x15 = self.pool(x14)
 
-        x = self.fc1(x)
-        x = self.dropout(x)
+        x16 = self.fc1(x15)
+        x17 = self.dropout(x16)
 
-        x = self.fc2(x)
-        x = self.dropout(x)
+        x18 = self.fc2(x17)
+        x19 = self.dropout(x18)
 
-        x = self.fc3(x)
+        x20 = self.fc3(x19)
 
-        l2norm = torch.norm( x[:, :self.dim_fc_out], p=2, dim=1, keepdims=True)
-        x[: , :self.dim_fc_out] = torch.div( x[: , :self.dim_fc_out].clone(), l2norm)
+        l2norm = torch.norm( x20[:, :self.dim_fc_out], p=2, dim=1, keepdims=True)
+        x20[: , :self.dim_fc_out] = torch.div( x20[: , :self.dim_fc_out].clone(), l2norm)
 
         return x
 
