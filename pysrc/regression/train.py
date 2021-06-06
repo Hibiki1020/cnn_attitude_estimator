@@ -86,8 +86,8 @@ if __name__ == '__main__':
         data_list = make_datalist_mod.makeMultiDataList(train_sequences, csv_name),
         transform = data_transform_mod.DataTransform(
             resize,
-            ([mean_element]),
-            ([std_element]),
+            mean_element,
+            std_element,
         ),
         phase = "train",
         index_dict_path = index_csv_path,
@@ -97,8 +97,8 @@ if __name__ == '__main__':
         data_list = make_datalist_mod.makeMultiDataList(valid_sequences, csv_name),
         transform = data_transform_mod.DataTransform(
             resize,
-            ([mean_element]),
-            ([std_element]),
+            mean_element,
+            std_element,
         ),
         phase = "valid",
         index_dict_path = index_csv_path,
