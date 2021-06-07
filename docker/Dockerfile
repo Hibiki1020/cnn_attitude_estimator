@@ -1,4 +1,5 @@
-FROM vistart/cuda:10.0-cudnn7-devel-ubuntu20.04
+#FROM vistart/cuda:10.0-cudnn7-devel-ubuntu20.04
+FROM vistart/cuda:10.2-cudnn7-tensorrt6-devel-ubuntu20.04
 #FROM nvidia/cuda:11.0-devel-ubuntu20.04
 
 
