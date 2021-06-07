@@ -26,6 +26,21 @@ class Network(nn.Module):
         self.fc3 = nn.Linear( dim_fc_out, dim_fc_out)
 
         self.dropout = nn.Dropout(p=dropout_rate)
+
+    def getParamValueList(self):
+        list_cnn_param_value = []
+        list_fc_param_value = []
+        for param_name, param_value in self.named_parameters():
+            param_value.requires_grad = True
+            if "cnn" in param_name:
+                # print("cnn: ", param_name)
+                list_cnn_param_value.append(param_value)
+            if "fc" in param_name:
+                # print("fc: ", param_name)
+                list_fc_param_value.append(param_value)
+        # print("list_cnn_param_value: ",list_cnn_param_value)
+        # print("list_fc_param_value: ",list_fc_param_value)
+        return list_cnn_param_value, list_fc_param_value
     
     def forward(self, x):
         x1 = self.conv1(x)
@@ -59,19 +74,4 @@ class Network(nn.Module):
         l2norm = torch.norm( x20[:, :self.dim_fc_out], p=2, dim=1, keepdims=True)
         x20[: , :self.dim_fc_out] = torch.div( x20[: , :self.dim_fc_out].clone(), l2norm)
 
-        return x
-
-    def getParamValueList(self):
-        list_cnn_param_value = []
-        list_fc_param_value = []
-        for param_name, param_value in self.named_parameters():
-            param_value.requires_grad = True
-            if "cnn" in param_name:
-                # print("cnn: ", param_name)
-                list_cnn_param_value.append(param_value)
-            if "fc" in param_name:
-                # print("fc: ", param_name)
-                list_fc_param_value.append(param_value)
-        # print("list_cnn_param_value: ",list_cnn_param_value)
-        # print("list_fc_param_value: ",list_fc_param_value)
-        return list_cnn_param_value, list_fc_param_value
+        return x20
