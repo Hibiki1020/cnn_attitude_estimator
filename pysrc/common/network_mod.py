@@ -6,14 +6,14 @@ from torchvision import models
 import torch.nn as nn
 
 class Network(nn.Module):
-    def __init__(self, resize, dim_fc_out, dropout_rate):
+    def __init__(self, resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False):
         super(Network, self).__init__()
 
         self.relu = nn.ReLU()
         self.pool = nn.MaxPool2d(2, stride=2)
 
-        self.conv1 = nn.Conv2d(   1,  64, 3) #Input Image is 672*672*1
-        self.conv2 = nn.Conv2d(  64, 128, 4)
+        self.conv1 = nn.Conv2d(   1,  64, 3)
+        self.conv2 = nn.Conv2d(  64, 128, 3)
         self.conv3 = nn.Conv2d( 128, 256, 3)
         self.conv4 = nn.Conv2d( 256, 512, 3)
         self.conv5 = nn.Conv2d( 512, 1024, 3)
@@ -21,9 +21,9 @@ class Network(nn.Module):
         self.dim_fc_in = 1024*(7)*(7)
         self.dim_fc_out = dim_fc_out
 
-        self.fc1 = nn.Linear(self.dim_fc_in, dim_fc_out)
-        self.fc2 = nn.Linear( dim_fc_out, dim_fc_out)
-        self.fc3 = nn.Linear( dim_fc_out, dim_fc_out)
+        self.fc1 = nn.Linear(self.dim_fc_in, self.dim_fc_out)
+        self.fc2 = nn.Linear( self.dim_fc_out, self.dim_fc_out)
+        self.fc3 = nn.Linear( self.dim_fc_out, self.dim_fc_out)
 
         self.dropout = nn.Dropout(p=dropout_rate)
 
@@ -43,35 +43,34 @@ class Network(nn.Module):
         return list_cnn_param_value, list_fc_param_value
     
     def forward(self, x):
-        x1 = self.conv1(x)
-        x2 = self.relu(x1)
-        x3 = self.pool(x2)
+        x = self.conv1(x)
+        x = self.relu(x)
+        x = self.pool(x)
 
-        x4 = self.conv2(x3)
-        x5 = self.relu(x4)
-        x6 = self.pool(x5)
+        x = self.conv2(x)
+        x = self.relu(x)
+        x = self.pool(x)
 
-        x7 = self.conv3(x6)
-        x8 = self.relu(x7)
-        x9 = self.pool(x8)
+        x = self.conv3(x)
+        x = self.relu(x)
+        x = self.pool(x)
 
-        x10 = self.conv4(x9)
-        x11 = self.relu(x10)
-        x12 = self.pool(x11)
+        x = self.conv4(x)
+        x = self.relu(x)
+        x = self.pool(x)
 
-        x13 = self.conv5(x12)
-        x14 = self.relu(x13)
-        x15 = self.pool(x14)
+        x = self.conv5(x)
+        x = self.relu(x)
+        x = self.pool(x)
 
-        x16 = self.fc1(x15)
-        x17 = self.dropout(x16)
+        x = self.fc1(x)
+        x = self.dropout(x)
 
-        x18 = self.fc2(x17)
-        x19 = self.dropout(x18)
+        x = self.fc2(x)
+        x = self.dropout(x)
 
-        x20 = self.fc3(x19)
+        x = self.fc3(x)
 
-        l2norm = torch.norm( x20[:, :self.dim_fc_out], p=2, dim=1, keepdims=True)
-        x20[: , :self.dim_fc_out] = torch.div( x20[: , :self.dim_fc_out].clone(), l2norm)
-
-        return x20
+        l2norm = torch.norm( x[:, :self.dim_fc_out], p=2, dim=1, keepdims=True)
+        x[: , :self.dim_fc_out] = torch.div( x[: , :self.dim_fc_out].clone(), l2norm)
+        return x
