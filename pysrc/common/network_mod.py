@@ -31,11 +31,11 @@ class Network(nn.Module):
         self.dim_fc_out = dim_fc_out
 
         self.fc = nn.Sequential(
-            nn.Linear(self.dim_fc_in, self.dim_fc_out*2),
+            nn.Linear(self.dim_fc_in, self.dim_fc_out),
             nn.Dropout(p=dropout_rate),
-            nn.Linear( self.dim_fc_out*2, self.dim_fc_out*2),
+            nn.Linear( self.dim_fc_out, self.dim_fc_out),
             nn.Dropout(p=dropout_rate),
-            nn.Linear( self.dim_fc_out*2, self.dim_fc_out)
+            nn.Linear( self.dim_fc_out, self.dim_fc_out)
         )
 
     def getParamValueList(self):
