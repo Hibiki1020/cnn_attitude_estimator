@@ -1,7 +1,7 @@
 #!/bin/bash
 
 image_name="cnn_attitude_estimator"
-tag_name="nvidia_docker_noetic"
+tag_name="docker"
 root_path=$(pwd)
 
 # /media/amsl/96fde31e-3b9b-4160-8d8a-a4b913579ca21

@@ -9,23 +9,34 @@ class Network(nn.Module):
     def __init__(self, resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False):
         super(Network, self).__init__()
 
-        self.relu = nn.ReLU()
-        self.pool = nn.MaxPool2d(2, stride=2)
-
-        self.conv1 = nn.Conv2d(   1,  64, 3)
-        self.conv2 = nn.Conv2d(  64, 128, 3)
-        self.conv3 = nn.Conv2d( 128, 256, 3)
-        self.conv4 = nn.Conv2d( 256, 512, 3)
-        self.conv5 = nn.Conv2d( 512, 1024, 3)
-
+        self.cnn = nn.Sequential(
+            nn.Conv2d(   1,  64, 3),
+            nn.ReLU(),
+            nn.MaxPool2d(2, stride=2),
+            nn.Conv2d(  64, 128, 3),
+            nn.ReLU(),
+            nn.MaxPool2d(2, stride=2),
+            nn.Conv2d( 128, 256, 3),
+            nn.ReLU(),
+            nn.MaxPool2d(2, stride=2),
+            nn.Conv2d( 256, 512, 3),
+            nn.ReLU(),
+            nn.MaxPool2d(2, stride=2),
+            nn.Conv2d( 512, 1024, 3),
+            nn.ReLU(),
+            nn.MaxPool2d(2, stride=2)
+        )
+        
         self.dim_fc_in = 1024*(7)*(7)
         self.dim_fc_out = dim_fc_out
 
-        self.fc1 = nn.Linear(self.dim_fc_in, self.dim_fc_out)
-        self.fc2 = nn.Linear( self.dim_fc_out, self.dim_fc_out)
-        self.fc3 = nn.Linear( self.dim_fc_out, self.dim_fc_out)
-
-        self.dropout = nn.Dropout(p=dropout_rate)
+        self.fc = nn.Sequential(
+            nn.Linear(self.dim_fc_in, self.dim_fc_out*2),
+            nn.Dropout(p=dropout_rate),
+            nn.Linear( self.dim_fc_out*2, self.dim_fc_out*2),
+            nn.Dropout(p=dropout_rate),
+            nn.Linear( self.dim_fc_out*2, self.dim_fc_out)
+        )
 
     def getParamValueList(self):
         list_cnn_param_value = []
@@ -43,33 +54,8 @@ class Network(nn.Module):
         return list_cnn_param_value, list_fc_param_value
     
     def forward(self, x):
-        x = self.conv1(x)
-        x = self.relu(x)
-        x = self.pool(x)
-
-        x = self.conv2(x)
-        x = self.relu(x)
-        x = self.pool(x)
-
-        x = self.conv3(x)
-        x = self.relu(x)
-        x = self.pool(x)
-
-        x = self.conv4(x)
-        x = self.relu(x)
-        x = self.pool(x)
-
-        x = self.conv5(x)
-        x = self.relu(x)
-        x = self.pool(x)
-
-        x = self.fc1(x)
-        x = self.dropout(x)
-
-        x = self.fc2(x)
-        x = self.dropout(x)
-
-        x = self.fc3(x)
+        x = self.cnn(x)
+        x = self.fc(x)
 
         l2norm = torch.norm( x[:, :self.dim_fc_out], p=2, dim=1, keepdims=True)
         x[: , :self.dim_fc_out] = torch.div( x[: , :self.dim_fc_out].clone(), l2norm)
