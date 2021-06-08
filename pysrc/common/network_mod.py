@@ -27,7 +27,7 @@ class Network(nn.Module):
             nn.MaxPool2d(2, stride=2)
         )
         
-        self.dim_fc_in = 1024*(7)*(7)
+        self.dim_fc_in = 1024*(resize//32)*(resize//32)
         self.dim_fc_out = dim_fc_out
 
         self.fc = nn.Sequential(
