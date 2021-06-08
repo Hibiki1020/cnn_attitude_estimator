@@ -23,7 +23,7 @@ hyperparameter:
   optimizer_name: "Adam"
   lr_cnn: 1e-5
   lr_fc: 1e-4
-  batch_size: 1
+  batch_size: 4
   num_epochs: 4
   dropout_rate: 0.1
   dim_fc_out: 32761
