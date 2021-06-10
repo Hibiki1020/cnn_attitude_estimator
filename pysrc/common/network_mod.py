@@ -30,7 +30,7 @@ class Network(nn.Module):
             nn.MaxPool2d(2, stride=2)
         )
         
-        self.dim_fc_in = 1024*(7)*(7)
+        self.dim_fc_in = (1024*2)*(resize//32)*(resize//32)
         self.dim_fc_out = dim_fc_out
 
         self.roll_fc = nn.Sequential(
@@ -65,8 +65,6 @@ class Network(nn.Module):
         return list_cnn_param_value, list_roll_fc_param_value, list_pitch_fc_param_value
     
     def forward(self, x):
-        print("input size: ")
-        print(x)
         feature = self.cnn(x)
 
         roll = self.roll_fc(feature)
