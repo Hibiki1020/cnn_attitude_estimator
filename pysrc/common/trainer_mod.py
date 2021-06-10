@@ -96,8 +96,8 @@ class Trainer:
         str_hyperparameter = method_name \
             + str(len(self.dataloaders_dict["train"].dataset)) + "train" \
             + str(len(self.dataloaders_dict["valid"].dataset)) + "valid" \
-            + str(dataset.transform.mean[0]) + "mean" \
-            + str(dataset.transform.std[0]) + "std" \
+            + str(dataset.transform.mean) + "mean" \
+            + str(dataset.transform.std) + "std" \
             + optimizer_name \
             + str(lr_cnn) + "lrcnn" \
             + str(lr_roll_fc) + "lrrollfc" \
