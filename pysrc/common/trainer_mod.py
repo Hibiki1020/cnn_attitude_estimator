@@ -140,7 +140,7 @@ class Trainer:
         for epoch in range(self.num_epochs):
             print("----------------------")
             print("Epoch {}/{}".format(epoch+1, self.num_epochs))
-            for phase in ["train", "val"]:
+            for phase in ["train", "valid"]:
                 if phase == "train":
                     self.net.train()
                 else:
