@@ -174,25 +174,25 @@ class Trainer:
                         
                         epoch_loss += loss.item() * inputs.size(0)
 
-                    epoch_loss = epoch_loss / len(self.dataloaders_dict[phase].dataset)
-                    print("{} Loss: {:.4f}".format(phase, epoch_loss))
+                epoch_loss = epoch_loss / len(self.dataloaders_dict[phase].dataset)
+                print("{} Loss: {:.4f}".format(phase, epoch_loss))
 
-                    #record
-                    if phase == "train":
-                        record_loss_train.append(epoch_loss)
-                        writer.add_scalar("Loss/train", epoch_loss, epoch)
-                    else:
-                        record_loss_val.append(epoch_loss)
-                        writer.add_scalar("Loss/val", epoch_loss, epoch)
+                #record
+                if phase == "train":
+                    record_loss_train.append(epoch_loss)
+                    writer.add_scalar("Loss/train", epoch_loss, epoch)
+                else:
+                    record_loss_val.append(epoch_loss)
+                    writer.add_scalar("Loss/val", epoch_loss, epoch)
                     
-                if record_loss_train and record_loss_val:
-                    writer.add_scalars("Loss/train_and_val", {"train": record_loss_train[-1], "val": record_loss_val[-1]}, epoch)
+            if record_loss_train and record_loss_val:
+                writer.add_scalars("Loss/train_and_val", {"train": record_loss_train[-1], "val": record_loss_val[-1]}, epoch)
                 
-            writer.close()
-            ## save
-            self.saveParam()
-            self.saveGraph(record_loss_train, record_loss_val)
-            ## training time
-            mins = (time.time() - start_clock) // 60
-            secs = (time.time() - start_clock) % 60
-            print ("training_time: ", mins, " [min] ", secs, " [sec]")
+        writer.close()
+        ## save
+        self.saveParam()
+        self.saveGraph(record_loss_train, record_loss_val)
+        ## training time
+        mins = (time.time() - start_clock) // 60
+        secs = (time.time() - start_clock) % 60
+        print ("training_time: ", mins, " [min] ", secs, " [sec]")
