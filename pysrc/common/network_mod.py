@@ -65,6 +65,8 @@ class Network(nn.Module):
         return list_cnn_param_value, list_roll_fc_param_value, list_pitch_fc_param_value
     
     def forward(self, x):
+        print("input size: ")
+        print(x)
         feature = self.cnn(x)
 
         roll = self.roll_fc(feature)
