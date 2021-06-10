@@ -172,7 +172,7 @@ class Trainer:
                             loss.backward()#accumulate gradient to each Tensor
                             self.optimizer.step()    #update param depending on current .grad
                         
-                        epoch_loss += loss.item() * inputs_color.size(0)
+                        epoch_loss += loss.item() * inputs.size(0)
 
                     epoch_loss = epoch_loss / len(self.dataloaders_dict[phase].dataset)
                     print("{} Loss: {:.4f}".format(phase, epoch_loss))
