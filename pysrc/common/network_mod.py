@@ -9,25 +9,28 @@ class Network(nn.Module):
     def __init__(self, resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False):
         super(Network, self).__init__()
 
+        self.kernel_size = 3
+        self.padding = [self.kernel_size // 2, self.kernel_size//2]
+
         self.cnn = nn.Sequential(
-            nn.Conv2d(   1,  64, 3),
+            nn.Conv2d(   1,  64, self.kernel_size, self.padding),
             nn.ReLU(),
             nn.MaxPool2d(2, stride=2),
-            nn.Conv2d(  64, 128, 3),
+            nn.Conv2d(  64, 128, self.kernel_size, self.padding),
             nn.ReLU(),
             nn.MaxPool2d(2, stride=2),
-            nn.Conv2d( 128, 256, 3),
+            nn.Conv2d( 128, 256, self.kernel_size, self.padding),
             nn.ReLU(),
             nn.MaxPool2d(2, stride=2),
-            nn.Conv2d( 256, 512, 3),
+            nn.Conv2d( 256, 512, self.kernel_size, self.padding),
             nn.ReLU(),
             nn.MaxPool2d(2, stride=2),
-            nn.Conv2d( 512, 1024, 3),
+            nn.Conv2d( 512, 1024, self.kernel_size, self.padding),
             nn.ReLU(),
             nn.MaxPool2d(2, stride=2)
         )
         
-        self.dim_fc_in = 1024*(resize//32)*(resize//32)
+        self.dim_fc_in = 1024*(7)*(7)
         self.dim_fc_out = dim_fc_out
 
         self.roll_fc = nn.Sequential(
