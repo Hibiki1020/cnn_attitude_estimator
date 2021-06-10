@@ -30,7 +30,7 @@ class Network(nn.Module):
             nn.MaxPool2d(2, stride=2)
         )
         
-        self.dim_fc_in = (1024*2)*(resize//32)*(resize//32)
+        self.dim_fc_in = (1024)*(resize//32)*(resize//32)
         self.dim_fc_out = dim_fc_out
 
         self.roll_fc = nn.Sequential(
@@ -66,6 +66,8 @@ class Network(nn.Module):
     
     def forward(self, x):
         feature = self.cnn(x)
+
+        feature = torch.flatten(feature)
 
         roll = self.roll_fc(feature)
         pitch = self.pitch_fc(feature)
