@@ -30,7 +30,7 @@ class Network(nn.Module):
             nn.MaxPool2d(2, stride=2)
         )
         
-        self.dim_fc_in = (1024)*(resize//32)*(resize//32)
+        self.dim_fc_in = (1024)*(7)*(7)
         self.dim_fc_out = dim_fc_out
 
         self.roll_fc = nn.Sequential(
@@ -72,9 +72,9 @@ class Network(nn.Module):
         roll = self.roll_fc(feature)
         pitch = self.pitch_fc(feature)
 
-        l2norm = torch.norm( roll[:, :self.dim_fc_out], p=2, dim=1, keepdims=True)
+        l2norm = torch.norm( roll[:, :self.dim_fc_out], p=2, dim=1, keepdim=True)
         roll[: , :self.dim_fc_out] = torch.div( roll[: , :self.dim_fc_out].clone(), l2norm)
 
-        l2norm = torch.norm( pitch[:, :self.dim_fc_out], p=2, dim=1, keepdims=True)
+        l2norm = torch.norm( pitch[:, :self.dim_fc_out], p=2, dim=1, keepdim=True)
         pitch[: , :self.dim_fc_out] = torch.div( pitch[: , :self.dim_fc_out].clone(), l2norm)
         return roll, pitch
