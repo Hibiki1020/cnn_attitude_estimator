@@ -42,8 +42,8 @@ class ClassOriginaldataset(data.Dataset):
             num_lower = tmp_deg - 1.0
             num_upper = tmp_deg
         
-        dist_low = math.sqrt(num_deg - num_lower)
-        dist_high = math.sqrt(num_deg - num_upper)
+        dist_low = math.fabs(num_deg - num_lower)
+        dist_high = math.fabs(num_deg - num_upper)
 
         lower_ind = self.search_index(num_lower)
         upper_ind = self.search_index(num_upper)
