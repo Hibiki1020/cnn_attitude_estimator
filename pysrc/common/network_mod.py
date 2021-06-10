@@ -48,18 +48,18 @@ class Network(nn.Module):
 
     def getParamValueList(self):
         list_cnn_param_value = []
-        list_fc_param_value = []
+        list_roll_fc_param_value = []
+        list_pitch_fc_param_value = []
         for param_name, param_value in self.named_parameters():
             param_value.requires_grad = True
             if "cnn" in param_name:
-                # print("cnn: ", param_name)
                 list_cnn_param_value.append(param_value)
-            if "fc" in param_name:
-                # print("fc: ", param_name)
-                list_fc_param_value.append(param_value)
-        # print("list_cnn_param_value: ",list_cnn_param_value)
-        # print("list_fc_param_value: ",list_fc_param_value)
-        return list_cnn_param_value, list_fc_param_value
+            if "roll_fc" in param_name:
+                list_roll_fc_param_value.append(param_value)
+            if "pitch_fc" in param_name:
+                list_pitch_fc_param_value.append(param_value)
+            
+        return list_cnn_param_value, list_roll_fc_param_value, list_pitch_fc_param_value
     
     def forward(self, x):
         feature = self.cnn(x)

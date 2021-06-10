@@ -130,10 +130,10 @@ class ClassOriginaldataset(data.Dataset):
         img_path = self.data_list[index][0]
         rp_list = self.data_list[index][5:7]
         rp_list_float = [float(num) for num in rp_list]
-        rp_list = self.float_to_array(rp_list_float) #Convert to 32400 array
+        rp_list_total = self.float_to_array(rp_list_float)
 
         img_pil = Image.open(img_path)
-        rp_numpy = np.array(rp_list)
+        rp_numpy = np.array(rp_list_total)
 
         img_trans, rp_trans = self.transform(img_pil, rp_numpy, phase=self.phase)
         return img_trans, rp_trans
