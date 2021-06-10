@@ -41,7 +41,7 @@ class Trainer:
         self.criterion = criterion
         self.optimizer = self.getOptimizer(optimizer_name, lr_cnn, lr_roll_fc, lr_pitch_fc)
         self.num_epochs = num_epochs
-        self.str_hyperparameter = self.getStrHyperparameter(method_name, train_dataset, optimizer_name, lr_cnn, lr_fc, batch_size)
+        self.str_hyperparameter = self.getStrHyperparameter(method_name, train_dataset, optimizer_name, lr_cnn, lr_roll_fc, lr_pitch_fc,batch_size)
 
     def setRandomCondition(self, keep_reproducibility=False): #Random Training Environment
         #Refer https://nuka137.hatenablog.com/entry/2020/09/01/080038
