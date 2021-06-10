@@ -66,7 +66,7 @@ class ClassOriginaldataset(data.Dataset):
         roll_str = self.data_list[index][4]
         pitch_str = self.data_list[index][5]
 
-        roll_float = [float(num) for num in roll_str]
+        roll_float = [float(num.replace('"','')) for num in roll_str]
         pitch_float = [float(num) for num in pitch_str]
 
         roll_list = self.float_to_array(roll_float)
