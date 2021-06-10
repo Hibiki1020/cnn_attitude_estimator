@@ -144,7 +144,7 @@ class Trainer:
                 if phase == "train":
                     self.net.train()
                 else:
-                    self.net.valid()
+                    self.net.eval()
                 
                 ##skip
                 if (epoch == 0) and (phase== "train"):
