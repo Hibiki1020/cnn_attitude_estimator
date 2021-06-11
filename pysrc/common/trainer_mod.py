@@ -166,7 +166,7 @@ class Trainer:
                         roll_loss = self.computeLoss(roll, label_roll)
                         pitch_loss = self.computeLoss(pitch, label_pitch)
 
-                        loss = 0.5*roll_loss + 0.5*pitch_loss
+                        loss = roll_loss + pitch_loss
 
                         if phase == "train":
                             loss.backward()#accumulate gradient to each Tensor
