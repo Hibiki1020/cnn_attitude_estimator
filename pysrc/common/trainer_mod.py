@@ -166,12 +166,12 @@ class Trainer:
                         roll_loss = self.computeLoss(roll, label_roll)
                         pitch_loss = self.computeLoss(pitch, label_pitch)
 
-                        #loss = torch.add(roll_loss, pitch_loss)
+                        loss = torch.add(roll_loss, pitch_loss)
 
                         if phase == "train":
-                            #loss.backward()
-                            roll_loss.backward()
-                            pitch_loss.backward()
+                            loss.backward()
+                            #roll_loss.backward()
+                            #pitch_loss.backward()
                             self.optimizer.step()    #update param depending on current .grad
                         
                         epoch_loss += loss.item() * inputs.size(0)
