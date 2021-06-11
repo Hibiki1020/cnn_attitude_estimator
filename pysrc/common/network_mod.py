@@ -35,16 +35,20 @@ class Network(nn.Module):
 
         self.roll_fc = nn.Sequential(
             nn.Linear(self.dim_fc_in, 3000),
+            nn.ReLU(),
             nn.Dropout(p=dropout_rate),
             nn.Linear( 3000, 1000),
+            nn.ReLU(),
             nn.Dropout(p=dropout_rate),
             nn.Linear( 1000, self.dim_fc_out)
         )
 
         self.pitch_fc = nn.Sequential(
             nn.Linear(self.dim_fc_in, 3000),
+            nn.ReLU(),
             nn.Dropout(p=dropout_rate),
             nn.Linear( 3000, 1000),
+            nn.ReLU(),
             nn.Dropout(p=dropout_rate),
             nn.Linear( 1000, self.dim_fc_out)
         )
@@ -72,9 +76,12 @@ class Network(nn.Module):
         roll = self.roll_fc(feature)
         pitch = self.pitch_fc(feature)
 
-        l2norm = torch.norm( roll[:, :self.dim_fc_out], p=2, dim=1, keepdim=True)
-        roll[: , :self.dim_fc_out] = torch.div( roll[: , :self.dim_fc_out].clone(), l2norm)
+        roll = nn.Softmax(roll)
+        pitch = nn.Softmax(pitch)
 
-        l2norm = torch.norm( pitch[:, :self.dim_fc_out], p=2, dim=1, keepdim=True)
-        pitch[: , :self.dim_fc_out] = torch.div( pitch[: , :self.dim_fc_out].clone(), l2norm)
+        #l2norm = torch.norm( roll[:, :self.dim_fc_out], p=2, dim=1, keepdim=True)
+        #roll[: , :self.dim_fc_out] = torch.div( roll[: , :self.dim_fc_out].clone(), l2norm)
+
+        #l2norm = torch.norm( pitch[:, :self.dim_fc_out], p=2, dim=1, keepdim=True)
+        #pitch[: , :self.dim_fc_out] = torch.div( pitch[: , :self.dim_fc_out].clone(), l2norm)
         return roll, pitch
