@@ -6,11 +6,12 @@ import math
 import csv
 
 class ClassOriginaldataset(data.Dataset):
-    def __init__(self, data_list, transform, phase, index_dict_path):
+    def __init__(self, data_list, transform, phase, index_dict_path, dim_fc_out):
         self.data_list = data_list
         self.transform = transform
         self.phase = phase
         self.index_dict_path = index_dict_path
+        self.dim_fc_out = dim_fc_out
 
         self.index_dict = []
 
@@ -45,12 +46,10 @@ class ClassOriginaldataset(data.Dataset):
         dist_low = math.fabs(num_deg - num_lower)
         dist_high = math.fabs(num_deg - num_upper)
 
-        lower_ind = self.search_index(num_lower)
-        upper_ind = self.search_index(num_upper)
+        lower_ind = int(self.search_index(num_lower))
+        upper_ind = int(self.search_index(num_upper))
 
-        array = np.zeros(len(self.index_dict))
-        for i in range(len(array)):
-            array[i] = 0.0
+        array = np.zeros(self.dim_fc_out)
         
         array[lower_ind] = dist_high
         array[upper_ind] = dist_low

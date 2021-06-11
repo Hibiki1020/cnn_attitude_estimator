@@ -92,6 +92,7 @@ if __name__ == '__main__':
         ),
         phase = "train",
         index_dict_path = index_csv_path,
+        dim_fc_out
     )
 
     valid_dataset = dataset_mod.ClassOriginaldataset(
@@ -103,6 +104,7 @@ if __name__ == '__main__':
         ),
         phase = "valid",
         index_dict_path = index_csv_path,
+        dim_fc_out
     )
 
     ##Network
