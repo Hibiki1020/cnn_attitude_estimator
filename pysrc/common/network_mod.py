@@ -14,19 +14,19 @@ class Network(nn.Module):
 
         self.cnn = nn.Sequential(
             nn.Conv2d(   1,  64, self.kernel_size, padding=self.padding, bias=False, padding_mode='replicate'),
-            nn.ReLU(inplace=False),
+            nn.ReLU(),
             nn.MaxPool2d(2, stride=2),
             nn.Conv2d(  64, 128, self.kernel_size, padding=self.padding, bias=False, padding_mode='replicate'),
-            nn.ReLU(inplace=False),
+            nn.ReLU(),
             nn.MaxPool2d(2, stride=2),
             nn.Conv2d( 128, 256, self.kernel_size, padding=self.padding, bias=False, padding_mode='replicate'),
-            nn.ReLU(inplace=False),
+            nn.ReLU(),
             nn.MaxPool2d(2, stride=2),
             nn.Conv2d( 256, 512, self.kernel_size, padding=self.padding, bias=False, padding_mode='replicate'),
-            nn.ReLU(inplace=False),
+            nn.ReLU(),
             nn.MaxPool2d(2, stride=2),
             nn.Conv2d( 512, 1024, self.kernel_size, padding=self.padding, bias=False, padding_mode='replicate'),
-            nn.ReLU(inplace=False),
+            nn.ReLU(),
             nn.MaxPool2d(2, stride=2)
         )
         
