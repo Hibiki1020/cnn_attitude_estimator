@@ -19,11 +19,17 @@ class DataTransform():
             transforms.Normalize(mean, std)
         ])
 
-    def __call__(self, img_pil, acc_numpy, phase="train"):
+    def __call__(self, img_pil, roll_numpy, pitch_numpy, phase="train"):
         ## img: numpy -> tensor
         img_tensor = self.img_transform(img_pil)
-        ## acc: numpy -> tensor
-        acc_numpy = acc_numpy.astype(np.float32)
-        acc_numpy = acc_numpy / np.linalg.norm(acc_numpy)
-        acc_tensor = torch.from_numpy(acc_numpy)
-        return img_tensor, acc_tensor
+        
+        ## roll: numpy -> tensor
+        roll_numpy = roll_numpy.astype(np.float32)
+        roll_numpy = roll_numpy / np.linalg.norm(roll_numpy)
+        roll_tensor = torch.from_numpy(roll_numpy)
+
+        # pitch: numpy -> tensor
+        pitch_numpy = pitch_numpy.astype(np.float32)
+        pitch_numpy = pitch_numpy / np.linalg.norm(pitch_numpy)
+        pitch_tensor = torch.from_numpy(pitch_numpy)
+        return img_tensor, roll_tensor, pitch_tensor
