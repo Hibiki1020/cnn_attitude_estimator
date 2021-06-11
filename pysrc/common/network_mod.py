@@ -4,6 +4,7 @@ import numpy as np
 import torch
 from torchvision import models
 import torch.nn as nn
+import torch.nn.functional as nn_functional
 
 class Network(nn.Module):
     def __init__(self, resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False):
@@ -76,8 +77,8 @@ class Network(nn.Module):
         roll = self.roll_fc(feature)
         pitch = self.pitch_fc(feature)
 
-        roll = nn.Softmax(roll)
-        pitch = nn.Softmax(pitch)
+        roll = nn_functional.softmax(roll, dim=0)
+        pitch = nn_functional.softmax(pitch, dim=0)
 
         #l2norm = torch.norm( roll[:, :self.dim_fc_out], p=2, dim=1, keepdim=True)
         #roll[: , :self.dim_fc_out] = torch.div( roll[: , :self.dim_fc_out].clone(), l2norm)
