@@ -166,7 +166,8 @@ class Trainer:
                         roll_loss = self.computeLoss(roll, label_roll)
                         pitch_loss = self.computeLoss(pitch, label_pitch)
 
-                        loss = torch.add(roll_loss, pitch_loss)
+                        loss = 0
+                        loss = loss + roll_loss + pitch_loss
 
                         if phase == "train":
                             loss.backward()
