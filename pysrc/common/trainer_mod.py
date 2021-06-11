@@ -167,7 +167,7 @@ class Trainer:
                         pitch_loss = self.computeLoss(pitch, label_pitch)
 
                         loss = 0
-                        loss = loss + roll_loss + pitch_loss
+                        loss = roll_loss + pitch_loss
 
                         if phase == "train":
                             loss.backward()
