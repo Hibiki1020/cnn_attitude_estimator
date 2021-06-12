@@ -9,6 +9,7 @@ import torch
 from torchvision import models
 import torch.nn as nn
 import torch.optim as optim
+import torch.backends.cudnn as cudnn
 from tensorboardX import SummaryWriter
 
 class Trainer:
@@ -26,14 +27,21 @@ class Trainer:
     num_epochs,
     weights_path,
     log_path,
-    graph_path):
+    graph_path,
+    multiGPU):
 
         self.weights_path = weights_path
         self.log_path = log_path
         self.graph_path = graph_path
+        self.multiGPU = multiGPU
 
         self.setRandomCondition()
-        self.device = torch.device("cuda:0" if torch.cuda.is_available else "cpu")
+        
+        if self.multiGPU == 0:
+            self.device = torch.device("cuda:0" if torch.cuda.is_available else "cpu")
+        else:
+            self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
         print("Training Device: ", self.device)
 
         self.dataloaders_dict = self.getDataloader(train_dataset, valid_dataset, batch_size)
@@ -71,6 +79,11 @@ class Trainer:
         print(net)
 
         net = net.to(self.device) #Send to GPU
+
+        if self.multiGPU == 1 and self.self.device == 'cuda':
+            net = nn.DataParallel(net) #make parallel
+            cudnn.benchmark = True
+
         return net
 
     def getOptimizer(self, optimizer_name, lr_cnn, lr_roll_fc, lr_pitch_fc):

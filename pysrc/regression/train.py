@@ -56,6 +56,7 @@ if __name__ == '__main__':
     graph_path = CFG["save_top_path"] + CFG["graph_path"]
     csv_name = CFG["csv_name"]
     index_csv_path = CFG["index_csv_path"]
+    multiGPU = int(CFG["multiGPU"])
 
     train_sequences = CFG["train"]
     valid_sequences = CFG["valid"]
@@ -130,7 +131,8 @@ if __name__ == '__main__':
         num_epochs,
         weights_path,
         log_path,
-        graph_path
+        graph_path,
+        multiGPU
     )
 
     trainer.train()
