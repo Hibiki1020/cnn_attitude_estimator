@@ -6,7 +6,10 @@ log_path: "/log"
 graph_path: "/graph"
 
 train:
+  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_01_image70000/"
   - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_02_image140000/"
+  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_03_image140000/"
+  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_04_image140000/"
 valid:
   - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_02_image70000/"
 csv_name: "image_attitude.csv"
@@ -23,7 +26,7 @@ hyperparameter:
   lr_cnn: 1e-5
   lr_roll_fc: 1e-4
   lr_pitch_fc: 1e-4
-  batch_size: 2
-  num_epochs: 2
+  batch_size: 128
+  num_epochs: 100
   dropout_rate: 0.1
   dim_fc_out: 361
