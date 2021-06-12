@@ -80,7 +80,7 @@ class Trainer:
 
         net = net.to(self.device) #Send to GPU
 
-        if self.multiGPU == 1 and self.self.device == 'cuda':
+        if self.multiGPU == 1 and self.device == 'cuda':
             net = nn.DataParallel(net) #make parallel
             cudnn.benchmark = True
 
