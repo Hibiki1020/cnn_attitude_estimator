@@ -91,7 +91,7 @@ class Trainer:
 
         if self.multiGPU == 0:
             list_cnn_param_value, list_roll_fc_param_value, list_pitch_fc_param_value = self.net.getParamValueList()
-        else:
+        elif self.multiGPU == 1 and self.device == 'cuda':
             list_cnn_param_value, list_roll_fc_param_value, list_pitch_fc_param_value = self.net.module.getParamValueList()
 
         if optimizer_name == "SGD":
