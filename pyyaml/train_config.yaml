@@ -6,12 +6,12 @@ log_path: "/log"
 graph_path: "/graph"
 
 train:
-  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_01_image70000/"
-  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_02_image140000/"
-  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_03_image140000/"
-  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_04_image140000/"
+  - "/home/ssd_dir/AirSimNH/2021_06_01_image70000/"
+  - "/home/ssd_dir/AirSimNH/2021_06_02_image140000/"
+  - "/home/ssd_dir/AirSimNH/2021_06_03_image140000/"
+  - "/home/ssd_dir/AirSimNH/2021_06_04_image140000/"
 valid:
-  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_02_image70000/"
+  - "/home/ssd_dir/AirSimNH/2021_06_02_image70000/"
 csv_name: "image_attitude.csv"
 
 index_csv_path: "/home/ros_catkin_ws/src/cnn_attitude_estimator/index_dict/index_dict_360x1range_step1deg.csv"
