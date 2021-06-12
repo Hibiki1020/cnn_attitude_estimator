@@ -88,6 +88,12 @@ class Trainer:
 
     def getOptimizer(self, optimizer_name, lr_cnn, lr_roll_fc, lr_pitch_fc):
         list_cnn_param_value, list_roll_fc_param_value, list_pitch_fc_param_value = self.net.getParamValueList()
+
+        if self.multiGPU == 0:
+            list_cnn_param_value, list_roll_fc_param_value, list_pitch_fc_param_value = self.net.getParamValueList()
+        else:
+            list_cnn_param_value, list_roll_fc_param_value, list_pitch_fc_param_value = self.net.module.getParamValueList()
+
         if optimizer_name == "SGD":
             optimizer = optim.SGD([
                 {"params": list_cnn_param_value, "lr": lr_cnn},
