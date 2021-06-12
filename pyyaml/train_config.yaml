@@ -28,7 +28,7 @@ hyperparameter:
   lr_cnn: 1e-5
   lr_roll_fc: 1e-4
   lr_pitch_fc: 1e-4
-  batch_size: 512
+  batch_size: 768
   num_epochs: 100
   dropout_rate: 0.1
   dim_fc_out: 361
