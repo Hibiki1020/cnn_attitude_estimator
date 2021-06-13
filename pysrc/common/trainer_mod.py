@@ -181,19 +181,17 @@ class Trainer:
 
                     #Compute gradient
                     with torch.set_grad_enabled(phase == "train"):
-                        roll, pitch = self.net(inputs)
-                        roll_loss = self.computeLoss(roll, label_roll)
-                        pitch_loss = self.computeLoss(pitch, label_pitch)
+                        roll_inf, pitch_inf = self.net(inputs)
+                        roll_loss = self.computeLoss(roll_inf, label_roll)
+                        pitch_loss = self.computeLoss(pitch_inf, label_pitch)
 
-                        loss = roll_loss + pitch_loss
+                        total_loss = roll_loss + pitch_loss
 
                         if phase == "train":
-                            loss.backward()
-                            #roll_loss.backward()
-                            #pitch_loss.backward()
+                            total_loss.backward()
                             self.optimizer.step()    #update param depending on current .grad
                         
-                        epoch_loss += loss.item() * inputs.size(0)
+                        epoch_loss += total_loss.item() * inputs.size(0)
 
                 epoch_loss = epoch_loss / len(self.dataloaders_dict[phase].dataset)
                 print("{} Loss: {:.4f}".format(phase, epoch_loss))

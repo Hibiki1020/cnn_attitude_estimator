@@ -25,14 +25,14 @@ class DataTransform():
         
         ## roll: numpy -> tensor
         roll_numpy = roll_numpy.astype(np.float32)
-        roll_numpy = roll_numpy / np.linalg.norm(roll_numpy)
+        #roll_numpy = roll_numpy / np.linalg.norm(roll_numpy)
         #roll_tensor = torch.from_numpy(roll_numpy)
         roll_tensor = torch.tensor(roll_numpy, requires_grad=True)
         #roll_tensor = roll_tensor.long()
 
         # pitch: numpy -> tensor
         pitch_numpy = pitch_numpy.astype(np.float32)
-        pitch_numpy = pitch_numpy / np.linalg.norm(pitch_numpy)
+        #pitch_numpy = pitch_numpy / np.linalg.norm(pitch_numpy)
         #pitch_tensor = torch.from_numpy(pitch_numpy)
         pitch_tensor = torch.tensor(pitch_numpy, requires_grad = True)
         #pitch_tensor = pitch_tensor.long()

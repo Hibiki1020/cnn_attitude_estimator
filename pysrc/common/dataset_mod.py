@@ -30,7 +30,7 @@ class ClassOriginaldataset(data.Dataset):
         return index
 
     def float_to_array(self, num_float):
-        num_deg = float(num_float / 3.141592 * 180.0)
+        num_deg = float((num_float/3.141592)*180.0)
 
         num_upper = 0.0
         num_lower = 0.0
@@ -75,8 +75,6 @@ class ClassOriginaldataset(data.Dataset):
         roll_numpy = np.array(roll_list)
         pitch_numpy = np.array(pitch_list)
 
-        #roll_img_trans, roll_trans = self.transform(img_pil, roll_numpy, phase=self.phase)
-        #pitch_img_trans, pitch_trans = self.transform(img_pil, pit
         img_trans, roll_trans, pitch_trans = self.transform(img_pil, roll_numpy, pitch_numpy, phase=self.phase)
 
         return img_trans, roll_trans, pitch_trans

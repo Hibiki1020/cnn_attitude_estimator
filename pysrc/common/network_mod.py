@@ -15,19 +15,19 @@ class Network(nn.Module):
 
         self.cnn = nn.Sequential(
             nn.Conv2d(   1,  64, self.kernel_size, padding=self.padding, bias=False, padding_mode='replicate'),
-            nn.ReLU(),
+            nn.ReLU(inplace=True),
             nn.MaxPool2d(2, stride=2),
             nn.Conv2d(  64, 128, self.kernel_size, padding=self.padding, bias=False, padding_mode='replicate'),
-            nn.ReLU(),
+            nn.ReLU(inplace=True),
             nn.MaxPool2d(2, stride=2),
             nn.Conv2d( 128, 256, self.kernel_size, padding=self.padding, bias=False, padding_mode='replicate'),
-            nn.ReLU(),
+            nn.ReLU(inplace=True),
             nn.MaxPool2d(2, stride=2),
             nn.Conv2d( 256, 512, self.kernel_size, padding=self.padding, bias=False, padding_mode='replicate'),
-            nn.ReLU(),
+            nn.ReLU(inplace=True),
             nn.MaxPool2d(2, stride=2),
             nn.Conv2d( 512, 1024, self.kernel_size, padding=self.padding, bias=False, padding_mode='replicate'),
-            nn.ReLU(),
+            nn.ReLU(inplace=True),
             nn.MaxPool2d(2, stride=2)
         )
         
@@ -36,20 +36,20 @@ class Network(nn.Module):
 
         self.roll_fc = nn.Sequential(
             nn.Linear(self.dim_fc_in, 3000),
-            nn.ReLU(),
+            nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
             nn.Linear( 3000, 1000),
-            nn.ReLU(),
+            nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
             nn.Linear( 1000, self.dim_fc_out)
         )
 
         self.pitch_fc = nn.Sequential(
             nn.Linear(self.dim_fc_in, 3000),
-            nn.ReLU(),
+            nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
             nn.Linear( 3000, 1000),
-            nn.ReLU(),
+            nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
             nn.Linear( 1000, self.dim_fc_out)
         )
