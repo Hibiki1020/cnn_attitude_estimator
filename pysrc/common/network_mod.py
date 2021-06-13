@@ -54,6 +54,17 @@ class Network(nn.Module):
             nn.Linear( 1000, self.dim_fc_out)
         )
 
+        self.initializeWeights()
+
+    def initializeWeights(self):
+        for m in self.roll_fc.children():
+            if isinstance(m, nn.Linear):
+                nn.init.kaiming_normal_(m.weight)
+
+        for m in self.pitch_fc.children():
+            if isinstance(m, nn.Linear):
+                nn.init.kaiming_normal_(m.weight)
+    
     def getParamValueList(self):
         list_cnn_param_value = []
         list_roll_fc_param_value = []
