@@ -1,0 +1,8 @@
+dataset:
+  - "/media/amsl/96fde31e-3b9b-4160-8d8a-a4b913579ca21/airsim_dataset_kawai/AirSimNH/2021_06_01_image70000/"
+  - "/media/amsl/96fde31e-3b9b-4160-8d8a-a4b913579ca21/airsim_dataset_kawai/AirSimNH/2021_06_02_image140000/"
+  - "/media/amsl/96fde31e-3b9b-4160-8d8a-a4b913579ca21/airsim_dataset_kawai/AirSimNH/2021_06_03_image140000/"
+  - "/media/amsl/96fde31e-3b9b-4160-8d8a-a4b913579ca21/airsim_dataset_kawai/AirSimNH/2021_06_04_image140000/"
+  - "/media/amsl/96fde31e-3b9b-4160-8d8a-a4b913579ca21/airsim_dataset_kawai/AirSimNH/2021_06_02_image70000/"
+
+csv_name: "image_attitude.csv"
