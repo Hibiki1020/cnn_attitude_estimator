@@ -7,9 +7,6 @@ graph_path: "/graph"
 
 train:
   - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_01_image70000/"
-  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_02_image140000/"
-  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_03_image140000/"
-  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image140000/"
 valid:
   - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_02_image70000/"
 csv_name: "image_attitude.csv"
