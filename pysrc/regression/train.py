@@ -113,8 +113,9 @@ if __name__ == '__main__':
 
 
     ##Criterion
-    criterion = nn.CrossEntropyLoss()
+    #criterion = nn.CrossEntropyLoss()
     #criterion = nn.MSELoss()
+    criterion = nn.MultiLabelSoftMarginLoss()
 
     #train
     trainer = trainer_mod.Trainer(
