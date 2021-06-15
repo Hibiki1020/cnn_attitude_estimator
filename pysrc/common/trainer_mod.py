@@ -169,6 +169,9 @@ class Trainer:
                 if (epoch == 0) and (phase== "train"):
                     continue
 
+                if ((epoch%2)==0) and (phase== "valid") and (epoch > 0):
+                    continue
+
                 ##data load
                 epoch_loss = 0.0
                 for inputs, label_roll, label_pitch in tqdm(self.dataloaders_dict[phase]):
