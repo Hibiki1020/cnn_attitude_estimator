@@ -14,10 +14,10 @@ class DataTransform():
         self.std = std
         size = (resize, resize)
         self.img_transform = transforms.Compose([
+            transforms.Grayscale(num_output_channels=1),
             transforms.Resize(size),
             transforms.ToTensor(),
-            transforms.Normalize((mean,), (std,)),
-            transforms.Grayscale(num_output_channels=1)
+            transforms.Normalize((mean,), (std,))
         ])
 
     def __call__(self, img_pil, roll_numpy, pitch_numpy, phase="train"):
