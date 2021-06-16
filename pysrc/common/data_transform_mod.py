@@ -16,7 +16,8 @@ class DataTransform():
         self.img_transform = transforms.Compose([
             transforms.Resize(size),
             transforms.ToTensor(),
-            transforms.Normalize((mean,), (std,))
+            transforms.Normalize((mean,), (std,)),
+            transforms.Grayscale(num_output_channels=1)
         ])
 
     def __call__(self, img_pil, roll_numpy, pitch_numpy, phase="train"):
