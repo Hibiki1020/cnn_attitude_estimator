@@ -184,14 +184,13 @@ class Trainer:
 
                     #Compute gradient
                     with torch.set_grad_enabled(phase == "train"):
-                        roll_inf, pitch_inf = self.net(inputs)
-                        #roll_loss = self.computeLoss(roll_inf, label_roll)
-                        #pitch_loss = self.computeLoss(pitch_inf, label_pitch)
+                        #roll_inf, pitch_inf = self.net(inputs)
+                        logged_roll_inf, logged_pitch_inf = self.net(inputs)
                         
                         #↓正解ラベルが1, 0の形式にならない状態で交差エントロピーを誤差関数に
                         #したい場合はこのようにライブラリを使わない誤差の計算の仕方をしないといけない
-                        roll_loss = torch.mean( -label_roll * torch.log(roll_inf))
-                        pitch_loss = torch.mean( -label_pitch * torch.log(pitch_inf))
+                        roll_loss = torch.mean( -label_roll * logged_roll_inf )
+                        pitch_loss = torch.mean( -label_pitch * logged_pitch_inf )
 
                         total_loss = roll_loss + pitch_loss
 

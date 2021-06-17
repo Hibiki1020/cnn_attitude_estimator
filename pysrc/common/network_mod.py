@@ -88,12 +88,15 @@ class Network(nn.Module):
         roll = self.roll_fc(feature)
         pitch = self.pitch_fc(feature)
 
-        roll = nn_functional.softmax(roll, dim=0)
-        pitch = nn_functional.softmax(pitch, dim=0)
+        #roll = nn_functional.softmax(roll, dim=0)
+        #pitch = nn_functional.softmax(pitch, dim=0)
+
+        logged_roll = nn.LogSoftmax(roll, dim=0)
+        logged_pitch = nn.LogSoftmax(pitch, dim=0)
 
         #l2norm = torch.norm( roll[:, :self.dim_fc_out], p=2, dim=1, keepdim=True)
         #roll[: , :self.dim_fc_out] = torch.div( roll[: , :self.dim_fc_out].clone(), l2norm)
 
         #l2norm = torch.norm( pitch[:, :self.dim_fc_out], p=2, dim=1, keepdim=True)
         #pitch[: , :self.dim_fc_out] = torch.div( pitch[: , :self.dim_fc_out].clone(), l2norm)
-        return roll, pitch
+        return logged_roll, logged_pitch
