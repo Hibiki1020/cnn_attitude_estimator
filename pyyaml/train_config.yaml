@@ -31,5 +31,5 @@ hyperparameter:
   weight_decay: 0.0001
   batch_size: 768
   num_epochs: 70
-  dropout_rate: 0.1
+  dropout_rate: 0.0
   dim_fc_out: 361
