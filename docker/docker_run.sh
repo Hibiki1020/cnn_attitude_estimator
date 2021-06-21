@@ -16,4 +16,5 @@ docker run -it --rm \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --net=host \
     -v /home/kawai/airsim_dataset:/home/ssd_dir \
+	-v /home/kawai/cnn_attitude_estimator_log:/home/cnn_attitude_estimator_log \
 	$image_name:$tag_name

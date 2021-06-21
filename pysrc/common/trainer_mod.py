@@ -23,6 +23,7 @@ class Trainer:
     lr_cnn,
     lr_roll_fc,
     lr_pitch_fc,
+    weight_decay,
     batch_size,
     num_epochs,
     weights_path,
@@ -34,6 +35,7 @@ class Trainer:
         self.log_path = log_path
         self.graph_path = graph_path
         self.multiGPU = multiGPU
+        self.weight_decay = weight_decay
 
         self.setRandomCondition()
         
@@ -98,7 +100,8 @@ class Trainer:
                 {"params": list_cnn_param_value, "lr": lr_cnn},
                 {"params": list_roll_fc_param_value, "lr": lr_roll_fc},
                 {"params": list_pitch_fc_param_value, "lr": lr_pitch_fc}
-            ], momentum=0.9)
+            ], momentum=0.9, 
+            weight_decay=self.weight_decay)
         elif optimizer_name == "Adam":
             optimizer = optim.Adam([
                 {"params": list_cnn_param_value, "lr": lr_cnn},
