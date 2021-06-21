@@ -185,6 +185,8 @@ class Trainer:
                     #reset gradient
                     self.optimizer.zero_grad()
 
+                    alpha = 0.01
+
                     #Compute gradient
                     with torch.set_grad_enabled(phase == "train"):
                         #roll_inf, pitch_inf = self.net(inputs)
@@ -194,6 +196,13 @@ class Trainer:
                         #したい場合はこのようにライブラリを使わない誤差の計算の仕方をしないといけない
                         roll_loss = torch.mean( -label_roll * logged_roll_inf )
                         pitch_loss = torch.mean( -label_pitch * logged_pitch_inf )
+
+                        l2norm = torch.tensor(0., requires_grad = True)
+                        for w in models.parameters:
+                            l2norm = l2norm + torch.norm(w)**2
+
+                        roll_loss = roll_loss + alpha*l2norm
+                        pitch_loss = pitch_loss + alpha*l2norm
 
                         total_loss = roll_loss + pitch_loss
 
