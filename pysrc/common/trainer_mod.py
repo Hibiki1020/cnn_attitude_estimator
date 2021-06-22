@@ -201,10 +201,10 @@ class Trainer:
                         for w in self.net.parameters():
                             l2norm = l2norm + torch.norm(w)**2
 
-                        roll_loss = roll_loss + alpha*l2norm
-                        pitch_loss = pitch_loss + alpha*l2norm
+                        #roll_loss = roll_loss + alpha*l2norm
+                        #pitch_loss = pitch_loss + alpha*l2norm
 
-                        total_loss = roll_loss + pitch_loss
+                        total_loss = roll_loss + pitch_loss + alpha*l2norm
 
                         if phase == "train":
                             total_loss.backward()
