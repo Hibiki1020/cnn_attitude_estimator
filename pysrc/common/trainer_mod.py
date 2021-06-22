@@ -198,7 +198,7 @@ class Trainer:
                         pitch_loss = torch.mean( -label_pitch * logged_pitch_inf )
 
                         l2norm = torch.tensor(0., requires_grad = True)
-                        for w in models.parameters:
+                        for w in self.net.parameters:
                             l2norm = l2norm + torch.norm(w)**2
 
                         roll_loss = roll_loss + alpha*l2norm
