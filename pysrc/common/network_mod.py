@@ -54,7 +54,7 @@ class Network(nn.Module):
             nn.Linear( 1000, self.dim_fc_out)
         )
 
-        self.initializeWeights()
+        self.initializeWeights()#no need?
 
     def initializeWeights(self):
         for m in self.roll_fc.children():
