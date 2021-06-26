@@ -197,7 +197,11 @@ class Trainer:
                         roll_loss = torch.mean( -label_roll * logged_roll_inf )
                         pitch_loss = torch.mean( -label_pitch * logged_pitch_inf )
 
-                        l2norm = torch.tensor(0., requires_grad = True).cuda()
+                        if self.device == 'cpu':
+                            l2norm = torch.tensor(0., requires_grad = True).cpu()
+                        else: #device == gpu
+                            l2norm = torch.tensor(0., requires_grad = True).cuda()
+                        
                         for w in self.net.parameters():
                             l2norm = l2norm + torch.norm(w)**2
 
