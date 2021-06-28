@@ -115,7 +115,6 @@ class CNNAttitudeEstimator:
                 image_data_list.append(img_path)
                 tmp_row = [row[0], gt_roll, gt_pitch]
                 data_list.append(tmp_row)
-            reader.close()
 
         return image_data_list, data_list
 
