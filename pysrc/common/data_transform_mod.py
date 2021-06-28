@@ -7,6 +7,7 @@ import math
 import torch
 from torchvision import transforms
 from torchvision.transforms.transforms import Resize
+import torch.nn.functional as nn_functional
 
 class DataTransform():
     def __init__(self, resize, mean, std):
@@ -26,16 +27,13 @@ class DataTransform():
         
         ## roll: numpy -> tensor
         roll_numpy = roll_numpy.astype(np.float32)
-        #roll_numpy = roll_numpy / np.linalg.norm(roll_numpy)
         roll_tensor = torch.from_numpy(roll_numpy)
-        #roll_tensor = torch.tensor(roll_numpy, requires_grad=True)
-        #roll_tensor = roll_tensor.long()
+        logged_roll_tensor = nn_functional.log_softmax(roll_tensor)
 
         # pitch: numpy -> tensor
         pitch_numpy = pitch_numpy.astype(np.float32)
-        #pitch_numpy = pitch_numpy / np.linalg.norm(pitch_numpy)
         pitch_tensor = torch.from_numpy(pitch_numpy)
-        #pitch_tensor = torch.tensor(pitch_numpy, requires_grad = True)
-        #pitch_tensor = pitch_tensor.long()
+        logged_pitch_tensor = nn_functional.log_softmax(pitch_tensor)
 
-        return img_tensor, roll_tensor, pitch_tensor
+
+        return img_tensor, logged_roll_tensor, logged_pitch_tensor

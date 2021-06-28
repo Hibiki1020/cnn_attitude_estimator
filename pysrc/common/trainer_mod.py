@@ -179,11 +179,11 @@ class Trainer:
 
                 ##data load
                 epoch_loss = 0.0
-                for inputs, label_roll, label_pitch in tqdm(self.dataloaders_dict[phase]):
+                for inputs, logged_label_roll, logged_label_pitch in tqdm(self.dataloaders_dict[phase]):
                     inputs = inputs.to(self.device)
 
-                    label_roll = label_roll.to(self.device)
-                    label_pitch = label_pitch.to(self.device)
+                    logged_label_roll = logged_label_roll.to(self.device)
+                    logged_label_pitch = logged_label_pitch.to(self.device)
 
                     #reset gradient
                     self.optimizer.zero_grad()
@@ -193,12 +193,12 @@ class Trainer:
                         #roll_inf, pitch_inf = self.net(inputs)
                         logged_roll_inf, logged_pitch_inf = self.net(inputs)
 
-                        print(logged_roll_inf[0])
+                        #print(logged_roll_inf[0])
                         
                         #↓正解ラベルが1, 0の形式にならない状態で交差エントロピーを誤差関数に
                         #したい場合はこのようにライブラリを使わない誤差の計算の仕方をしないといけない
-                        roll_loss = torch.mean( -label_roll * logged_roll_inf )
-                        pitch_loss = torch.mean( -label_pitch * logged_pitch_inf )
+                        roll_loss = torch.mean( -logged_label_roll * logged_roll_inf )
+                        pitch_loss = torch.mean( -logged_label_pitch * logged_pitch_inf )
 
                         if self.device == 'cpu':
                             l2norm = torch.tensor(0., requires_grad = True).cpu()
