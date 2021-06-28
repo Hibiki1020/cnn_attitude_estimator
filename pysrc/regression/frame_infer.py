@@ -260,8 +260,8 @@ class CNNAttitudeEstimator:
                 input_image = self.transformImage()
 
                 roll_output_array, pitch_output_array = self.prediction(input_image)
-                roll_output_array = self.normalize(roll_output_array)
-                pitch_output_array = self.normalize(pitch_output_array)
+                #roll_output_array = self.normalize(roll_output_array)
+                #pitch_output_array = self.normalize(pitch_output_array)
 
                 tmp_roll = self.array_to_value_simple(roll_output_array)
                 tmp_pitch = self.array_to_value_simple(pitch_output_array)
