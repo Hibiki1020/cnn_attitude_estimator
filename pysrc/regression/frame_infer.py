@@ -130,7 +130,8 @@ class CNNAttitudeEstimator:
         return window_checker
 
     def extract_window(self, image_original):
-        height, width, channels = image_original.shape
+        height = image_original.shape[0]
+        width = image_original.shape[1]
 
         windows = []
         correct_windows = []
