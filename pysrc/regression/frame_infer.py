@@ -119,9 +119,11 @@ class CNNAttitudeEstimator:
         return image_data_list, data_list
 
     def check_window(self, window):
-        fast = cv2.FastFeatureDetector()
+        #fast = cv2.FastFeatureDetector()
+        detector = cv2.ORB_create()
         print("Detect corner")
-        keypoints = fast.detect(window, None)
+        #keypoints = fast.detect(window, None)
+        keypoints = detector.detect(window)
 
         window_checker = False
 
