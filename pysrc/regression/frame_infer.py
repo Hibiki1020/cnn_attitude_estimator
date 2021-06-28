@@ -274,6 +274,11 @@ class CNNAttitudeEstimator:
             roll = np.mean(np_result, axis=0)
             pitch = np.mean(np_result, axis=1)
 
+            print("Infered Roll:  " + str(roll) +  "[deg]")
+            print("GT Roll:       " + ground_truth[1] + "[deg]")
+            print("Infered Pitch: " + str(pitch) + "[deg]")
+            print("GT Pitch:      " + ground_truth[2] + "[deg]")
+
             cov = np.cov(np_result)
 
             tmp_result_csv = [roll, pitch, ground_truth[1], ground_truth[2]]
