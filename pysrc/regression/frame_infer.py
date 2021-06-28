@@ -150,6 +150,7 @@ class CNNAttitudeEstimator:
             height_start = random.randint(0, height-self.window_original_size)
 
             window = image_original[height_start:self.window_original_size, width_start:self.window_original_size]
+            print("window size, height%f, width%f", window.shape[0], window.shape[1])
             tmp_window_checker = self.check_window(window)
 
             if tmp_window_checker == True:
@@ -232,9 +233,9 @@ class CNNAttitudeEstimator:
             print("---------------------")
             image_original = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) #Load Image
             
-            print("Start Extract Window")
+            #print("Start Extract Window")
             windows = self.extract_window(image_original)
-            print("End Extract Window")
+            #print("End Extract Window")
 
             print("Transform input image")
             print("---------------------")
