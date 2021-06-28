@@ -192,6 +192,8 @@ class CNNAttitudeEstimator:
 
     def prediction(self, input_image):
         output_roll_array, output_pitch_array = self.net(input_image)
+
+        print(output_roll_array)
         
         #output_roll_array = torch.exp(output_roll_array)
         #output_pitch_array = torch.exp(output_pitch_array)
