@@ -202,8 +202,8 @@ class CNNAttitudeEstimator:
         #output_roll_array = output_roll_array.to('cpu').detach().numpy().copy()
         #output_pitch_array = output_pitch_array.to('cpu').detach().numpy().copy()
 
-        print(output_roll_array)
-        print(output_pitch_array)
+        #print(output_roll_array)
+        #print(output_pitch_array)
 
         return np.array(output_roll_array), np.array(output_pitch_array)
 
@@ -259,7 +259,10 @@ class CNNAttitudeEstimator:
 
             start_clock = time.time()
 
-            result = []      
+            result = []
+
+            roll_result_list = []
+            pitch_result_list = []
 
             for window in windows:
                 self.inference_image = window
@@ -273,12 +276,16 @@ class CNNAttitudeEstimator:
                 tmp_pitch = self.array_to_value_simple(pitch_output_array)
 
                 tmp_result = [tmp_roll, tmp_pitch]
+                
+                roll_result_list.append(tmp_roll)
+                pitch_result_list.append(tmp_pitch)
+
                 result.append(tmp_result)
 
             np_result = np.array(result)
 
-            roll = np.mean(np_result, axis=0)
-            pitch = np.mean(np_result, axis=1)
+            roll = np.mean(tmp_roll)
+            pitch = np.mean(tmp_pitch)
 
             print("Infered Roll:  " + str(roll) +  "[deg]")
             print("GT Roll:       " + str(ground_truth[1]) + "[deg]")
