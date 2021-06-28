@@ -193,8 +193,8 @@ class CNNAttitudeEstimator:
     def prediction(self, input_image):
         output_roll_array, output_pitch_array = self.net(input_image)
         
-        output_roll_array = torch.exp(output_roll_array, dim=0)
-        output_pitch_array = torch.exp(output_pitch_array, dim=0)
+        output_roll_array = torch.exp(output_roll_array)
+        output_pitch_array = torch.exp(output_pitch_array)
 
         output_roll_array = output_roll_array.cpu().detach().numpy().copy()
         output_pitch_array = output_pitch_array.cpu().detach().numpy().copy()
