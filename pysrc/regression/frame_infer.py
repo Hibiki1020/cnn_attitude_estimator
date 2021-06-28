@@ -136,8 +136,8 @@ class CNNAttitudeEstimator:
     def extract_window(self, image_original):
         height = image_original.shape[0]
         width = image_original.shape[1]
-        print("Height", height)
-        print("Width", width)
+        #print("Height", height)
+        #print("Width", width)
 
         windows = []
         correct_windows = []
@@ -150,11 +150,11 @@ class CNNAttitudeEstimator:
         while total_window_checker==False:
             width_start = random.randint(0, int(width)-self.window_original_size)
             height_start = random.randint(0, int(height)-self.window_original_size)
-            print("Start Height", height_start)
-            print("Start width", width_start)
+            #print("Start Height", height_start)
+            #print("Start width", width_start)
 
             window = image_original[height_start:(height_start + self.window_original_size), width_start:(width_start + self.window_original_size)]
-            print("window size, height%f, width%f", window.shape[0], window.shape[1])
+            #print("window size, height%f, width%f", window.shape[0], window.shape[1])
             tmp_window_checker = self.check_window(window)
 
             if tmp_window_checker == True:
@@ -233,8 +233,10 @@ class CNNAttitudeEstimator:
 
         result_csv = []
 
+        infer_count = 0
+
         for (img_path, ground_truth) in zip(image_data_list, ground_truth_list):
-            print("---------------------")
+            print("---------Inference at " + infer_count + "---------")
             image_original = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) #Load Image
             
             #print("Start Extract Window")
