@@ -217,7 +217,7 @@ class CNNAttitudeEstimator:
 
         result_csv = []
 
-        for img_path, ground_truth in image_data_list, ground_truth_list:
+        for (img_path, ground_truth) in zip(image_data_list, ground_truth_list):
             print("---------------------")
             image_original = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) #Load Image
             windows = self.extract_window(image_original)
