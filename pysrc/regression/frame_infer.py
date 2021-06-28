@@ -120,6 +120,7 @@ class CNNAttitudeEstimator:
 
     def check_window(self, window):
         fast = cv2.FastFeatureDetector()
+        print("Detect corner")
         keypoints = fast.detect(window, None)
 
         window_checker = False
@@ -153,7 +154,6 @@ class CNNAttitudeEstimator:
                 correct_windows.append(window)
                 tmp_windows.append(window)
                 print("window")
-
                 if window_count >= self.window_num:
                     total_window_checker = True
                     windows = correct_windows
