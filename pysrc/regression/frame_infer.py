@@ -146,8 +146,8 @@ class CNNAttitudeEstimator:
         error_count = 0
 
         while total_window_checker==False:
-            width_start = random.randint(0, width-self.window_original_size)
-            height_start = random.randint(0, height-self.window_original_size)
+            width_start = random.randint(0, int(width)-self.window_original_size)
+            height_start = random.randint(0, int(height)-self.window_original_size)
 
             window = image_original[height_start:self.window_original_size, width_start:self.window_original_size]
             print("window size, height%f, width%f", window.shape[0], window.shape[1])
