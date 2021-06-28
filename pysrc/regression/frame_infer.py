@@ -67,6 +67,7 @@ class CNNAttitudeEstimator:
     def getImageTransform(self,resize,mean_element,std_element):
 
         img_transform = transforms.Compose([
+            transforms.Grayscale(num_output_channels=1),
             transforms.Resize(resize),
             transforms.ToTensor(),
             transforms.Normalize((mean_element,), (std_element,))
