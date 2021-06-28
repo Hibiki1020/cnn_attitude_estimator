@@ -193,7 +193,7 @@ class Trainer:
                         #roll_inf, pitch_inf = self.net(inputs)
                         logged_roll_inf, logged_pitch_inf = self.net(inputs)
 
-                        print(logged_roll_inf)
+                        print(torch.exp(logged_roll_inf))
                         
                         #↓正解ラベルが1, 0の形式にならない状態で交差エントロピーを誤差関数に
                         #したい場合はこのようにライブラリを使わない誤差の計算の仕方をしないといけない
