@@ -204,6 +204,9 @@ class CNNAttitudeEstimator:
         output_roll_array = output_roll_array.cpu().detach().numpy()[0]
         output_pitch_array = output_pitch_array.cpu().detach().numpy()[0]
 
+        np.set_printoptions(threshold=np.inf)
+        print(output_roll_array)
+
         #output_roll_array = output_roll_array.to('cpu').detach().numpy().copy()
         #output_pitch_array = output_pitch_array.to('cpu').detach().numpy().copy()
 
