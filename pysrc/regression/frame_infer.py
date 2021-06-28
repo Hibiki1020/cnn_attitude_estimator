@@ -236,7 +236,7 @@ class CNNAttitudeEstimator:
         infer_count = 0
 
         for (img_path, ground_truth) in zip(image_data_list, ground_truth_list):
-            print("---------Inference at " + infer_count + "---------")
+            print("---------Inference at " + str(infer_count) + "---------")
             image_original = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) #Load Image
             
             #print("Start Extract Window")
