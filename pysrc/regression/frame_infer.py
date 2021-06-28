@@ -196,8 +196,8 @@ class CNNAttitudeEstimator:
         #output_roll_array = torch.pow(10.0, logged_output_roll_array)
         #output_pitch_array = torch.pow(10.0, logged_output_pitch_array)
 
-        output_roll_array = nn.Softmax(logged_output_roll_array)
-        output_pitch_array = nn.Softmax(logged_output_pitch_array)
+        output_roll_array = nn.Softmax(logged_output_roll_array, dim=0)
+        output_pitch_array = nn.Softmax(logged_output_pitch_array, dim=0)
 
         print(output_roll_array)
         
