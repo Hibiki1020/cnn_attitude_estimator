@@ -153,7 +153,7 @@ class CNNAttitudeEstimator:
             print("Start Height", height_start)
             print("Start width", width_start)
 
-            window = image_original[height_start:self.window_original_size, width_start:self.window_original_size]
+            window = image_original[height_start:(height_start + self.window_original_size), width_start:(width_start + self.window_original_size)]
             print("window size, height%f, width%f", window.shape[0], window.shape[1])
             tmp_window_checker = self.check_window(window)
 
