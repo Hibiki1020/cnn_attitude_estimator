@@ -3,7 +3,7 @@ method_name: "frame_infer"
 infer_dataset_top_directory: "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/infer_dataset11_image5000/"
 csv_name: "image_attitude.csv"
 
-weights_top_directory: "/home/ssd_dir/cnn_attitude_estimator_log/regression_AirSimNH_uniform_2021_06_25/"
+weights_top_directory: "/home/ssd_dir/cnn_attitude_estimator_log/regression_AirSimNH_uniform_2021_06_25/test_2021_06_21/"
 weights_file_name: "weightsregression490000train70000valid0.5mean0.5stdAdam4e-05lrcnn4e-05lrrollfc4e-05lrpitchfc512batch70epoch.pth"
 
 infer_log_top_directory: "/home/ssd_dir/cnn_attitude_estimator_log/infer_log/test2021_06_28/"
