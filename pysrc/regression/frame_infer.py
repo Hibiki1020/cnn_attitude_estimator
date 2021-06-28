@@ -202,6 +202,9 @@ class CNNAttitudeEstimator:
         #output_roll_array = output_roll_array.to('cpu').detach().numpy().copy()
         #output_pitch_array = output_pitch_array.to('cpu').detach().numpy().copy()
 
+        print(output_roll_array)
+        print(output_pitch_array)
+
         return np.array(output_roll_array), np.array(output_pitch_array)
 
     def normalize(self, v):
@@ -211,7 +214,7 @@ class CNNAttitudeEstimator:
 
     def array_to_value_simple(self, output_array):
         max_index = np.argmax(output_array)
-        print("max_index: ", max_index)
+        #print("max_index: ", max_index)
         value = 0.0
 
         if max_index == 0:
