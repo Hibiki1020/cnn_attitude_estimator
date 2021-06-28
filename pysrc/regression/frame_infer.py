@@ -62,7 +62,6 @@ class CNNAttitudeEstimator:
             for row in reader:
                 num = float(row[0])
                 self.value_dict.append(num)
-            reader.close()
         
 
     def getImageTransform(self,resize,mean_element,std_element):
