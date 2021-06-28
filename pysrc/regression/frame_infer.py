@@ -196,8 +196,8 @@ class CNNAttitudeEstimator:
         output_roll_array = torch.exp(output_roll_array, dim=0)
         output_pitch_array = torch.exp(output_pitch_array, dim=0)
 
-        output_roll_array = output_roll_array.cpu().detach().numpy()[0]
-        output_pitch_array = output_pitch_array.cpu().detach().numpy()[0]
+        output_roll_array = output_roll_array.cpu().detach().numpy().copy()
+        output_pitch_array = output_pitch_array.cpu().detach().numpy().copy()
 
         return np.array(output_roll_array), np.array(output_pitch_array)
 
