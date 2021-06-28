@@ -121,7 +121,7 @@ class CNNAttitudeEstimator:
     def check_window(self, window):
         #fast = cv2.FastFeatureDetector()
         detector = cv2.ORB_create()
-        print("Detect corner")
+        #print("Detect corner")
         #keypoints = fast.detect(window, None)
         keypoints = detector.detect(window)
 
@@ -155,14 +155,14 @@ class CNNAttitudeEstimator:
                 window_count += 1
                 correct_windows.append(window)
                 tmp_windows.append(window)
-                print("window")
+                #print("window")
                 if window_count >= self.window_num:
                     total_window_checker = True
                     windows = correct_windows
             else:
                 error_count += 1
                 tmp_windows.append(window)
-                print("Error")
+                #print("Error")
 
                 if error_count >=self.window_num:
                     print("Less Feature Point...")
@@ -170,6 +170,11 @@ class CNNAttitudeEstimator:
                     windows = tmp_windows
 
         return windows
+
+    def cvToPIL(self, img_cv):
+        img_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
+        img_pil = Image.fromarray(img_cv)
+        return img_pil
 
     def transformImage(self):
         ## color
