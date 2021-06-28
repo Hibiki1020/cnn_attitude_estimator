@@ -91,6 +91,7 @@ class CNNAttitudeEstimator:
             loaded_weights = torch.load(weights_path, map_location={"cuda:0": "cpu"})
             print("GPU  ==>  CPU")
         
+        net = nn.DataParallel(net)
         net.load_state_dict(loaded_weights)
         return net
 
