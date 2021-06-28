@@ -152,6 +152,7 @@ class CNNAttitudeEstimator:
                 window_count += 1
                 correct_windows.append(window)
                 tmp_windows.append(window)
+                print("window")
 
                 if window_count >= self.window_num:
                     total_window_checker = True
@@ -159,6 +160,7 @@ class CNNAttitudeEstimator:
             else:
                 error_count += 1
                 tmp_windows.append(window)
+                print("Error")
 
                 if error_count >=self.window_num:
                     print("Less Feature Point...")
