@@ -127,7 +127,7 @@ class CNNAttitudeEstimator:
 
         window_checker = False
 
-        if keypoints.size() > self.corner_threshold:
+        if len(keypoints) > self.corner_threshold:
             window_checker = True
 
         return window_checker
