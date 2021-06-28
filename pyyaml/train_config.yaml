@@ -33,3 +33,4 @@ hyperparameter:
   num_epochs: 50
   dropout_rate: 0.1
   dim_fc_out: 361
+  alpha: 0.0001

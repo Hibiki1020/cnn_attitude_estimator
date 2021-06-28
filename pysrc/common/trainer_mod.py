@@ -29,13 +29,15 @@ class Trainer:
     weights_path,
     log_path,
     graph_path,
-    multiGPU):
+    multiGPU,
+    alpha):
 
         self.weights_path = weights_path
         self.log_path = log_path
         self.graph_path = graph_path
         self.multiGPU = multiGPU
         self.weight_decay = weight_decay
+        self.alpha = alpha
 
         self.setRandomCondition()
         
@@ -185,8 +187,6 @@ class Trainer:
                     #reset gradient
                     self.optimizer.zero_grad()
 
-                    alpha = 0.01
-
                     #Compute gradient
                     with torch.set_grad_enabled(phase == "train"):
                         #roll_inf, pitch_inf = self.net(inputs)
@@ -208,7 +208,7 @@ class Trainer:
                         #roll_loss = roll_loss + alpha*l2norm
                         #pitch_loss = pitch_loss + alpha*l2norm
 
-                        total_loss = roll_loss + pitch_loss + alpha*l2norm
+                        total_loss = roll_loss + pitch_loss + self.alpha*l2norm
 
                         if phase == "train":
                             total_loss.backward()
