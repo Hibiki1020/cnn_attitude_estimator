@@ -166,7 +166,7 @@ class CNNAttitudeEstimator:
             #print("Start width", width_start)
 
             window = image_original[height_start:(height_start + self.window_original_size), width_start:(width_start + self.window_original_size)]
-            print("window size, height%f, width%f", window.shape[0], window.shape[1])
+            #print("window size, height%f, width%f", window.shape[0], window.shape[1])
             tmp_window_checker = self.check_window(window)
 
             if tmp_window_checker == True:
@@ -190,7 +190,7 @@ class CNNAttitudeEstimator:
         return windows
 
     def cvToPIL(self, img_cv):
-        #img_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
+        img_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
         img_pil = Image.fromarray(img_cv)
         return img_pil
 
@@ -275,7 +275,9 @@ class CNNAttitudeEstimator:
         for (img_path, ground_truth) in zip(image_data_list, ground_truth_list):
             print("---------Inference at " + str(infer_count) + "---------")
             infer_count += 1
-            image_original = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) #Load Image
+            #image_original = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) #Load Image
+            image_original = cv2.imread(img_path)
+
 
             #cv2.imshow('image',image_original)
             #cv2.waitKey(0)
