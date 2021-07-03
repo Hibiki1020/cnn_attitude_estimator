@@ -277,7 +277,9 @@ class CNNAttitudeEstimator:
             infer_count += 1
             image_original = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) #Load Image
 
-            cv2.imshow(image_original)
+            cv2.imshow('image',image_original)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
             
             #print("Start Extract Window")
             windows = self.extract_window(image_original)
