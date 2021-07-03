@@ -166,7 +166,7 @@ class CNNAttitudeEstimator:
             #print("Start width", width_start)
 
             window = image_original[height_start:(height_start + self.window_original_size), width_start:(width_start + self.window_original_size)]
-            #print("window size, height%f, width%f", window.shape[0], window.shape[1])
+            print("window size, height%f, width%f", window.shape[0], window.shape[1])
             tmp_window_checker = self.check_window(window)
 
             if tmp_window_checker == True:
@@ -285,9 +285,9 @@ class CNNAttitudeEstimator:
             windows = self.extract_window(image_original)
             #print("End Extract Window")
 
-            cv2.imshow('image',windows[2])
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            #cv2.imshow('image',windows[2])
+            #cv2.waitKey(0)
+            #cv2.destroyAllWindows()
 
             print("Transform input image")
             print("---------------------")
