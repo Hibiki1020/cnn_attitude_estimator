@@ -15,6 +15,8 @@ import torch.nn as nn
 from torchvision import transforms
 import torch.nn.functional as nn_functional
 
+from collections import OrderedDict
+
 import sys
 sys.path.append('../')
 from common import network_mod
@@ -86,14 +88,23 @@ class CNNAttitudeEstimator:
 
         #load
         if torch.cuda.is_available():
-            loaded_weights = torch.load(weights_path)
+            loaded_weights = torch.load(weights_path, map_location=lambda storage, loc: storage)
             print("GPU  ==>  GPU")
         else:
             loaded_weights = torch.load(weights_path, map_location={"cuda:0": "cpu"})
             print("GPU  ==>  CPU")
         
-        net = nn.DataParallel(net)
-        net.load_state_dict(loaded_weights)
+        #net = nn.DataParallel(net)
+        #net.load_state_dict(loaded_weights)
+
+        new_state_dict = OrderedDict()
+
+        for k, v in state_dict.items():
+            if 'module' in k:
+                k = k.replace('module.', '')
+            new_state_dict[k] = v
+
+        net.load_state_dict(new_state_dict)
         return net
 
     def spin(self):
