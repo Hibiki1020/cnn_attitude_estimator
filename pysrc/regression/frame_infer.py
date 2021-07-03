@@ -277,13 +277,17 @@ class CNNAttitudeEstimator:
             infer_count += 1
             image_original = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) #Load Image
 
-            cv2.imshow('image',image_original)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            #cv2.imshow('image',image_original)
+            #cv2.waitKey(0)
+            #cv2.destroyAllWindows()
             
             #print("Start Extract Window")
             windows = self.extract_window(image_original)
             #print("End Extract Window")
+
+            cv2.imshow('image',windows[2])
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
 
             print("Transform input image")
             print("---------------------")
