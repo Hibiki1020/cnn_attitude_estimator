@@ -200,7 +200,7 @@ class CNNAttitudeEstimator:
         img_tensor = self.img_transform(img_pil)
         inputs = img_tensor.unsqueeze_(0)
         #inputs = img_tensor
-        #inputs = inputs.to(self.device)
+        inputs = inputs.to(self.device)
         return inputs
 
     def prediction(self, input_image):
