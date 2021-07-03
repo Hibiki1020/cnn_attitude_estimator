@@ -88,10 +88,10 @@ class CNNAttitudeEstimator:
 
         #load
         if torch.cuda.is_available():
-            loaded_weights = torch.load(weights_path, map_location=lambda storage, loc: storage)
+            state_dict = torch.load(weights_path, map_location=lambda storage, loc: storage)
             print("GPU  ==>  GPU")
         else:
-            loaded_weights = torch.load(weights_path, map_location={"cuda:0": "cpu"})
+            state_dict = torch.load(weights_path, map_location={"cuda:0": "cpu"})
             print("GPU  ==>  CPU")
         
         #net = nn.DataParallel(net)
