@@ -16,7 +16,7 @@ csv_name: "image_attitude.csv"
 
 index_csv_path: "/home/ros_catkin_ws/src/cnn_attitude_estimator/index_dict/index_dict_360x1range_step1deg.csv"
 
-multiGPU: 1 #1 is ture
+multiGPU: 0 #1 is ture
 
 hyperparameter:
   original_size: 672
@@ -29,7 +29,7 @@ hyperparameter:
   lr_roll_fc: 4e-5
   lr_pitch_fc: 4e-5
   weight_decay: 0.0001
-  batch_size: 8
+  batch_size: 16
   num_epochs: 50
   dropout_rate: 0.1
   dim_fc_out: 361
