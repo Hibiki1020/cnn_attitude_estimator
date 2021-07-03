@@ -198,7 +198,6 @@ class CNNAttitudeEstimator:
         ## color
         img_pil = self.cvToPIL(inference_image)
         img_tensor = self.img_transform(img_pil)
-        print(img_tensor)
         inputs = img_tensor.unsqueeze_(0)
         #inputs = img_tensor
         inputs = inputs.to(self.device)
@@ -293,6 +292,8 @@ class CNNAttitudeEstimator:
             for window in windows:
                 inference_image = window
                 input_image = self.transformImage(inference_image)
+
+                print(input_image)
 
                 roll_output_array, pitch_output_array = self.prediction(input_image)
                 #roll_output_array = self.normalize(roll_output_array)
