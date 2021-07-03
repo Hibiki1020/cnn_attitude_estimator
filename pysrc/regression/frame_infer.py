@@ -187,8 +187,8 @@ class CNNAttitudeEstimator:
         ## color
         img_pil = self.cvToPIL(inference_image)
         img_tensor = self.img_transform(img_pil)
-        #inputs = img_tensor.unsqueeze_(0)
-        inputs = img_tensor
+        inputs = img_tensor.unsqueeze_(0)
+        #inputs = img_tensor
         inputs = inputs.to(self.device)
         return inputs
 
