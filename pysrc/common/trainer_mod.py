@@ -30,7 +30,8 @@ class Trainer:
     log_path,
     graph_path,
     multiGPU,
-    alpha):
+    alpha,
+    clip_limit):
 
         self.weights_path = weights_path
         self.log_path = log_path
@@ -38,6 +39,7 @@ class Trainer:
         self.multiGPU = multiGPU
         self.weight_decay = weight_decay
         self.alpha = alpha
+        self.clip_limit = clip_limit
 
         self.setRandomCondition()
         
@@ -218,6 +220,10 @@ class Trainer:
 
                         if phase == "train":
                             total_loss.backward()
+
+                            #torch.nn.utils.clip_grad_norm_(model.parameters(), args.clip)
+                            nn.utils.clip_grad_norm_(self.net.parameters(), self.clip_limit)
+
                             self.optimizer.step()    #update param depending on current .grad
                         
                         epoch_loss += total_loss.item() * inputs.size(0)

@@ -77,6 +77,7 @@ if __name__ == '__main__':
     dropout_rate = float(CFG["hyperparameter"]["dropout_rate"])
     dim_fc_out = int(CFG["hyperparameter"]["dim_fc_out"])
     alpha = float(CFG["hyperparameter"]["alpha"])
+    clip_limit = float(CFG["hyperparameter"]["clip_limit"])
 
     try:
         print("Copy files to %s for further reference." % log_path)
@@ -138,7 +139,8 @@ if __name__ == '__main__':
         log_path,
         graph_path,
         multiGPU,
-        alpha
+        alpha,
+        clip_limit
     )
 
     trainer.train()
