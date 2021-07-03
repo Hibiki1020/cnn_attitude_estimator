@@ -206,7 +206,7 @@ class CNNAttitudeEstimator:
     def prediction(self, input_image):
         logged_output_roll_array, logged_output_pitch_array = self.net(input_image)
 
-        print(logged_output_roll_array)
+        #print(logged_output_roll_array)
 
         #output_roll_array = torch.pow(10.0, logged_output_roll_array)
         #output_pitch_array = torch.pow(10.0, logged_output_pitch_array)
@@ -275,8 +275,8 @@ class CNNAttitudeEstimator:
         for (img_path, ground_truth) in zip(image_data_list, ground_truth_list):
             print("---------Inference at " + str(infer_count) + "---------")
             infer_count += 1
-            #image_original = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) #Load Image
-            image_original = cv2.imread(img_path)
+            image_original = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) #Load Image
+            #image_original = cv2.imread(img_path)
 
 
             #cv2.imshow('image',image_original)
