@@ -34,4 +34,4 @@ hyperparameter:
   dropout_rate: 0.1
   dim_fc_out: 361
   alpha: 1e-5
-  clip_limit: 0.01
+  clip_limit: 0.05
