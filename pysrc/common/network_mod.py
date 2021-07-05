@@ -83,7 +83,7 @@ class Network(nn.Module):
     def forward(self, x):
         feature = self.cnn(x)
 
-        feature = torch.flatten(feature, 1)
+        feature = torch.flatten(feature)
 
         roll = self.roll_fc(feature)
         pitch = self.pitch_fc(feature)
