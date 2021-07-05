@@ -92,7 +92,7 @@ class Network(nn.Module):
         #pitch = nn_functional.softmax(pitch, dim=0)
 
         logged_roll = nn_functional.log_softmax(roll, dim=0)
-        logged_pitch = nn_functional.log_softmax(pitch, dim=0)1
+        logged_pitch = nn_functional.log_softmax(pitch, dim=0)
 
         print(logged_roll.dim())
 
