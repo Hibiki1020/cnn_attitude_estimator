@@ -81,6 +81,9 @@ class Network(nn.Module):
         return list_cnn_param_value, list_roll_fc_param_value, list_pitch_fc_param_value
     
     def forward(self, x):
+
+        print(x.size())
+
         feature = self.cnn(x)
 
         #feature = torch.flatten(feature, 1)
