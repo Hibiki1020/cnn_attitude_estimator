@@ -195,6 +195,9 @@ class Trainer:
                         #roll_inf, pitch_inf = self.net(inputs)
                         logged_roll_inf, logged_pitch_inf = self.net(inputs)
 
+                        roll_loss = self.computeLoss(logged_roll_inf, label_roll)
+                        pitch_loss = self.computeLoss(logged_pitch_inf, label_pitch)
+
                         #tmpshow_array = torch.pow(10.0, logged_roll_inf)
                         #tmpshow_array = tmpshow_array.to('cpu').detach().numpy().copy()
                         #np.set_printoptions(threshold=np.inf)
@@ -205,8 +208,8 @@ class Trainer:
                         #roll_loss = torch.mean( -label_roll * logged_roll_inf )
                         #pitch_loss = torch.mean( -label_pitch * logged_pitch_inf )
 
-                        roll_loss = -1.0 * torch.sum(label_roll * logged_roll_inf)
-                        pitch_loss = -1.0 * torch.sum(label_pitch * logged_pitch_inf)
+                        #roll_loss = -1.0 * torch.sum(label_roll * logged_roll_inf)
+                        #pitch_loss = -1.0 * torch.sum(label_pitch * logged_pitch_inf)
 
                         if self.device == 'cpu':
                             l2norm = torch.tensor(0., requires_grad = True).cpu()
