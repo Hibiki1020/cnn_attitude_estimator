@@ -92,7 +92,9 @@ class Network(nn.Module):
         #pitch = nn_functional.softmax(pitch, dim=0)
 
         logged_roll = nn_functional.log_softmax(roll, dim=0)
-        logged_pitch = nn_functional.log_softmax(pitch, dim=0)
+        logged_pitch = nn_functional.log_softmax(pitch, dim=0)1
+
+        print(logged_roll.dim())
 
         #l2norm = torch.norm( roll[:, :self.dim_fc_out], p=2, dim=1, keepdim=True)
         #roll[: , :self.dim_fc_out] = torch.div( roll[: , :self.dim_fc_out].clone(), l2norm)
