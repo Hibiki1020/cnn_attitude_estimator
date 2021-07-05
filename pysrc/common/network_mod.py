@@ -83,7 +83,7 @@ class Network(nn.Module):
     def forward(self, x):
         feature = self.cnn(x)
 
-        feature = torch.flatten(feature, 1)
+        #feature = torch.flatten(feature, 1)
 
         print(feature.size())
 
