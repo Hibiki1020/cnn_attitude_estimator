@@ -205,8 +205,8 @@ class Trainer:
                         #roll_loss = torch.mean( -label_roll * logged_roll_inf )
                         #pitch_loss = torch.mean( -label_pitch * logged_pitch_inf )
 
-                        roll_loss = torch.mean( torch.dot(-label_roll, logged_roll_inf))
-                        pitch_loss = torch.mean( torch.dot(-label_pitch, logged_pitch_inf))
+                        roll_loss = torch.mean( torch.mm(-label_roll, logged_roll_inf))
+                        pitch_loss = torch.mean( torch.mm(-label_pitch, logged_pitch_inf))
 
                         if self.device == 'cpu':
                             l2norm = torch.tensor(0., requires_grad = True).cpu()
