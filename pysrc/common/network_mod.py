@@ -85,6 +85,8 @@ class Network(nn.Module):
 
         feature = torch.flatten(feature)
 
+        print(feature.size())
+
         roll = self.roll_fc(feature)
         pitch = self.pitch_fc(feature)
 
