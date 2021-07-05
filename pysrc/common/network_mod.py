@@ -88,6 +88,8 @@ class Network(nn.Module):
         roll = self.roll_fc(feature)
         pitch = self.pitch_fc(feature)
 
+        print(roll.dim())
+
         #roll = nn_functional.softmax(roll, dim=0)
         #pitch = nn_functional.softmax(pitch, dim=0)
 
