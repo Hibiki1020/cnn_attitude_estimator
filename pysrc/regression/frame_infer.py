@@ -231,7 +231,6 @@ class CNNAttitudeEstimator:
         return v/l2
 
     def array_to_value_simple(self, output_array):
-        print(output_array.shape)
         max_index = int(np.argmax(output_array))
         plus_index = max_index + 1
         minus_index = max_index - 1
@@ -243,7 +242,7 @@ class CNNAttitudeEstimator:
         elif max_index == int(self.dim_fc_out): #361
             value = output_array[max_index]*self.value_dict[max_index] + output_array[max_index-1]*self.value_dict[max_index-1]
         else:
-            if output_array[minus_index] > output_array[plus_index]: #一つ前のインデックスを採用
+            if output_array[0][minus_index] > output_array[0][plus_index]: #一つ前のインデックスを採用
                 value = output_array[max_index]*self.value_dict[max_index] + output_array[minus_index]*self.value_dict[minus_index]
             elif output_array[minus_index] < output_array[plus_index]: #一つ後のインデックスを採用
                 value = output_array[max_index]*self.value_dict[max_index] + output_array[plus_index]*self.value_dict[plus_index]
