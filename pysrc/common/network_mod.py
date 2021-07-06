@@ -86,6 +86,8 @@ class Network(nn.Module):
 
         feature = self.cnn(x)
 
+        print(feature)
+
         feature = torch.flatten(feature, 1)
 
         print(feature)
