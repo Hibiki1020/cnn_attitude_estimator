@@ -88,6 +88,7 @@ class Network(nn.Module):
         roll = self.roll_fc(feature)
         pitch = self.pitch_fc(feature)
 
+        torch.set_printoptions(edgeitems=1000)
         print(self.roll_fc[0].weight)
 
         logged_roll = nn_functional.log_softmax(roll, dim=0)
