@@ -234,18 +234,18 @@ class CNNAttitudeEstimator:
         max_index = int(np.argmax(output_array))
         plus_index = max_index + 1
         minus_index = max_index - 1
-        print("max_index: ", max_index)
+        #print("max_index: ", max_index)
         value = 0.0
 
         if max_index == 0:
-            value = output_array[max_index]*self.value_dict[max_index] + output_array[max_index+1]*self.value_dict[max_index+1]
+            value = output_array[0][max_index]*self.value_dict[0][max_index] + output_array[0][max_index+1]*self.value_dict[0][max_index+1]
         elif max_index == int(self.dim_fc_out): #361
-            value = output_array[max_index]*self.value_dict[max_index] + output_array[max_index-1]*self.value_dict[max_index-1]
+            value = output_array[0][max_index]*self.value_dict[0][max_index] + output_array[0][max_index-1]*self.value_dict[0][max_index-1]
         else:
             if output_array[0][minus_index] > output_array[0][plus_index]: #一つ前のインデックスを採用
-                value = output_array[max_index]*self.value_dict[max_index] + output_array[minus_index]*self.value_dict[minus_index]
+                value = output_array[0][max_index]*self.value_dict[0][max_index] + output_array[0][minus_index]*self.value_dict[0][minus_index]
             elif output_array[0][minus_index] < output_array[0][plus_index]: #一つ後のインデックスを採用
-                value = output_array[max_index]*self.value_dict[max_index] + output_array[plus_index]*self.value_dict[plus_index]
+                value = output_array[0][max_index]*self.value_dict[0][max_index] + output_array[0][plus_index]*self.value_dict[0][plus_index]
         
         return value
 
