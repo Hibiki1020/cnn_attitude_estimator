@@ -239,7 +239,7 @@ class CNNAttitudeEstimator:
 
         if max_index == 0:
             value = output_array[0][max_index]*self.value_dict[max_index] + output_array[0][max_index+1]*self.value_dict[max_index+1]
-        elif max_index == int(self.dim_fc_out): #361
+        elif max_index == 360: #361
             value = output_array[0][max_index]*self.value_dict[max_index] + output_array[0][max_index-1]*self.value_dict[max_index-1]
         else:
             if output_array[0][minus_index] > output_array[0][plus_index]: #一つ前のインデックスを採用
