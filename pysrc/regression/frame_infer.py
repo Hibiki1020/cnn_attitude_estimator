@@ -244,7 +244,7 @@ class CNNAttitudeEstimator:
         else:
             if output_array[0][minus_index] > output_array[0][plus_index]: #一つ前のインデックスを採用
                 value = output_array[max_index]*self.value_dict[max_index] + output_array[minus_index]*self.value_dict[minus_index]
-            elif output_array[minus_index] < output_array[plus_index]: #一つ後のインデックスを採用
+            elif output_array[0][minus_index] < output_array[0][plus_index]: #一つ後のインデックスを採用
                 value = output_array[max_index]*self.value_dict[max_index] + output_array[plus_index]*self.value_dict[plus_index]
         
         return value
