@@ -8,6 +8,7 @@ import yaml
 import os
 import csv
 import random
+import matplotlib.pyplot as plt
 
 import torch
 from torchvision import models
@@ -246,7 +247,7 @@ class CNNAttitudeEstimator:
                 value = output_array[0][max_index]*self.value_dict[max_index] + output_array[0][minus_index]*self.value_dict[minus_index]
             elif output_array[0][minus_index] < output_array[0][plus_index]: #一つ後のインデックスを採用
                 value = output_array[0][max_index]*self.value_dict[max_index] + output_array[0][plus_index]*self.value_dict[plus_index]
-        
+
         return value
 
     def save_csv(self, result_csv):
@@ -257,6 +258,10 @@ class CNNAttitudeEstimator:
             csv_w.writerow(row)
         csv_file.close()
         print("Save Inference Data")
+
+    def show_fig(self, roll_hist_array, pitch_hist_array, value_dict):
+        plt.bar(roll_hist_array, value_dict)
+        plt.show()
 
     def frame_infer(self, image_data_list, ground_truth_list):
         print("Start Inference")
@@ -294,19 +299,25 @@ class CNNAttitudeEstimator:
             roll_result_list = []
             pitch_result_list = []
 
+            roll_hist_array = []
+            pitch_hist_array = []
+
+            for i in range(361):
+                tmp = [0.0, 0.0]
+                roll_hist_array.append(tmp)
+                pitch_hist_array.append(tmp)
+
             for window in windows:
                 inference_image = window
                 input_image = self.transformImage(inference_image)
 
-                #print(input_image)
-
                 roll_output_array, pitch_output_array = self.prediction(input_image)
-
-                #roll_output_array = self.normalize(roll_output_array)
-                #pitch_output_array = self.normalize(pitch_output_array)
 
                 tmp_roll = self.array_to_value_simple(roll_output_array)
                 tmp_pitch = self.array_to_value_simple(pitch_output_array)
+
+                roll_hist_array += roll_output_array
+                pitch_hist_array += pitch_output_array
 
                 tmp_result = [tmp_roll, tmp_pitch]
                 
@@ -314,6 +325,11 @@ class CNNAttitudeEstimator:
                 pitch_result_list.append(tmp_pitch)
 
                 result.append(tmp_result)
+
+            roll_hist_array /= float(len(windows))
+            pitch_hist_array /= float(len(windows))
+
+            self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict)
 
             np_result = np.array(result)
 
