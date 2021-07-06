@@ -6,15 +6,6 @@ from torchvision import models
 import torch.nn as nn
 import torch.nn.functional as nn_functional
 
-class PrintLayer(nn.Module):
-    def __init__(self):
-        super(PrintLayer, self).__init__()
-    
-    def forward(self, x):
-        # Do your print / debug stuff here
-        print(x)
-        return x
-
 class Network(nn.Module):
     def __init__(self, resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False):
         super(Network, self).__init__()
@@ -47,7 +38,6 @@ class Network(nn.Module):
             nn.Linear(self.dim_fc_in, 3000),
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
-            PrintLayer(),
             nn.Linear( 3000, 1000),
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
@@ -97,6 +87,8 @@ class Network(nn.Module):
 
         roll = self.roll_fc(feature)
         pitch = self.pitch_fc(feature)
+
+        print(self.roll_fc[0].weight)
 
         logged_roll = nn_functional.log_softmax(roll, dim=0)
         logged_pitch = nn_functional.log_softmax(pitch, dim=0)
