@@ -41,7 +41,8 @@ class Network(nn.Module):
             nn.Linear( 3000, 1000),
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
-            nn.Linear( 1000, self.dim_fc_out)
+            nn.Linear( 1000, self.dim_fc_out),
+            nn.Softmax()
         )
 
         self.pitch_fc = nn.Sequential(
@@ -51,7 +52,8 @@ class Network(nn.Module):
             nn.Linear( 3000, 1000),
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
-            nn.Linear( 1000, self.dim_fc_out)
+            nn.Linear( 1000, self.dim_fc_out),
+            nn.Softmax()
         )
 
         self.initializeWeights()#no need?
