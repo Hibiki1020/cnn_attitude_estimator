@@ -212,10 +212,10 @@ class CNNAttitudeEstimator:
         #output_pitch_array = torch.pow(10.0, logged_output_pitch_array)
 
         #softmaxにしても大小関係は変わらない
-        output_roll_array = nn_functional.softmax(logged_output_roll_array, dim=0)
-        output_pitch_array = nn_functional.softmax(logged_output_pitch_array, dim=0)
+        output_roll_array = nn_functional.softmax(logged_output_roll_array)
+        output_pitch_array = nn_functional.softmax(logged_output_pitch_array)
 
-        #print(output_roll_array)
+        print(output_roll_array)
         
         #output_roll_array = torch.exp(output_roll_array)
         #output_pitch_array = torch.exp(output_pitch_array)
@@ -308,12 +308,6 @@ class CNNAttitudeEstimator:
                 #print(input_image)
 
                 roll_output_array, pitch_output_array = self.prediction(input_image)
-
-                roll_output_array = nn.Softmax(roll_output_array)
-                pitch_output_array = nn.Softmax(pitch_output_array)
-
-                torch.set_printoptions(edgeitems=500)
-                print(roll_output_array)
 
                 #roll_output_array = self.normalize(roll_output_array)
                 #pitch_output_array = self.normalize(pitch_output_array)
