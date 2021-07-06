@@ -96,6 +96,6 @@ class Network(nn.Module):
         logged_roll = nn_functional.log_softmax(roll)
         logged_pitch = nn_functional.log_softmax(pitch)
 
-        print(logged_roll)
+        #print(logged_roll)
 
         return logged_roll, logged_pitch
