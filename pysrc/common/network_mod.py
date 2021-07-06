@@ -98,4 +98,4 @@ class Network(nn.Module):
 
         #print(logged_roll)
 
-        return logged_roll, logged_pitch
+        return logged_roll, logged_pitch, roll, pitch

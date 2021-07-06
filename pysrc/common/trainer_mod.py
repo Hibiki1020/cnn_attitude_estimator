@@ -195,7 +195,7 @@ class Trainer:
                     #Compute gradient
                     with torch.set_grad_enabled(phase == "train"):
                         #roll_inf, pitch_inf = self.net(inputs)
-                        logged_roll_inf, logged_pitch_inf = self.net(inputs)
+                        logged_roll_inf, logged_pitch_inf, roll_inf, pitch_inf = self.net(inputs)
 
                         #roll_loss = self.computeLoss(logged_roll_inf, label_roll)
                         #pitch_loss = self.computeLoss(logged_pitch_inf, label_pitch)

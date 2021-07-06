@@ -204,23 +204,12 @@ class CNNAttitudeEstimator:
         return inputs
 
     def prediction(self, input_image):
-        logged_output_roll_array, logged_output_pitch_array = self.net(input_image)
+        logged_output_roll_array, logged_output_pitch_array, roll_array, pitch_array = self.net(input_image)
 
-        #print(logged_output_roll_array)
+        print(roll_array)
 
         output_roll_array = torch.pow(10.0, logged_output_roll_array)
         output_pitch_array = torch.pow(10.0, logged_output_pitch_array)
-
-        #softmaxにしても大小関係は変わらない
-        #output_roll_array = nn_functional.softmax(logged_output_roll_array)
-        #output_pitch_array = nn_functional.softmax(logged_output_pitch_array)
-
-        #print(output_roll_array)
-        
-        #output_roll_array = torch.exp(logged_output_roll_array)
-        #output_pitch_array = torch.exp(logged_output_pitch_array)
-
-        #print(output_pitch_array)
 
         output_roll_array = output_roll_array.cpu().detach().numpy()[0]
         output_pitch_array = output_pitch_array.cpu().detach().numpy()[0]
