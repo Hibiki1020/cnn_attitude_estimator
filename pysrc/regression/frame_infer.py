@@ -217,8 +217,8 @@ class CNNAttitudeEstimator:
 
         #print(output_roll_array)
         
-        output_roll_array = torch.exp(output_roll_array)
-        output_pitch_array = torch.exp(output_pitch_array)
+        output_roll_array = torch.exp(logged_output_roll_array)
+        output_pitch_array = torch.exp(logged_output_pitch_array)
 
         print(output_pitch_array)
 
