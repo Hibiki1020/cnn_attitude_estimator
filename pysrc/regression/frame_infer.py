@@ -308,6 +308,13 @@ class CNNAttitudeEstimator:
                 #print(input_image)
 
                 roll_output_array, pitch_output_array = self.prediction(input_image)
+
+                roll_output_array = nn.Softmax(roll_output_array)
+                pitch_output_array = nn.Softmax(pitch_output_array)
+
+                torch.set_printoptions(edgeitems=500)
+                print(roll_output_array)
+
                 #roll_output_array = self.normalize(roll_output_array)
                 #pitch_output_array = self.normalize(pitch_output_array)
 

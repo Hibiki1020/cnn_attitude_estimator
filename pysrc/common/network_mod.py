@@ -91,11 +91,11 @@ class Network(nn.Module):
         pitch = self.pitch_fc(feature)
 
         torch.set_printoptions(edgeitems=100)
-        print(roll)
+        #print(roll)
 
         logged_roll = nn_functional.log_softmax(roll)
         logged_pitch = nn_functional.log_softmax(pitch)
 
-        print(logged_roll)
+        #print(logged_roll)
 
         return logged_roll, logged_pitch
