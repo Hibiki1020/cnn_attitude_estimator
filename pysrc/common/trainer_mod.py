@@ -184,7 +184,7 @@ class Trainer:
                 for inputs, label_roll, label_pitch in tqdm(self.dataloaders_dict[phase]):
                     inputs = inputs.to(self.device)
 
-                    print(inputs)
+                    #print(inputs)
 
                     label_roll = label_roll.to(self.device)
                     label_pitch = label_pitch.to(self.device)
