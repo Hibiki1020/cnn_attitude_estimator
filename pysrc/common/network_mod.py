@@ -6,6 +6,15 @@ from torchvision import models
 import torch.nn as nn
 import torch.nn.functional as nn_functional
 
+class PrintLayer(nn.Module):
+    def __init__(self):
+        super(PrintLayer, self).__init__()
+    
+    def forward(self, x):
+        # Do your print / debug stuff here
+        print(x)
+        return x
+
 class Network(nn.Module):
     def __init__(self, resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False):
         super(Network, self).__init__()
@@ -38,6 +47,7 @@ class Network(nn.Module):
             nn.Linear(self.dim_fc_in, 3000),
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
+            PrintLayer(),
             nn.Linear( 3000, 1000),
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
@@ -81,35 +91,14 @@ class Network(nn.Module):
         return list_cnn_param_value, list_roll_fc_param_value, list_pitch_fc_param_value
     
     def forward(self, x):
-
-        print(x.size())
-
         feature = self.cnn(x)
 
-        torch.set_printoptions(edgeitems=1000)
-        print(feature)
-
         feature = torch.flatten(feature, 1)
-
-        print(feature)
 
         roll = self.roll_fc(feature)
         pitch = self.pitch_fc(feature)
 
-        print(roll.size())
-
-        #roll = nn_functional.softmax(roll, dim=0)
-        #pitch = nn_functional.softmax(pitch, dim=0)
-
         logged_roll = nn_functional.log_softmax(roll, dim=0)
         logged_pitch = nn_functional.log_softmax(pitch, dim=0)
 
-        print(logged_roll.size())
-
-        #l2norm = torch.norm( roll[:, :self.dim_fc_out], p=2, dim=1, keepdim=True)
-        #roll[: , :self.dim_fc_out] = torch.div( roll[: , :self.dim_fc_out].clone(), l2norm)
-
-        #l2norm = torch.norm( pitch[:, :self.dim_fc_out], p=2, dim=1, keepdim=True)
-        #pitch[: , :self.dim_fc_out] = torch.div( pitch[: , :self.dim_fc_out].clone(), l2norm)
         return logged_roll, logged_pitch
-        #return roll, pitch
