@@ -82,7 +82,7 @@ class Network(nn.Module):
     
     def forward(self, x):
 
-        #print(x.size())
+        print(x.size())
 
         feature = self.cnn(x)
 
@@ -95,7 +95,7 @@ class Network(nn.Module):
         roll = self.roll_fc(feature)
         pitch = self.pitch_fc(feature)
 
-        #print(roll.size())
+        print(roll.size())
 
         #roll = nn_functional.softmax(roll, dim=0)
         #pitch = nn_functional.softmax(pitch, dim=0)
@@ -103,7 +103,7 @@ class Network(nn.Module):
         logged_roll = nn_functional.log_softmax(roll, dim=0)
         logged_pitch = nn_functional.log_softmax(pitch, dim=0)
 
-        #print(logged_roll.size())
+        print(logged_roll.size())
 
         #l2norm = torch.norm( roll[:, :self.dim_fc_out], p=2, dim=1, keepdim=True)
         #roll[: , :self.dim_fc_out] = torch.div( roll[: , :self.dim_fc_out].clone(), l2norm)
