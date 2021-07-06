@@ -260,7 +260,7 @@ class CNNAttitudeEstimator:
         print("Save Inference Data")
 
     def show_fig(self, roll_hist_array, pitch_hist_array, value_dict):
-        plt.bar(roll_hist_array, value_dict)
+        plt.bar(value_dict, roll_hist_array)
         plt.show()
 
     def frame_infer(self, image_data_list, ground_truth_list):
