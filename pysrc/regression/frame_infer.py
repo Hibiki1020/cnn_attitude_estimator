@@ -303,7 +303,7 @@ class CNNAttitudeEstimator:
             pitch_hist_array = []
 
             for i in range(361):
-                tmp = [0.0, 0.0]
+                tmp = 0.0
                 roll_hist_array.append(tmp)
                 pitch_hist_array.append(tmp)
 
