@@ -259,9 +259,15 @@ class CNNAttitudeEstimator:
         csv_file.close()
         print("Save Inference Data")
 
-    def show_fig(self, roll_hist_array, pitch_hist_array, value_dict):
+    def show_fig(self, roll_hist_array, pitch_hist_array, value_dict, image):
         plt.bar(value_dict, roll_hist_array)
+        cv2.imshow("img", image)
+        keycode = cv2.waitKey(0)
         plt.show()
+        
+        if keycode == ord('n'):
+            cv2.destroyAllWindows()
+            plt.close()
 
     def frame_infer(self, image_data_list, ground_truth_list):
         print("Start Inference")
@@ -339,7 +345,7 @@ class CNNAttitudeEstimator:
             print("Infered Pitch: " + str(pitch) + "[deg]")
             print("GT Pitch:      " + str(ground_truth[2]) + "[deg]")
 
-            self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict)
+            self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
 
             cov = np.cov(np_result)
 
