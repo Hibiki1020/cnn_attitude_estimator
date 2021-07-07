@@ -261,13 +261,7 @@ class CNNAttitudeEstimator:
 
     def show_fig(self, roll_hist_array, pitch_hist_array, value_dict, image):
         plt.bar(value_dict, roll_hist_array)
-        cv2.imshow("img", image)
-        keycode = cv2.waitKey(0)
         plt.show()
-        
-        if keycode == ord('n'):
-            cv2.destroyAllWindows()
-            plt.close()
 
     def frame_infer(self, image_data_list, ground_truth_list):
         print("Start Inference")
