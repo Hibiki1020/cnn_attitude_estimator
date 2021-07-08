@@ -28,12 +28,10 @@ class DataTransform():
         ## roll: numpy -> tensor
         roll_numpy = roll_numpy.astype(np.float32)
         roll_tensor = torch.from_numpy(roll_numpy)
-        #logged_roll_tensor = nn_functional.log_softmax(roll_tensor, dim=0)
 
         # pitch: numpy -> tensor
         pitch_numpy = pitch_numpy.astype(np.float32)
         pitch_tensor = torch.from_numpy(pitch_numpy)
-        #logged_pitch_tensor = nn_functional.log_softmax(pitch_tensor, dim=0)
 
         #return img_tensor, logged_roll_tensor, logged_pitch_tensor
         return img_tensor, roll_tensor, pitch_tensor

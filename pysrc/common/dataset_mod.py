@@ -54,12 +54,6 @@ class ClassOriginaldataset(data.Dataset):
         array[lower_ind] = dist_high
         array[upper_ind] = dist_low
 
-        #print("Upper Index: ", upper_ind)
-        #print("Upper num  : ", dist_low)
-        #print("Lower Index: ", lower_ind)
-        #print("Lower num  : ", dist_high)
-        #print(array)
-
         return array
 
     def __len__(self):
