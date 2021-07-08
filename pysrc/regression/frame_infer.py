@@ -95,8 +95,6 @@ class CNNAttitudeEstimator:
             state_dict = torch.load(weights_path, map_location={"cuda:0": "cpu"})
             print("GPU  ==>  CPU")
         
-        #net = nn.DataParallel(net)
-        #net.load_state_dict(loaded_weights)
 
         new_state_dict = OrderedDict()
 
@@ -149,8 +147,6 @@ class CNNAttitudeEstimator:
     def extract_window(self, image_original):
         height = image_original.shape[0]
         width = image_original.shape[1]
-        #print("Height", height)
-        #print("Width", width)
 
         windows = []
         correct_windows = []
@@ -163,25 +159,22 @@ class CNNAttitudeEstimator:
         while total_window_checker==False:
             width_start = random.randint(0, int(width)-self.window_original_size)
             height_start = random.randint(0, int(height)-self.window_original_size)
-            #print("Start Height", height_start)
-            #print("Start width", width_start)
 
             window = image_original[height_start:(height_start + self.window_original_size), width_start:(width_start + self.window_original_size)]
-            #print("window size, height%f, width%f", window.shape[0], window.shape[1])
+
             tmp_window_checker = self.check_window(window)
 
             if tmp_window_checker == True:
                 window_count += 1
                 correct_windows.append(window)
                 tmp_windows.append(window)
-                #print("window")
+
                 if window_count >= self.window_num:
                     total_window_checker = True
                     windows = correct_windows
             else:
                 error_count += 1
                 tmp_windows.append(window)
-                #print("Error")
 
                 if error_count >=self.window_num:
                     print("Less Feature Point...")
@@ -200,29 +193,14 @@ class CNNAttitudeEstimator:
         img_pil = self.cvToPIL(inference_image)
         img_tensor = self.img_transform(img_pil)
         inputs = img_tensor.unsqueeze_(0)
-        #inputs = img_tensor
         inputs = inputs.to(self.device)
         return inputs
 
     def prediction(self, input_image):
         logged_output_roll_array, logged_output_pitch_array, roll_array, pitch_array = self.net(input_image)
 
-        #print(roll_array)
-
-        #output_roll_array = torch.pow(10.0, logged_output_roll_array)
-        #output_pitch_array = torch.pow(10.0, logged_output_pitch_array)
-
-        #output_roll_array = output_roll_array.cpu().detach().numpy()[0]
-        #output_pitch_array = output_pitch_array.cpu().detach().numpy()[0]
-
-        #np.set_printoptions(threshold=np.inf)
-        #print(output_roll_array)
-
         output_roll_array = roll_array.to('cpu').detach().numpy().copy()
         output_pitch_array = pitch_array.to('cpu').detach().numpy().copy()
-
-        #print(output_roll_array)
-        #print(output_pitch_array)
 
         return np.array(output_roll_array), np.array(output_pitch_array)
 
@@ -235,7 +213,7 @@ class CNNAttitudeEstimator:
         max_index = int(np.argmax(output_array))
         plus_index = max_index + 1
         minus_index = max_index - 1
-        #print("max_index: ", max_index)
+
         value = 0.0
 
         if max_index == 0:
@@ -274,20 +252,8 @@ class CNNAttitudeEstimator:
             print("---------Inference at " + str(infer_count) + "---------")
             infer_count += 1
             image_original = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) #Load Image
-            #image_original = cv2.imread(img_path)
-
-
-            #cv2.imshow('image',image_original)
-            #cv2.waitKey(0)
-            #cv2.destroyAllWindows()
             
-            #print("Start Extract Window")
             windows = self.extract_window(image_original)
-            #print("End Extract Window")
-
-            #cv2.imshow('image',windows[2])
-            #cv2.waitKey(0)
-            #cv2.destroyAllWindows()
 
             print("Transform input image")
             print("---------------------")
