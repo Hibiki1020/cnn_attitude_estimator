@@ -130,7 +130,7 @@ class CNNAttitudeEstimator:
 
         return image_data_list, data_list
 
-    def check_window(self, window):
+    def check_window(self, window): #Bottle Neck
         #fast = cv2.FastFeatureDetector()
         detector = cv2.ORB_create()
         #print("Detect corner")
@@ -162,7 +162,8 @@ class CNNAttitudeEstimator:
 
             window = image_original[height_start:(height_start + self.window_original_size), width_start:(width_start + self.window_original_size)]
 
-            tmp_window_checker = self.check_window(window)
+            #tmp_window_checker = self.check_window(window)
+            tmp_window_checker = True
 
             if tmp_window_checker == True:
                 window_count += 1
