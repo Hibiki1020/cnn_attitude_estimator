@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
     try:
         print("Copy files to %s for further reference." % log_path)
-        copyfile(FLAGS.train_cfg, log_path + "/train_config.yaml")
+        copyfile(FLAGS.train_cfg, "/train_config.yaml")
     except Exception as e:
         print(e)
         print("Error copying files, check permissions. Exiting....")
