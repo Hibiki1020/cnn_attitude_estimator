@@ -42,7 +42,7 @@ class Network(nn.Module):
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
             nn.Linear( 1000, self.dim_fc_out),
-            nn.Softmax()
+            nn.Softmax(dim=1)
         )
 
         self.pitch_fc = nn.Sequential(
@@ -53,7 +53,7 @@ class Network(nn.Module):
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
             nn.Linear( 1000, self.dim_fc_out),
-            nn.Softmax()
+            nn.Softmax(dim=1)
         )
 
         self.initializeWeights()#no need?
@@ -90,8 +90,8 @@ class Network(nn.Module):
         roll = self.roll_fc(feature)
         pitch = self.pitch_fc(feature)
 
-        logged_roll = nn_functional.log_softmax(roll, dim=0)
-        logged_pitch = nn_functional.log_softmax(pitch, dim=0)
+        logged_roll = nn_functional.log_softmax(roll, dim=1)
+        logged_pitch = nn_functional.log_softmax(pitch, dim=1)
 
         #torch.set_printoptions(edgeitems=100)
         #print(roll)
