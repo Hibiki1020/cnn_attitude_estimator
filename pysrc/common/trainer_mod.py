@@ -230,7 +230,7 @@ class Trainer:
                             total_loss.backward()
 
                             #torch.nn.utils.clip_grad_norm_(model.parameters(), args.clip)
-                            nn.utils.clip_grad_norm_(self.net.parameters(), self.clip_limit)
+                            #nn.utils.clip_grad_norm_(self.net.parameters(), self.clip_limit)
 
                             self.optimizer.step()    #update param depending on current .grad
                         
