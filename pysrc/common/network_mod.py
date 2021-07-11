@@ -97,7 +97,7 @@ class Network(nn.Module):
 
         torch.set_printoptions(edgeitems=10000)
         #print(feature)
-        print(self.roll_fc.layer[6].weight.data)
+        print(self.roll_fc[6].weight.data)
         print(roll)
         print(logged_roll)
 
