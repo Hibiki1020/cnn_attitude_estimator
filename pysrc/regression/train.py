@@ -20,7 +20,8 @@ from tensorboardX import SummaryWriter
 
 import sys
 sys.path.append('../')
-from common import trainer_mod
+#from common import trainer_mod
+from common import vgg_network_mod
 from common import make_datalist_mod
 from common import data_transform_mod
 from common import dataset_mod
@@ -112,7 +113,8 @@ if __name__ == '__main__':
     )
 
     ##Network
-    net = network_mod.Network(resize, dim_fc_out, dropout_rate)
+    #net = network_mod.Network(resize, dim_fc_out, dropout_rate)
+    net = vgg_network_mod.Network(resize, dim_fc_out, dropout_rate)
 
 
     ##Criterion
