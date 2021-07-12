@@ -72,6 +72,8 @@ class ClassOriginaldataset(data.Dataset):
         pitch_list = self.float_to_array(pitch_float)
 
         img_pil = Image.open(img_path)
+        img_pil = img_pil.convert("RGB")
+
         roll_numpy = np.array(roll_list)
         pitch_numpy = np.array(pitch_list)
 

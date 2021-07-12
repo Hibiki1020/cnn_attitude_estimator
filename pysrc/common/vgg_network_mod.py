@@ -11,7 +11,7 @@ class Network(nn.Module):
         super(Network, self).__init__()
 
         vgg = models.vgg16(pretrained=use_pretrained_vgg)
-        self.cnn = vgg.features
+        self.cnn_feature = vgg.features
 
         self.dim_fc_in = 512 * 7 * 7
         self.dim_fc_out = dim_fc_out
@@ -65,7 +65,7 @@ class Network(nn.Module):
         return list_cnn_param_value, list_roll_fc_param_value, list_pitch_fc_param_value
 
     def forward(self, x):
-        feature = self.cnn(x)
+        feature = self.cnn_feature(x)
         feature = torch.flatten(feature, 1)
 
         roll = self.roll_fc(feature)
