@@ -207,7 +207,7 @@ class Trainer:
                         
                         #↓正解ラベルが1, 0の形式にならない状態で交差エントロピーを誤差関数に
                         #したい場合はこのようにライブラリを使わない誤差の計算の仕方をしないといけない
-
+                        torch.set_printoptions(edgeitems=10000)
                         print(label_pitch)
 
                         roll_loss = torch.mean( -label_roll * logged_roll_inf )
