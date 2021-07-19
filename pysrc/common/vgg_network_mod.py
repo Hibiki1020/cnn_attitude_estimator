@@ -23,7 +23,8 @@ class Network(nn.Module):
             nn.Linear( 1500, 700),
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
-            nn.Linear( 700, self.dim_fc_out)
+            nn.Linear( 700, self.dim_fc_out),
+            nn.Softmax(dim=1)
         )
 
         self.pitch_fc = nn.Sequential(
@@ -79,6 +80,6 @@ class Network(nn.Module):
         #Weights no problem
         #print(self.roll_fc[6].weight)
         #print(roll)
-        print(logged_roll)
+        #print(logged_roll)
 
         return logged_roll, logged_pitch, roll, pitch
