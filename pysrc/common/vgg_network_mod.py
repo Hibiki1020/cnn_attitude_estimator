@@ -68,7 +68,7 @@ class Network(nn.Module):
         feature = torch.flatten(feature, 1)
 
         roll = self.roll_fc(feature)
-        roll = nn.Softmax(roll)
+        roll = nn.Softmax(roll, dim=1)
         pitch = self.pitch_fc(feature)
 
         logged_roll = nn_functional.log_softmax(roll, dim=1)
