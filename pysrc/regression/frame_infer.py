@@ -99,7 +99,8 @@ class CNNAttitudeEstimator:
         print(net)
 
         net.to(self.device)
-        net.eval()
+        #net.eval()
+        net.train()
 
         #load
         if torch.cuda.is_available():
