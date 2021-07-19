@@ -1,23 +1,23 @@
 method_name: "regression"
 
-save_top_path: "/home/cnn_attitude_estimator_log/test_2021_07_13"
+save_top_path: "/home/cnn_attitude_estimator_log/test"
 weights_path: "/weights"
 log_path: "/log"
 graph_path: "/graph"
 
 train:
-  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_01_image70000/"
-  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_02_image140000/"
-  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_03_image140000/"
-  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image70000"
-  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image140000/"
+  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_01_image70000/"
+#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_02_image140000/"
+#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_03_image140000/"
+#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image70000"
+#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image140000/"
 valid:
   - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_02_image70000/"
 csv_name: "image_attitude.csv"
 
 index_csv_path: "/home/ros_catkin_ws/src/cnn_attitude_estimator/index_dict/index_dict_360x1range_step1deg.csv"
 
-multiGPU: 1 #1 is ture
+multiGPU: 0 #1 is ture
 
 hyperparameter:
   original_size: 672
@@ -34,5 +34,5 @@ hyperparameter:
   num_epochs: 50
   dropout_rate: 0.1
   dim_fc_out: 361
-  alpha: 1e-4
+  alpha: 0.0
   clip_limit: 0.1
