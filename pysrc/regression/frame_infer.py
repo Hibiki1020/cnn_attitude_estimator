@@ -71,11 +71,19 @@ class CNNAttitudeEstimator:
 
     def getImageTransform(self,resize,mean_element,std_element):
 
+        '''
         img_transform = transforms.Compose([
             transforms.Grayscale(num_output_channels=1),
             transforms.Resize(resize),
             transforms.ToTensor(),
             transforms.Normalize((mean_element,), (std_element,))
+        ])
+        '''
+
+        img_transform = transforms.Compose([
+            transforms.Resize(size),
+            transforms.ToTensor(),
+            transforms.Normalize((mean,), (std,))
         ])
 
         return img_transform
@@ -189,7 +197,6 @@ class CNNAttitudeEstimator:
     def cvToPIL(self, img_cv):
         img_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
         img_pil = Image.fromarray(img_cv)
-        img_pil = img_pil.convert("RGB")
         return img_pil
 
     def transformImage(self, inference_image):
