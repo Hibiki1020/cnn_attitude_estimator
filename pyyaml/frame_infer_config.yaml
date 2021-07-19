@@ -6,7 +6,7 @@ csv_name: "image_attitude.csv"
 weights_top_directory: "/home/ssd_dir/cnn_attitude_estimator_log/regression_AirSimNH_uniform_2021_07_19/"
 weights_file_name: "weights.pth"
 
-infer_log_top_directory: "/home/ssd_dir/cnn_attitude_estimator_log/infer_log/test_2021_07_01/"
+infer_log_top_directory: "/home/ssd_dir/cnn_attitude_estimator_log/infer_log/test_2021_07_19/"
 infer_log_file_name: "frame_infer_relust.csv"
 
 index_dict_name: index_dict_360x1range_step1deg.csv
