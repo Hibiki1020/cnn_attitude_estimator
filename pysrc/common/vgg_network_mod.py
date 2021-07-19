@@ -78,7 +78,7 @@ class Network(nn.Module):
         #print(feature)
 
         #Weights no problem
-        print(self.roll_fc[7].weight.data)
+        print(self.roll_fc[7])
         #print(roll)
         #print(logged_roll)
 
