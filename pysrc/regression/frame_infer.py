@@ -21,6 +21,7 @@ from collections import OrderedDict
 import sys
 sys.path.append('../')
 from common import network_mod
+from common import vgg_network_mod
 
 class CNNAttitudeEstimator:
     def __init__(self, CFG):
@@ -80,6 +81,7 @@ class CNNAttitudeEstimator:
         return img_transform
 
     def getNetwork(self, resize, weights_path, dim_fc_out, dropout_rate):
+        #net = network_mod.Network(resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False)
         net = network_mod.Network(resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False)
 
         print(net)
