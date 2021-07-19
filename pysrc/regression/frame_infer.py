@@ -217,6 +217,8 @@ class CNNAttitudeEstimator:
         output_roll_array = roll_array.to('cpu').detach().numpy().copy()
         output_pitch_array = pitch_array.to('cpu').detach().numpy().copy()
 
+        print(output_roll_array)
+
         return np.array(output_roll_array), np.array(output_pitch_array)
 
     def normalize(self, v):
