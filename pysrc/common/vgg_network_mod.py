@@ -75,7 +75,7 @@ class Network(nn.Module):
         logged_pitch = nn_functional.log_softmax(pitch, dim=1)
 
         torch.set_printoptions(edgeitems=10000)
-        #print(feature)
+        print(feature)
 
         #Weights no problem
         #print(self.roll_fc[6].weight.data)
