@@ -176,7 +176,6 @@ class CNNAttitudeEstimator:
             height_start = random.randint(0, int(height)-self.window_original_size)
 
             window = image_original[height_start:(height_start + self.window_original_size), width_start:(width_start + self.window_original_size)]
-            cv2.imshow(window)
             #tmp_window_checker = self.check_window(window)
             tmp_window_checker = True
 
@@ -210,6 +209,7 @@ class CNNAttitudeEstimator:
         img_tensor = self.img_transform(img_pil)
         inputs = img_tensor.unsqueeze_(0)
         inputs = inputs.to(self.device)
+        print(inputs)
         return inputs
 
     def prediction(self, input_image):
