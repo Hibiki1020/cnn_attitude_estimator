@@ -99,8 +99,8 @@ class CNNAttitudeEstimator:
         print(net)
 
         net.to(self.device)
-        #net.eval()
-        net.train()
+        net.eval()
+        #net.train()
 
         #load
         if torch.cuda.is_available():
@@ -201,6 +201,7 @@ class CNNAttitudeEstimator:
 
     def cvToPIL(self, img_cv):
         img_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
+        cv2.imshow(img_cv)
         img_pil = Image.fromarray(img_cv)
         return img_pil
 
