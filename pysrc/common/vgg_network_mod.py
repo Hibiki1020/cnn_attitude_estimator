@@ -23,8 +23,7 @@ class Network(nn.Module):
             nn.Linear( 1500, 700),
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
-            nn.Linear( 700, self.dim_fc_out),
-            nn.Softmax()
+            nn.Linear( 700, self.dim_fc_out)
         )
 
         self.pitch_fc = nn.Sequential(
@@ -69,6 +68,7 @@ class Network(nn.Module):
         feature = torch.flatten(feature, 1)
 
         roll = self.roll_fc(feature)
+        roll = nn.Softmax(roll)
         pitch = self.pitch_fc(feature)
 
         logged_roll = nn_functional.log_softmax(roll, dim=1)
