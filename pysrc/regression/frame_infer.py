@@ -175,7 +175,8 @@ class CNNAttitudeEstimator:
             width_start = random.randint(0, int(width)-self.window_original_size)
             height_start = random.randint(0, int(height)-self.window_original_size)
 
-            window = image_original[height_start:(height_start + self.window_original_size), width_start:(width_start + self.window_original_size)]
+            window = image_original[height_start:(height_start + self.window_original_size), width_start:(width_start + self.window_original_size))
+            cv2.imshow('window',window)
             #tmp_window_checker = self.check_window(window)
             tmp_window_checker = True
 
@@ -271,7 +272,7 @@ class CNNAttitudeEstimator:
             infer_count += 1
             #image_original = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) #Load Image
             image_original = cv2.imread(img_path)
-            cv2.imshow('image',image_original)
+            #cv2.imshow('image',image_original)
 
             windows = self.extract_window(image_original)
 
