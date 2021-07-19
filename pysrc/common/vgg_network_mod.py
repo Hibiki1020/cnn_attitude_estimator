@@ -38,7 +38,7 @@ class Network(nn.Module):
             nn.Softmax(dim=1)
         )
 
-        self.initializeWeights()#no need?
+        #self.initializeWeights()#no need?
     
     def initializeWeights(self):
         for m in self.roll_fc.children():
