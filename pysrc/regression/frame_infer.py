@@ -176,7 +176,7 @@ class CNNAttitudeEstimator:
             height_start = random.randint(0, int(height)-self.window_original_size)
 
             window = image_original[height_start:(height_start + self.window_original_size), width_start:(width_start + self.window_original_size)]
-
+            cv2.imshow(window)
             #tmp_window_checker = self.check_window(window)
             tmp_window_checker = True
 
@@ -201,7 +201,6 @@ class CNNAttitudeEstimator:
 
     def cvToPIL(self, img_cv):
         img_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
-        cv2.imshow(img_cv)
         img_pil = Image.fromarray(img_cv)
         return img_pil
 
