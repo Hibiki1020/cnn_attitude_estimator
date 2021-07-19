@@ -23,8 +23,7 @@ class Network(nn.Module):
             nn.Linear( 1500, 700),
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
-            nn.Linear( 700, self.dim_fc_out),
-            nn.Softmax(dim=1)
+            nn.Linear( 700, self.dim_fc_out)
         )
 
         self.pitch_fc = nn.Sequential(
