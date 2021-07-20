@@ -112,6 +112,12 @@ class Trainer:
                 {"params": list_roll_fc_param_value, "lr": lr_roll_fc},
                 {"params": list_pitch_fc_param_value, "lr": lr_pitch_fc}
             ])
+        elif optimizer_name == "AdamW":
+            optimizer = optim.AdamW([
+                {"params": list_cnn_param_value, "lr": lr_cnn},
+                {"params": list_roll_fc_param_value, "lr": lr_roll_fc},
+                {"params": list_pitch_fc_param_value, "lr": lr_pitch_fc}
+            ])
 
         print("optimizer")
         print(optimizer)

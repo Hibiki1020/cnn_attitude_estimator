@@ -1,13 +1,13 @@
 method_name: "regression"
 
-save_top_path: "/home/cnn_attitude_estimator_log/test"
+save_top_path: "/home/ssd_dir/cnn_attitude_estimator_log/test_AdamW"
 weights_path: "/weights"
 log_path: "/log"
 graph_path: "/graph"
 
 train:
-  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_01_image70000/"
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_02_image140000/"
+#  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_01_image70000/"
+  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_02_image140000/"
 #  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_03_image140000/"
 #  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image70000"
 #  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image140000/"
@@ -25,7 +25,7 @@ hyperparameter:
   mean_element: 0.5
   std_element: 0.5
   hor_fov_deg: 70
-  optimizer_name: "Adam"
+  optimizer_name: "AdamW"
   lr_cnn: 1e-5
   lr_roll_fc: 1e-5
   lr_pitch_fc: 1e-5
