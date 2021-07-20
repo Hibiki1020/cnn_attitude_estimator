@@ -111,13 +111,13 @@ class Trainer:
                 {"params": list_cnn_param_value, "lr": lr_cnn},
                 {"params": list_roll_fc_param_value, "lr": lr_roll_fc},
                 {"params": list_pitch_fc_param_value, "lr": lr_pitch_fc}
-            ], momentum=0.9, weight_decay=self.weight_decay)
+            ], weight_decay=self.weight_decay)
         elif optimizer_name == "AdamW":
             optimizer = optim.AdamW([
                 {"params": list_cnn_param_value, "lr": lr_cnn},
                 {"params": list_roll_fc_param_value, "lr": lr_roll_fc},
                 {"params": list_pitch_fc_param_value, "lr": lr_pitch_fc}
-            ], momentum=0.9, weight_decay=self.weight_decay)
+            ], weight_decay=self.weight_decay)
 
         print("optimizer")
         print(optimizer)
