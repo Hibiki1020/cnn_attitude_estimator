@@ -203,8 +203,8 @@ class Trainer:
                         #roll_inf, pitch_inf = self.net(inputs)
                         logged_roll_inf, logged_pitch_inf, roll_inf, pitch_inf = self.net(inputs)
 
-                        roll_loss = self.computeLoss(roll_inf, label_roll)
-                        pitch_loss = self.computeLoss(pitch_inf, label_pitch)
+                        #roll_loss = self.computeLoss(roll_inf, label_roll)
+                        #pitch_loss = self.computeLoss(pitch_inf, label_pitch)
 
                         #tmpshow_array = torch.pow(10.0, logged_roll_inf)
                         #tmpshow_array = tmpshow_array.to('cpu').detach().numpy().copy()
@@ -216,8 +216,8 @@ class Trainer:
                         torch.set_printoptions(edgeitems=10000)
                         #print(label_pitch)
 
-                        #roll_loss = torch.mean( -label_roll * logged_roll_inf )
-                        #pitch_loss = torch.mean( -label_pitch * logged_pitch_inf )
+                        roll_loss = torch.mean( -label_roll * logged_roll_inf )
+                        pitch_loss = torch.mean( -label_pitch * logged_pitch_inf )
 
                         #print(roll_loss)
 
