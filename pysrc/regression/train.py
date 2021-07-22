@@ -69,6 +69,7 @@ if __name__ == '__main__':
     std_element = CFG["hyperparameter"]["std_element"]
     hor_fov_deg = CFG["hyperparameter"]["hor_fov_deg"]
     optimizer_name = CFG["hyperparameter"]["optimizer_name"]
+    loss_function = CFG["hyperparameter"]["loss_function"]
     lr_cnn = float(CFG["hyperparameter"]["lr_cnn"])
     lr_roll_fc = float(CFG["hyperparameter"]["lr_roll_fc"])
     lr_pitch_fc = float(CFG["hyperparameter"]["lr_pitch_fc"])
@@ -131,6 +132,7 @@ if __name__ == '__main__':
         net,
         criterion,
         optimizer_name,
+        loss_function,
         lr_cnn,
         lr_roll_fc,
         lr_pitch_fc,

@@ -20,6 +20,7 @@ class Trainer:
     net,
     criterion,
     optimizer_name,
+    loss_function,
     lr_cnn,
     lr_roll_fc,
     lr_pitch_fc,
@@ -40,6 +41,7 @@ class Trainer:
         self.weight_decay = weight_decay
         self.alpha = alpha
         self.clip_limit = clip_limit
+        self.loss_function = loss_function
 
         self.setRandomCondition()
         
@@ -203,8 +205,12 @@ class Trainer:
                         #roll_inf, pitch_inf = self.net(inputs)
                         logged_roll_inf, logged_pitch_inf, roll_inf, pitch_inf = self.net(inputs)
 
-                        roll_loss = self.computeLoss(roll_inf, label_roll)
-                        pitch_loss = self.computeLoss(pitch_inf, label_pitch)
+                        if self.loss_function == "CrossEntropyLoss":
+                            roll_loss = torch.mean( -label_roll * logged_roll_inf )
+                            pitch_loss = torch.mean( -label_pitch * logged_pitch_inf )
+                        elif self.loss_function == "MSELoss":
+                            roll_loss = self.computeLoss(roll_inf, label_roll)
+                            pitch_loss = self.computeLoss(pitch_inf, label_pitch)
 
                         #tmpshow_array = torch.pow(10.0, logged_roll_inf)
                         #tmpshow_array = tmpshow_array.to('cpu').detach().numpy().copy()
