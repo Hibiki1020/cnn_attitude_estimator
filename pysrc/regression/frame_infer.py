@@ -266,7 +266,7 @@ class CNNAttitudeEstimator:
         np_roll_hist_array = np.array(roll_hist_array)
         np_pitch_hist_array = np.array(pitch_hist_array)
 
-        two_hist_array = np_roll_hist_array.T @ np_pitch_hist_array
+        two_hist_array = np_roll_hist_array @ np_pitch_hist_array.T
 
         print(two_hist_array)
 
