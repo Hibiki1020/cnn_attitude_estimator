@@ -442,7 +442,8 @@ class CNNAttitudeEstimator:
             roll_g = GaussianMixture(n_components=3,covariance_type='full')
             roll_g.fit(roll_f)
 
-            print(180*roll_g.means_)
+            print(roll_g.weights_)
+            print(roll_g.means_)
             print(roll_g.covariances_)
 
             self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
