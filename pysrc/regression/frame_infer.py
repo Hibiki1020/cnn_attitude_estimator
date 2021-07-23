@@ -346,7 +346,7 @@ class CNNAttitudeEstimator:
         """
         X = X.reshape(-1, 1)
         # プロット用X座標配列作成（1000個固定）
-        x = np.linspace(np.min(X), np.max(X), 1000)
+        x = np.linspace(0.0, 360.0, 1000)
 
         # プロット用x座標に対する確率・パラメータ比率を算出
         logprob, responsibilities = model.predict_proba(x)
