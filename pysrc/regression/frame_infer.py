@@ -472,7 +472,8 @@ class CNNAttitudeEstimator:
 
             f_axis = roll_f.copy().ravel()
             f_axis.sort()
-            plt.plot(f_axis,weights[0]*stats.norm.pdf(f_axis,means[0],np.sqrt(covars[0])).ravel(), c='red')
+            for i in len(weights):
+                plt.plot(f_axis,weights[i]*stats.norm.pdf(f_axis,means[i],np.sqrt(covars[i])).ravel(), c='red')
 
             plt.rcParams['agg.path.chunksize'] = 10000
 
