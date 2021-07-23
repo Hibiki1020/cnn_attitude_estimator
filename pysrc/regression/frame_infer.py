@@ -295,81 +295,6 @@ class CNNAttitudeEstimator:
         plt.bar(value_dict, roll_hist_array)
         plt.show()
 
-    def fit_gmm(self, roll_hist_array, roll_x, pitch_hist_array, value_dict, image, n_components=5, **kwargs):
-        #roll_hist_array = roll_hist_array.reshape(-1, 1)
-        pitch_hist_array = pitch_hist_array.reshape(-1, 1)
-
-        # covarianceのタイプリスト
-        COVARIANCE_TYPES = ['spherical', 'tied', 'diag', 'full']
-
-        # covariance_typeとn_componentsの組み合わせ配列作成
-        args = list(itertools.product(COVARIANCE_TYPES, range(1, n_components+1)))
-
-        # modelを格納する配列をゼロで初期化（GMMインスタンスを入れるのでdtype=object）
-        roll_models = np.zeros(len(args), dtype=object)
-        pitch_models = np.zeros(len(args), dtype=object)
-
-        # 各パラメータでモデルを作成
-        for i, (ctype, n) in enumerate(args):
-            roll_models[i] = GaussianMixture(n, covariance_type=ctype, **kwargs)
-            roll_models[i].fit(roll_hist_array)
-
-            pitch_models[i] = GaussianMixture(n, covariance_type=ctype, **kwargs)
-            pitch_models[i].fit(pitch_hist_array)
-
-        # 最適モデルをAICにより算出（AIC最小を選択）
-        # 各モデルのAIC計算
-        roll_AIC = np.array([m.aic(roll_hist_array) for m in roll_models])
-        pitch_AIC = np.array([m.aic(pitch_hist_array) for m in pitch_models])
-
-        return roll_models[np.argmin(roll_AIC)], pitch_models[np.argmin(pitch_AIC)]
-
-    def plot_histgram(self, hist_array, value_dict, **kwargs):
-        N = len(hist_array)
-        k = math.pow(float(2*N), float(1)/3)
-        k = math.ceil(k)
-
-        hist, bins = np.histogram(hist_array)
-        width = (bins[1] - bins[0]) * 0.7   # ビン幅を実際のビン幅の0.7倍に
-        center = (bins[1:] + bins[:-1]) / 2 # ヒストグラム中心を計算
-        plt.bar(center, hist, width=width, align='center', **kwargs)
-
-        return hist, bins
-
-    def plot_gmm(self, X, model, **kwargs):
-        """
-        混合ガウスモデルを描画
-        Arguments:
-            X -- サンプルデータ
-            model -- 描画する混合ガウスモデル
-            *kwargs -- `matplotlib.pyplot.bar` に渡される名前付き引数
-        Returns:
-            x, pdf, pdf_individual: 描画に使用したパラメータ郡
-        """
-        X = X.reshape(-1, 1)
-        # プロット用X座標配列作成（1000個固定）
-        x = np.linspace(0.0, 360.0, 1000).reshape(-1,1)
-
-        # プロット用x座標に対する確率・パラメータ比率を算出
-        logprob, responsibilities = model.predict_proba(x)
-        pdf = np.exp(logprob)
-        pdf_individual = responsibilities * pdf[:,np.newaxis]
-
-        # 混合ガウスモデルの描画
-        plt.plot(x, pdf, 'r-', **kwargs)
-
-        # 各正規分布の描画
-        args = zip(model.weights_, model.means_, model._get_covars())
-        for i, (weight, mean, covar) in enumerate(args):
-            # varianceを計算（一次元なので別に計算する必要も無いんだけど…ｗ）
-            var = np.diag(covar)[0]
-            # 式を作成: N(u, o^2)
-            formula_label = "N(%1.2f, %1.2f)" % (mean, var)
-            formula_label = "%d%% - %s" % (round(weight * 100), formula_label)
-            plt.plot(x, pdf_individual[:,i], 'k--', label=formula_label, alpha=0.5, **kwargs)
-
-        return x, pdf, pdf_individual
-
     def generate_data(self, np_value_dict, hist_array):
         count_num = 500000
 
@@ -453,16 +378,10 @@ class CNNAttitudeEstimator:
             np_value_dict = np.array(self.value_dict)
             roll_x = self.generate_data(np_value_dict, roll_hist_array)
 
-            #print(roll_x)
-            #roll_x = roll_hist_array
             roll_f = np.ravel(roll_x).astype(np.float)
             roll_f = roll_f.reshape(-1, 1)
             roll_g = GaussianMixture(n_components=4,covariance_type='full')
             roll_g.fit(roll_f)
-
-            #print(roll_g.weights_)
-            #print(roll_g.means_)
-            #print(roll_g.covariances_)
 
             weights = roll_g.weights_
             means = roll_g.means_
