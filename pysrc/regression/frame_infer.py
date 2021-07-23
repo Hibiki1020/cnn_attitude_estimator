@@ -370,6 +370,20 @@ class CNNAttitudeEstimator:
 
         return x, pdf, pdf_individual
 
+    def generate_data(self, np_value_dict, hist_array):
+        count_num = 100000
+
+        data = []
+
+        for value, hist_value in zip(np_value_dict, hist_array):
+            tmp_hist_value = count_num * hist_value
+            int_hist_value = int(tmp_hist_value)
+
+            for i in range(int_hist_value):
+                data.append(value)
+        
+        return data
+    
     def frame_infer(self, image_data_list, ground_truth_list):
         print("Start Inference")
 
@@ -437,18 +451,8 @@ class CNNAttitudeEstimator:
             print("GT Pitch:      " + str(ground_truth[2]) + "[deg]")
 
             np_value_dict = np.array(self.value_dict)
-            #print(np_value_dict)
+            roll_x = self.generate_data(np_value_dict, roll_hist_array)
 
-            '''
-            roll_x = []
-            for value, freq in zip(np_value_dict, roll_hist_array):
-                tmp_array = [value, freq]
-                roll_x.append(tmp_array)
-            '''
-
-            #roll_x = np.concatenate([np_value_dict, roll_hist_array], axis=0)
-            #roll_x = np.concatenate((roll_hist_array, np_value_dict), axis=0)
-            roll_x = np.array([roll_hist_array], [np_value_dict])
             print(roll_x)
             #roll_x = roll_hist_array
             roll_f = np.ravel(roll_x).astype(np.float)
