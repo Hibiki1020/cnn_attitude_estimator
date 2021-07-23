@@ -293,7 +293,7 @@ class CNNAttitudeEstimator:
         plt.bar(value_dict, roll_hist_array)
         plt.show()
 
-    def fit_gmm(self, roll_hist_array, pitch_hist_array, value_dict, image, n_components=2, **kwargs):
+    def fit_gmm(self, roll_hist_array, pitch_hist_array, value_dict, image, n_components=5, **kwargs):
         roll_hist_array = roll_hist_array.reshape(-1, 1)
         pitch_hist_array = pitch_hist_array.reshape(-1, 1)
 
@@ -322,6 +322,50 @@ class CNNAttitudeEstimator:
 
         return roll_models[np.argmin(roll_AIC)], pitch_models[np.argmin(pitch_AIC)]
 
+    def plot_histgram(self, hist_array, self.value_dict, **kwargs):
+        N = len(hist_array)
+        k = math.pow(float(2*N), float(1)/3)
+        k = math.ceil(k)
+
+        hist, bins = np.histogram(hist_array)
+        width = (bins[1] - bins[0]) * 0.7   # ビン幅を実際のビン幅の0.7倍に
+        center = (bins[1:] + bins[:-1]) / 2 # ヒストグラム中心を計算
+        plt.bar(center, hist, width=width, align='center', **kwargs)
+
+        return hist, bins
+
+    def plot_gmm(self, X, model, **kwargs):
+        """
+        混合ガウスモデルを描画
+        Arguments:
+            X -- サンプルデータ
+            model -- 描画する混合ガウスモデル
+            *kwargs -- `matplotlib.pyplot.bar` に渡される名前付き引数
+        Returns:
+            x, pdf, pdf_individual: 描画に使用したパラメータ郡
+        """
+        # プロット用X座標配列作成（1000個固定）
+        x = np.linspace(np.min(X, axis=0), np.max(X, axis=0), 1000)
+
+        # プロット用x座標に対する確率・パラメータ比率を算出
+        logprob, responsibilities = model.eval(x)
+        pdf = np.exp(logprob)
+        pdf_individual = responsibilities * pdf[:,np.newaxis]
+
+        # 混合ガウスモデルの描画
+        plt.plot(x, pdf, 'r-', **kwargs)
+
+        # 各正規分布の描画
+        args = zip(model.weights_, model.means_, model._get_covars())
+        for i, (weight, mean, covar) in enumerate(args):
+            # varianceを計算（一次元なので別に計算する必要も無いんだけど…ｗ）
+            var = np.diag(covar)[0]
+            # 式を作成: N(u, o^2)
+            formula_label = "N(%1.2f, %1.2f)" % (mean, var)
+            formula_label = "%d%% - %s" % (round(weight * 100), formula_label)
+            plt.plot(x, pdf_individual[:,i], 'k--', label=formula_label, alpha=0.5, **kwargs)
+
+        return x, pdf, pdf_individual
 
     def frame_infer(self, image_data_list, ground_truth_list):
         print("Start Inference")
@@ -391,7 +435,16 @@ class CNNAttitudeEstimator:
 
             #self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
 
-            roll_model, pitch_model = self.fit_gmm(roll_hist_array, pitch_hist_array, self.value_dict, windows[1], n_components=2)
+            roll_model, pitch_model = self.fit_gmm(roll_hist_array, pitch_hist_array, self.value_dict, windows[1], n_components=5)
+            self.plot_histgram(roll_hist_array, self.value_dict, color='k', alpha=0.7)
+            plt.xlabel('value')
+            plt.ylabel('Frequency')
+            plt.twinx()
+            self.plot_gmm(roll_hist_array, roll_model)
+            plt.ylabel('Probabilit')
+            plt.xticks()
+            plt.legend(loc='upper right')
+            plt.show()
 
             cov = np.cov(np_result)
 
