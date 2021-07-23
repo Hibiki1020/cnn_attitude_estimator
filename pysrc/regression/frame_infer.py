@@ -344,7 +344,7 @@ class CNNAttitudeEstimator:
         Returns:
             x, pdf, pdf_individual: 描画に使用したパラメータ郡
         """
-        X.reshape(-1, 1)
+        X = X.reshape(-1, 1)
         # プロット用X座標配列作成（1000個固定）
         x = np.linspace(np.min(X, axis=0), np.max(X, axis=0), 1000)
 
