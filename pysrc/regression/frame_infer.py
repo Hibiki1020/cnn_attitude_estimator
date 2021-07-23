@@ -310,14 +310,14 @@ class CNNAttitudeEstimator:
         # 各パラメータでモデルを作成
         for i, (ctype, n) in enumerate(args):
             roll_models[i] = GaussianMixture(n, covariance_type=ctype, **kwargs)
-            roll_models[i].fit(roll_x)
+            roll_models[i].fit(roll_hist_array)
 
             pitch_models[i] = GaussianMixture(n, covariance_type=ctype, **kwargs)
             pitch_models[i].fit(pitch_hist_array)
 
         # 最適モデルをAICにより算出（AIC最小を選択）
         # 各モデルのAIC計算
-        roll_AIC = np.array([m.aic(roll_x) for m in roll_models])
+        roll_AIC = np.array([m.aic(roll_hist_array) for m in roll_models])
         pitch_AIC = np.array([m.aic(pitch_hist_array) for m in pitch_models])
 
         return roll_models[np.argmin(roll_AIC)], pitch_models[np.argmin(pitch_AIC)]
@@ -434,24 +434,7 @@ class CNNAttitudeEstimator:
             print("Infered Pitch: " + str(pitch) + "[deg]")
             print("GT Pitch:      " + str(ground_truth[2]) + "[deg]")
 
-            #self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
-
-            roll_x = np.concatenate(float(self.value_dict), roll_hist_array)
-
-            roll_model, pitch_model = self.fit_gmm(roll_hist_array, roll_x, pitch_hist_array,self.value_dict, windows[1], n_components=5)
-            
-            print(roll_model.means_)
-            print(roll_model.covariances_)
-            
-            self.plot_histgram(roll_hist_array, self.value_dict, color='k', alpha=0.7)
-            plt.xlabel('value')
-            plt.ylabel('Frequency')
-            plt.twinx()
-            self.plot_gmm(roll_hist_array, roll_model)
-            plt.ylabel('Probabilit')
-            plt.xticks()
-            plt.legend(loc='upper right')
-            plt.show()
+            self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
 
             cov = np.cov(np_result)
 
