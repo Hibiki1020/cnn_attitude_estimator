@@ -43,6 +43,7 @@ RUN apt-get update && \
 		torch==1.5.0 torchvision==0.6.0\
 		tqdm \
 		matplotlib \
+		scikit-learn \
 		tensorflow \
 		tensorboardX
 		# torch==1.0.1 torchvision==0.2.2

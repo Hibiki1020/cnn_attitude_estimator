@@ -4,6 +4,7 @@ import math
 import numpy as np
 import time
 import argparse
+from numpy.core.fromnumeric import argmin
 import yaml
 import os
 import csv
@@ -292,6 +293,33 @@ class CNNAttitudeEstimator:
         plt.bar(value_dict, roll_hist_array)
         plt.show()
 
+    def fit_gmm(self, roll_hist_array, pitch_hist_array, value_dict, image, n_components=5, **kwargs):
+        # covarianceのタイプリスト
+        COVARIANCE_TYPES = ['spherical', 'tied', 'diag', 'full']
+
+        # covariance_typeとn_componentsの組み合わせ配列作成
+        args = list(itertools.product(COVARIANCE_TYPES, range(1, n_components+1)))
+
+        # modelを格納する配列をゼロで初期化（GMMインスタンスを入れるのでdtype=object）
+        roll_models = np.zeros(len(args), dtype=object)
+        pitch_models = np.zeros(len(args), dtype=object)
+
+        # 各パラメータでモデルを作成
+        for i, (ctype, n) in enumerate(args):
+            roll_models[i] = mixture.GMM(n, covariance_type=ctype, **kwargs)
+            roll_models[i].fit(roll_hist_array)
+
+            pitch_models[i] = mixture.GMM(n, covariance_type=ctype, **kwargs)
+            pitch_models[i].fit(pitch_hist_array)
+
+        # 最適モデルをAICにより算出（AIC最小を選択）
+        # 各モデルのAIC計算
+        roll_AIC = np.array([m.aic(roll_hist_array) for m in roll_models])
+        pitch_AIC = np.array([m.aic(pitch_hist_array) for m in pitch_models])
+
+        return roll_models[np.argmin(roll_AIC)], pitch_models[np.argmin(pitch_AIC)]
+
+
     def frame_infer(self, image_data_list, ground_truth_list):
         print("Start Inference")
 
@@ -358,7 +386,9 @@ class CNNAttitudeEstimator:
             print("Infered Pitch: " + str(pitch) + "[deg]")
             print("GT Pitch:      " + str(ground_truth[2]) + "[deg]")
 
-            self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
+            #self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
+
+            roll_model, pitch_model = self.fit_gmm(roll_hist_array, pitch_hist_array, self.value_dict, windows[1], n_components=5)
 
             cov = np.cov(np_result)
 
