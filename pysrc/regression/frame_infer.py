@@ -436,7 +436,7 @@ class CNNAttitudeEstimator:
 
             #self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
 
-            roll_x = np.concatenate(self.value_dict, roll_hist_array)
+            roll_x = np.concatenate(float(self.value_dict), roll_hist_array)
 
             roll_model, pitch_model = self.fit_gmm(roll_hist_array, roll_x, pitch_hist_array,self.value_dict, windows[1], n_components=5)
             
