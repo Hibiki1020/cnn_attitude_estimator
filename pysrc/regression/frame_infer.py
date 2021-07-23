@@ -440,7 +440,7 @@ class CNNAttitudeEstimator:
             roll_f = np.ravel(roll_x).astype(np.float)
             roll_f = roll_f.reshape(-1, 1)
             roll_g = GaussianMixture(n_components=3,covariance_type='full')
-            roll_g.fit(roll_x)
+            roll_g.fit(roll_f)
 
             print(roll_g.means_)
             print(roll_g.covariances_)
