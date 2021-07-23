@@ -294,8 +294,8 @@ class CNNAttitudeEstimator:
         plt.show()
 
     def fit_gmm(self, roll_hist_array, pitch_hist_array, value_dict, image, n_components=5, **kwargs):
-        roll_hist_array = roll_hist_array.reshape([1, self.dim_fc_out])
-        pitch_hist_array = pitch_hist_array.reshape([1, self.dim_fc_out])
+        #roll_hist_array = roll_hist_array.reshape([1, self.dim_fc_out])
+        #pitch_hist_array = pitch_hist_array.reshape([1, self.dim_fc_out])
 
         # covarianceのタイプリスト
         COVARIANCE_TYPES = ['spherical', 'tied', 'diag', 'full']
