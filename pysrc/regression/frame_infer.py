@@ -446,6 +446,7 @@ class CNNAttitudeEstimator:
             '''
 
             roll_x = np.concatenate([np_value_dict, roll_hist_array], axis=0)
+            print(roll_x)
             #roll_x = roll_hist_array
             roll_f = np.ravel(roll_x).astype(np.float)
             roll_f = roll_f.reshape(-1, 1)
