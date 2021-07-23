@@ -115,8 +115,8 @@ if __name__ == '__main__':
     )
 
     ##Network
-    net = network_mod.Network(resize, dim_fc_out, dropout_rate)
-    #net = vgg_network_mod.Network(resize, dim_fc_out, dropout_rate)
+    #net = network_mod.Network(resize, dim_fc_out, dropout_rate)
+    net = vgg_network_mod.Network(resize, dim_fc_out, dropout_rate)
     #net = vgg_network_batch_norm_mod.Network(resize, dim_fc_out, dropout_rate)
 
 

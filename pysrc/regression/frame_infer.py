@@ -93,8 +93,8 @@ class CNNAttitudeEstimator:
         return img_transform
 
     def getNetwork(self, resize, weights_path, dim_fc_out, dropout_rate):
-        #net = network_mod.Network(resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False)
-        net = vgg_network_mod.Network(resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False)
+        net = network_mod.Network(resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False)
+        #net = vgg_network_mod.Network(resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False)
 
         print(net)
 
