@@ -82,14 +82,13 @@ class CNNAttitudeEstimator:
         std = std_element
         size = (resize, resize)
 
-        
+        '''
         img_transform = transforms.Compose([
             transforms.Grayscale(num_output_channels=1),
             transforms.Resize(resize),
             transforms.ToTensor(),
             transforms.Normalize((mean_element,), (std_element,))
         ])
-        
 
         '''
         img_transform = transforms.Compose([
@@ -97,13 +96,12 @@ class CNNAttitudeEstimator:
             transforms.ToTensor(),
             transforms.Normalize((mean,), (std,))
         ])
-        '''
 
         return img_transform
 
     def getNetwork(self, resize, weights_path, dim_fc_out, dropout_rate):
-        net = network_mod.Network(resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False)
-        #net = vgg_network_mod.Network(resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False)
+        #net = network_mod.Network(resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False)
+        net = vgg_network_mod.Network(resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False)
 
         print(net)
 
