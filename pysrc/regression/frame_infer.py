@@ -437,6 +437,7 @@ class CNNAttitudeEstimator:
             print("GT Pitch:      " + str(ground_truth[2]) + "[deg]")
 
             np_value_dict = np.array(self.value_dict)
+            print(np_value_dict)
 
             '''
             roll_x = []
