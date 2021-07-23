@@ -13,7 +13,7 @@ import itertools
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
-from sklearn import mixture
+from sklearn.mixture import GaussianMixture
 
 import torch
 from torchvision import models
@@ -306,10 +306,10 @@ class CNNAttitudeEstimator:
 
         # 各パラメータでモデルを作成
         for i, (ctype, n) in enumerate(args):
-            roll_models[i] = mixture.GMM(n, covariance_type=ctype, **kwargs)
+            roll_models[i] = GaussianMixture(n, covariance_type=ctype, **kwargs)
             roll_models[i].fit(roll_hist_array)
 
-            pitch_models[i] = mixture.GMM(n, covariance_type=ctype, **kwargs)
+            pitch_models[i] = GaussianMixture(n, covariance_type=ctype, **kwargs)
             pitch_models[i].fit(pitch_hist_array)
 
         # 最適モデルをAICにより算出（AIC最小を選択）
