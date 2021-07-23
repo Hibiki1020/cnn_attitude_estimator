@@ -448,8 +448,16 @@ class CNNAttitudeEstimator:
             print(roll_g.means_)
             print(roll_g.covariances_)
 
+            weights = roll_g.weights_
+            means = roll_g.means_
+            covars = roll_g.covariances_
+
             plt.hist(roll_f, bins=100, histtype='bar', density=True, ec='red', alpha=0.5)
-            plt.plot(roll_f,roll_g.weights_[0]*stats.norm.pdf(roll_f,roll_g.means_[0],np.sqrt(roll_g.covariances_[0])), c='red')
+
+            f_axis = roll_f.copy().ravel()
+            f_axis.sort()
+            plt.plot(f_axis,weights[0]*stats.norm.pdf(f_axis,means[0],np.sqrt(covars[0])).ravel(), c='red')
+
             plt.rcParams['agg.path.chunksize'] = 10000
 
             plt.grid()
