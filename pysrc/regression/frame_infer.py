@@ -259,6 +259,13 @@ class CNNAttitudeEstimator:
         csv_file.close()
         print("Save Inference Data")
 
+    def numpy_2d_softmax(x):
+        max = np.max(x,axis=1,keepdims=True) #returns max of each row and keeps same dims
+        e_x = np.exp(x - max) #subtracts each row with its max value
+        sum = np.sum(e_x,axis=1,keepdims=True) #returns sum of each row and keeps same dims
+        f_x = e_x / sum 
+        return f_x
+
     def show_fig(self, roll_hist_array, pitch_hist_array, value_dict, image):
         #plt.bar(value_dict, roll_hist_array)
         #plt.show()
@@ -267,14 +274,16 @@ class CNNAttitudeEstimator:
         np_pitch_hist_array = np.array(pitch_hist_array).reshape([1, 361])
 
         two_hist_array = np.matmul(np_roll_hist_array.T, np_pitch_hist_array)
+        two_hist_array = self.numpy_2d_softmax(two_hist_array)
+
+        fig = plt.figure(figsize=(8,6))
+        plt.imshow(two_hist_array)
+        plt.title("Plot 2D array")
+        plt.show()
 
         #print(np_roll_hist_array)
         #print(np_pitch_hist_array)
-        print(two_hist_array.shape)
-
-        plt.bar(value_dict, roll_hist_array)
-        plt.show()
-
+        #print(two_hist_array.shape) #(361, 361)
 
     def frame_infer(self, image_data_list, ground_truth_list):
         print("Start Inference")
