@@ -349,7 +349,7 @@ class CNNAttitudeEstimator:
         x = np.linspace(np.min(X, axis=0), np.max(X, axis=0), 1000)
 
         # プロット用x座標に対する確率・パラメータ比率を算出
-        logprob, responsibilities = model.predict_proba(x)
+        logprob, responsibilities = model.predict_proba(X)
         pdf = np.exp(logprob)
         pdf_individual = responsibilities * pdf[:,np.newaxis]
 
