@@ -266,7 +266,7 @@ class CNNAttitudeEstimator:
         f_x = e_x / sum 
         return f_x
 
-    def show_fig(self, roll_hist_array, pitch_hist_array, value_dict, image):
+    def show_fig_no(self, roll_hist_array, pitch_hist_array, value_dict, image):
         #plt.bar(value_dict, roll_hist_array)
         #plt.show()
 
@@ -284,6 +284,10 @@ class CNNAttitudeEstimator:
         #print(np_roll_hist_array)
         #print(np_pitch_hist_array)
         #print(two_hist_array.shape) #(361, 361)
+
+    def show_fig(self, roll_hist_array, pitch_hist_array, value_dict, image):
+        plt.bar(value_dict, roll_hist_array)
+        plt.show()
 
     def frame_infer(self, image_data_list, ground_truth_list):
         print("Start Inference")
