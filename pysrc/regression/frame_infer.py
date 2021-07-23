@@ -371,7 +371,7 @@ class CNNAttitudeEstimator:
         return x, pdf, pdf_individual
 
     def generate_data(self, np_value_dict, hist_array):
-        count_num = 100000000
+        count_num = 10000
 
         data = []
 
