@@ -1,6 +1,6 @@
 method_name: "regression"
 
-save_top_path: "/home/ssd_dir/cnn_attitude_estimator_log/test_AdamW_alpha1e-6_Cross_Entropy_Loss_epoch24"
+save_top_path: "/home/ssd_dir/cnn_attitude_estimator_log/test_AdamW_alpha5e-7_Cross_Entropy_Loss_epoch12"
 weights_path: "/weights"
 log_path: "/log"
 graph_path: "/graph"
@@ -32,8 +32,8 @@ hyperparameter:
   lr_pitch_fc: 1e-5
   weight_decay: 0.0001
   batch_size: 32
-  num_epochs: 24
+  num_epochs: 12
   dropout_rate: 0.1
   dim_fc_out: 361
-  alpha: 1e-6
+  alpha: 5e-7
   clip_limit: 0.1
