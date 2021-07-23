@@ -438,7 +438,7 @@ class CNNAttitudeEstimator:
 
             roll_model, pitch_model = self.fit_gmm(roll_hist_array, pitch_hist_array, self.value_dict, windows[1], n_components=5)
             
-            print(roll_model)
+            print(roll_model[0])
             
             self.plot_histgram(roll_hist_array, self.value_dict, color='k', alpha=0.7)
             plt.xlabel('value')
