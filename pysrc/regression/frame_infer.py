@@ -371,7 +371,7 @@ class CNNAttitudeEstimator:
         return x, pdf, pdf_individual
 
     def generate_data(self, np_value_dict, hist_array):
-        count_num = 1000000
+        count_num = 100000000
 
         data = []
 
@@ -460,9 +460,9 @@ class CNNAttitudeEstimator:
             roll_g = GaussianMixture(n_components=5,covariance_type='full')
             roll_g.fit(roll_f)
 
-            print(roll_g.weights_)
-            print(roll_g.means_)
-            print(roll_g.covariances_)
+            #print(roll_g.weights_)
+            #print(roll_g.means_)
+            #print(roll_g.covariances_)
 
             weights = roll_g.weights_
             means = roll_g.means_
