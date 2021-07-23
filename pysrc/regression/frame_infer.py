@@ -12,7 +12,7 @@ import itertools
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
-from sklearn.mixture import GMM
+from sklearn import mixture
 
 import torch
 from torchvision import models
