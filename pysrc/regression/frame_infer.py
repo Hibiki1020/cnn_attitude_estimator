@@ -75,20 +75,22 @@ class CNNAttitudeEstimator:
         std = std_element
         size = (resize, resize)
 
-        '''
+        
         img_transform = transforms.Compose([
             transforms.Grayscale(num_output_channels=1),
             transforms.Resize(resize),
             transforms.ToTensor(),
             transforms.Normalize((mean_element,), (std_element,))
         ])
-        '''
+        
 
+        '''
         img_transform = transforms.Compose([
             transforms.Resize(size),
             transforms.ToTensor(),
             transforms.Normalize((mean,), (std,))
         ])
+        '''
 
         return img_transform
 
