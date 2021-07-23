@@ -371,7 +371,7 @@ class CNNAttitudeEstimator:
         return x, pdf, pdf_individual
 
     def generate_data(self, np_value_dict, hist_array):
-        count_num = 10000000
+        count_num = 1000000
 
         data = []
 
@@ -380,7 +380,7 @@ class CNNAttitudeEstimator:
             int_hist_value = int(tmp_hist_value)
 
             for i in range(int_hist_value):
-                data.append(value)
+                data.append(float(value))
         
         return data
     
