@@ -293,9 +293,9 @@ class CNNAttitudeEstimator:
         plt.bar(value_dict, roll_hist_array)
         plt.show()
 
-    def fit_gmm(self, roll_hist_array, pitch_hist_array, value_dict, image, n_components=5, **kwargs):
-        #roll_hist_array = roll_hist_array.reshape([1, self.dim_fc_out])
-        #pitch_hist_array = pitch_hist_array.reshape([1, self.dim_fc_out])
+    def fit_gmm(self, roll_hist_array, pitch_hist_array, value_dict, image, n_components=2, **kwargs):
+        roll_hist_array = roll_hist_array.reshape(-1, 1)
+        pitch_hist_array = pitch_hist_array.reshape(-1, 1)
 
         # covarianceのタイプリスト
         COVARIANCE_TYPES = ['spherical', 'tied', 'diag', 'full']
@@ -391,7 +391,7 @@ class CNNAttitudeEstimator:
 
             #self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
 
-            roll_model, pitch_model = self.fit_gmm(roll_hist_array, pitch_hist_array, self.value_dict, windows[1], n_components=5)
+            roll_model, pitch_model = self.fit_gmm(roll_hist_array, pitch_hist_array, self.value_dict, windows[1], n_components=2)
 
             cov = np.cov(np_result)
 
