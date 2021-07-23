@@ -260,20 +260,9 @@ class CNNAttitudeEstimator:
         print("Save Inference Data")
 
     def show_fig(self, roll_hist_array, pitch_hist_array, value_dict, image):
-        #plt.bar(value_dict, roll_hist_array)
-        #plt.show()
-        
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-
-        histogram = ax.hist2d(roll_hist_array, pitch_hist_array, bins=[np.linspace(-180, 180, 50), np.linspace(-180, 180, 50)], cmap=cm.jet)
-        ax.set_xlabel('Roll')
-        ax.set_ylabel('Pitch')
-        ax.set_title('Distribution of Roll and Pitch in dataset')
-
-        fig.colorbar(histogram[3], ax=ax)
+        plt.bar(value_dict, roll_hist_array)
+        plt.bar(value_dict, pitch_hist_array)
         plt.show()
-
 
     def frame_infer(self, image_data_list, ground_truth_list):
         print("Start Inference")
