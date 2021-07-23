@@ -293,8 +293,8 @@ class CNNAttitudeEstimator:
         plt.bar(value_dict, roll_hist_array)
         plt.show()
 
-    def fit_gmm(self, roll_hist_array, pitch_hist_array, value_dict, image, n_components=5, **kwargs):
-        roll_hist_array = roll_hist_array.reshape(-1, 1)
+    def fit_gmm(self, roll_hist_array, roll_x, pitch_hist_array, value_dict, image, n_components=5, **kwargs):
+        #roll_hist_array = roll_hist_array.reshape(-1, 1)
         pitch_hist_array = pitch_hist_array.reshape(-1, 1)
 
         # covarianceのタイプリスト
@@ -310,14 +310,14 @@ class CNNAttitudeEstimator:
         # 各パラメータでモデルを作成
         for i, (ctype, n) in enumerate(args):
             roll_models[i] = GaussianMixture(n, covariance_type=ctype, **kwargs)
-            roll_models[i].fit(roll_hist_array)
+            roll_models[i].fit(roll_x)
 
             pitch_models[i] = GaussianMixture(n, covariance_type=ctype, **kwargs)
             pitch_models[i].fit(pitch_hist_array)
 
         # 最適モデルをAICにより算出（AIC最小を選択）
         # 各モデルのAIC計算
-        roll_AIC = np.array([m.aic(roll_hist_array) for m in roll_models])
+        roll_AIC = np.array([m.aic(roll_x) for m in roll_models])
         pitch_AIC = np.array([m.aic(pitch_hist_array) for m in pitch_models])
 
         return roll_models[np.argmin(roll_AIC)], pitch_models[np.argmin(pitch_AIC)]
@@ -436,7 +436,9 @@ class CNNAttitudeEstimator:
 
             #self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
 
-            roll_model, pitch_model = self.fit_gmm(roll_hist_array, pitch_hist_array, self.value_dict, windows[1], n_components=5)
+            roll_x = np.concatenate(self.value_dict[0], roll_hist_array)
+
+            roll_model, pitch_model = self.fit_gmm(roll_hist_array, roll_x, pitch_hist_array,self.value_dict, windows[1], n_components=5)
             
             print(roll_model.means_)
             print(roll_model.covariances_)
