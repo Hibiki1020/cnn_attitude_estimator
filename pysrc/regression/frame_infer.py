@@ -13,6 +13,8 @@ import itertools
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
+import scipy.stats as stats
+
 from sklearn.mixture import GaussianMixture
 
 import torch
@@ -445,6 +447,13 @@ class CNNAttitudeEstimator:
             print(roll_g.weights_)
             print(roll_g.means_)
             print(roll_g.covariances_)
+
+            plt.hist(roll_f, bins=100, histtype='bar', density=True, ec='red', alpha=0.5)
+            plt.plot(roll_f,roll_g.weights_[0]*stats.norm.pdf(roll_f,roll_g.means_[0],np.sqrt(roll_g.covariances_[0])), c='red')
+            plt.rcParams['agg.path.chunksize'] = 10000
+
+            plt.grid()
+            plt.show()
 
             self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
 
