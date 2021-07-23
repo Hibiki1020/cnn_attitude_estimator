@@ -9,6 +9,7 @@ import os
 import csv
 import random
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 
 import torch
 from torchvision import models
