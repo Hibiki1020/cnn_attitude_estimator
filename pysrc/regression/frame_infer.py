@@ -322,7 +322,7 @@ class CNNAttitudeEstimator:
 
         return roll_models[np.argmin(roll_AIC)], pitch_models[np.argmin(pitch_AIC)]
 
-    def plot_histgram(self, hist_array, self.value_dict, **kwargs):
+    def plot_histgram(self, hist_array, value_dict, **kwargs):
         N = len(hist_array)
         k = math.pow(float(2*N), float(1)/3)
         k = math.ceil(k)
