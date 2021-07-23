@@ -8,8 +8,11 @@ import yaml
 import os
 import csv
 import random
+import itertools
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
+
+from sklearn.mixture import GMM
 
 import torch
 from torchvision import models
