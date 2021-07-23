@@ -434,6 +434,10 @@ class CNNAttitudeEstimator:
             print("Infered Pitch: " + str(pitch) + "[deg]")
             print("GT Pitch:      " + str(ground_truth[2]) + "[deg]")
 
+            np_value_dict = np.array(self.value_dict)
+
+            roll_x = np.concatenate((np_value_dict, roll_hist_array))
+
             self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
 
             cov = np.cov(np_result)
