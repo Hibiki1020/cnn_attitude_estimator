@@ -438,7 +438,7 @@ class CNNAttitudeEstimator:
 
             np_value_dict = np.array(self.value_dict)
 
-            roll_x = np.concatenate((np_value_dict, roll_hist_array))
+            roll_x = np.concatenate((np_value_dict, roll_hist_array), axis=0)
             roll_f = np.ravel(roll_x).astype(np.float)
             roll_f = roll_f.reshape(-1, 1)
             roll_g = GaussianMixture(n_components=3,covariance_type='full')
