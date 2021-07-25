@@ -1,6 +1,6 @@
 method_name: "regression"
 
-save_top_path: "/home/ssd_dir/cnn_attitude_estimator_log/test_AdamW_alpha5e-7_Cross_Entropy_Loss_epoch12_train140000_images"
+save_top_path: "/home/ssd_dir/cnn_attitude_estimator_log/test_AdamW_alpha5e-7_Cross_Entropy_Loss_epoch12_train210000_images"
 weights_path: "/weights"
 log_path: "/log"
 graph_path: "/graph"
@@ -9,7 +9,7 @@ train:
   - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_01_image70000/"
   - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_02_image140000/"
 #  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_03_image140000/"
-  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_04_image70000"
+#  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_04_image70000"
 #  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image140000/"
 valid:
   - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_02_image70000/"
