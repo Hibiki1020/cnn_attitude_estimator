@@ -293,6 +293,10 @@ class CNNAttitudeEstimator:
         plt.bar(value_dict, roll_hist_array)
         plt.show()
 
+        cv2.imshow('image',image)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
     def generate_data(self, np_value_dict, hist_array):
         count_num = 500000
 
@@ -376,7 +380,7 @@ class CNNAttitudeEstimator:
             np_value_dict = np.array(self.value_dict)
             roll_x = self.generate_data(np_value_dict, roll_hist_array)
 
-            roll_f = np.ravel(roll_x).astype(np.float)
+            roll_f = np.ravel(roll_x).astype(np.float64)
             roll_f = roll_f.reshape(-1, 1)
             roll_g = GaussianMixture(n_components=4,covariance_type='full')
             roll_g.fit(roll_f)
