@@ -28,9 +28,9 @@ if __name__ == '__main__':
         print("Error opening frame infer config file %s", FLAGS.frame_infer_config)
         quit()
 
-    resize = CFG["hyperparameter"]["resize"]
-    dropout_rate = float(CFG["hyperparameter"]["dropout_rate"])
-    dim_fc_out = int(CFG["hyperparameter"]["dim_fc_out"])
+    resize = int(CFG["resize"])
+    dropout_rate = float(CFG["dropout_rate"])
+    dim_fc_out = int(CFG["dim_fc_out"])
     net = vgg_network_mod.Network(resize, dim_fc_out, dropout_rate)
     
     attitude_estimator = inference_mod.InferenceMod(CFG, net)
