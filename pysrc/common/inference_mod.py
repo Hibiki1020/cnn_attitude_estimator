@@ -24,11 +24,9 @@ from torchvision import transforms
 import torch.nn.functional as nn_functional
 
 from collections import OrderedDict
-#from network_mod import *
-#from vgg_network_mod import *
 
 class InferenceMod:
-    def __init__(self, CFG):
+    def __init__(self, CFG, net):
         self.CFG = CFG
         self.method_name = CFG["method_name"]
         
@@ -65,7 +63,7 @@ class InferenceMod:
         print("self.device ==> ", self.device)
 
         self.img_transform = self.getImageTransform(self.resize, self.mean_element, self.std_element)
-        self.net = self.getNetwork(self.resize, self.weights_path, self.dim_fc_out, self.dropout_rate)
+        self.net = self.getNetwork(net)
 
         self.value_dict = []
 
@@ -98,10 +96,7 @@ class InferenceMod:
 
         return img_transform
 
-    def getNetwork(self, resize, weights_path, dim_fc_out, dropout_rate):
-        #net = network_mod.Network(resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False)
-        net = vgg_network_mod.Network(resize, dim_fc_out, dropout_rate, use_pretrained_vgg=False)
-
+    def getNetwork(self, net):
         print(net)
 
         net.to(self.device)
@@ -110,10 +105,10 @@ class InferenceMod:
 
         #load
         if torch.cuda.is_available():
-            state_dict = torch.load(weights_path, map_location=lambda storage, loc: storage)
+            state_dict = torch.load(self.weights_path, map_location=lambda storage, loc: storage)
             print("GPU  ==>  GPU")
         else:
-            state_dict = torch.load(weights_path, map_location={"cuda:0": "cpu"})
+            state_dict = torch.load(self.weights_path, map_location={"cuda:0": "cpu"})
             print("GPU  ==>  CPU")
         
 
