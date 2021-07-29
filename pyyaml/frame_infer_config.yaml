@@ -12,7 +12,7 @@ infer_log_file_name: "frame_infer_relust.csv"
 index_dict_name: index_dict_360x1range_step1deg.csv
 
 window_original_size: 672
-window_num: 300
+window_num: 100
 resize: 224
 mean_element: 0.5
 std_element: 0.5
