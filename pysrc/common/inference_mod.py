@@ -24,8 +24,8 @@ from torchvision import transforms
 import torch.nn.functional as nn_functional
 
 from collections import OrderedDict
-import network_mod
-import vgg_network_mod
+from network_mod import *
+from vgg_network_mod import *
 
 class InferenceMod:
     def __init__(self, CFG):
