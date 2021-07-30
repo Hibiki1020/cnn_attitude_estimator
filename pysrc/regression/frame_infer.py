@@ -408,7 +408,8 @@ class CNNAttitudeEstimator:
 
             cov = np.cov(np_result)
 
-            tmp_result_csv = [roll, pitch, ground_truth[1], ground_truth[2]]
+            #Image roll pitch GTroll GTpitch
+            tmp_result_csv = [ground_truth[0], roll, pitch, ground_truth[1], ground_truth[2]]
             result_csv.append(tmp_result_csv)
 
             print("Period [s]: ", time.time() - start_clock)
