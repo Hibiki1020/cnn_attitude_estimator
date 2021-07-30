@@ -26,7 +26,7 @@ hyperparameter:
   std_element: 0.5
   hor_fov_deg: 70
   optimizer_name: "AdamW"
-  loss_function: "CrossEntropyLoss" #CrossEntropyLoss or MSELoss
+  loss_function: "CrossEntropyLoss" #CrossEntropyLoss or MSELoss .
   lr_cnn: 1e-5
   lr_roll_fc: 1e-5
   lr_pitch_fc: 1e-5
