@@ -1,6 +1,6 @@
 method_name: "regression"
 
-save_top_path: "/home/cnn_attitude_estimator_log/test_loss1e-4_luffy_epoch12"
+save_top_path: "/home/cnn_attitude_estimator_log/final_train_on_dgx"
 weights_path: "/weights"
 log_path: "/log"
 graph_path: "/graph"
