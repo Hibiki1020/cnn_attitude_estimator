@@ -6,18 +6,18 @@ log_path: "/log"
 graph_path: "/graph"
 
 train:
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_01_image70000/"
-  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_02_image140000/"
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_03_image140000/"
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image70000"
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image140000/"
+  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_01_image70000/"
+  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_02_image140000/"
+  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_03_image140000/"
+  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image70000"
+  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image140000/"
 valid:
-  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/2021_06_02_image70000/"
+  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_02_image70000/"
 csv_name: "image_attitude.csv"
 
 index_csv_path: "/home/ros_catkin_ws/src/cnn_attitude_estimator/index_dict/index_dict_360x1range_step1deg.csv"
 
-multiGPU: 0 #1 is ture
+multiGPU: 1 #1 is ture
 
 hyperparameter:
   original_size: 672
@@ -28,11 +28,11 @@ hyperparameter:
   optimizer_name: "AdamW"
   loss_function: "CrossEntropyLoss" #CrossEntropyLoss or MSELoss
   lr_cnn: 1e-5
-  lr_roll_fc: 1e-4
-  lr_pitch_fc: 1e-4
+  lr_roll_fc: 1e-5
+  lr_pitch_fc: 1e-5
   weight_decay: 0.0001
-  batch_size: 32
-  num_epochs: 12
+  batch_size: 640
+  num_epochs: 50
   dropout_rate: 0.1
   dim_fc_out: 361
   alpha: 5e-7
