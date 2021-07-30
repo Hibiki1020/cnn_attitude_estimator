@@ -207,7 +207,7 @@ class CNNAttitudeEstimator:
         return windows
 
     def cvToPIL(self, img_cv):
-        img_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
+        #img_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
         img_pil = Image.fromarray(img_cv)
         return img_pil
 
