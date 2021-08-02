@@ -241,7 +241,7 @@ class CNNAttitudeEstimator:
         minus_index = max_index - 1
 
         value = 0.0
-
+        '''
         if max_index == 0:
             value = output_array[0][max_index]*self.value_dict[max_index] + output_array[0][max_index+1]*self.value_dict[max_index+1]
         elif max_index == 360: #361
@@ -252,6 +252,10 @@ class CNNAttitudeEstimator:
             elif output_array[0][minus_index] < output_array[0][plus_index]: #一つ後のインデックスを採用
                 value = output_array[0][max_index]*self.value_dict[max_index] + output_array[0][plus_index]*self.value_dict[plus_index]
 
+        return value
+        '''
+
+        value = output_array[0][max_index]*self.value_dict[max_index]
         return value
 
     def save_csv(self, result_csv):
