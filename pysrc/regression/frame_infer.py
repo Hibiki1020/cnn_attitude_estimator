@@ -235,6 +235,16 @@ class CNNAttitudeEstimator:
         l2[l2==0] = 1
         return v/l2
 
+    def array_to_value_simple_hist(self, output_array):
+        max_index = int(np.argmax(output_array))
+        plus_index = max_index + 1
+        minus_index = max_index - 1
+
+        value = 0.0
+
+        value = output_array[max_index]*self.value_dict[max_index]
+        return value
+    
     def array_to_value_simple(self, output_array):
         max_index = int(np.argmax(output_array))
         plus_index = max_index + 1
@@ -371,8 +381,8 @@ class CNNAttitudeEstimator:
             roll_hist_array /= float(len(windows))
             pitch_hist_array /= float(len(windows))
 
-            roll_hist = self.array_to_value_simple(roll_hist_array)
-            pitch_hist = self.array_to_value_simple(pitch_hist_array)
+            roll_hist = self.array_to_value_simple_hist(roll_hist_array)
+            pitch_hist = self.array_to_value_simple_hist(pitch_hist_array)
 
             np_result = np.array(result)
 
