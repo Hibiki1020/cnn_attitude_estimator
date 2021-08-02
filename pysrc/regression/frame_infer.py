@@ -236,13 +236,13 @@ class CNNAttitudeEstimator:
         return v/l2
 
     def array_to_value_simple_hist(self, output_array):
-        max_index = int(np.argmax(output_array))
-        plus_index = max_index + 1
-        minus_index = max_index - 1
 
         value = 0.0
 
-        value = output_array[max_index]*self.value_dict[max_index]
+        for i in len(output_array):
+            value += output_array[i]*self.value_dict[i]
+
+
         return value
     
     def array_to_value_simple(self, output_array):
