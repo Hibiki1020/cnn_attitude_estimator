@@ -239,7 +239,7 @@ class CNNAttitudeEstimator:
 
         value = 0.0
 
-        for i in len(output_array):
+        for i in range(len(output_array)):
             value += output_array[i]*self.value_dict[i]
 
 
