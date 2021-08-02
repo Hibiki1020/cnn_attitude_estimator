@@ -371,10 +371,16 @@ class CNNAttitudeEstimator:
             roll_hist_array /= float(len(windows))
             pitch_hist_array /= float(len(windows))
 
+            roll_hist = self.array_to_value_simple(roll_hist_array)
+            pitch_hist = self.array_to_value_simple(pitch_hist_array)
+
             np_result = np.array(result)
 
-            roll = np.mean(tmp_roll)
-            pitch = np.mean(tmp_pitch)
+            #roll = np.mean(tmp_roll)
+            #pitch = np.mean(tmp_pitch)
+
+            roll = roll_hist
+            pitch = pitch_hist
 
             print("Infered Roll:  " + str(roll) +  "[deg]")
             print("GT Roll:       " + str(ground_truth[1]) + "[deg]")
