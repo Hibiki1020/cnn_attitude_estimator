@@ -33,8 +33,8 @@ hyperparameter:
   lr_roll_fc: 1e-5
   lr_pitch_fc: 1e-5
   weight_decay: 0.0001
-  batch_size: 64
-  num_epochs: 50
+  batch_size: 128
+  num_epochs: 12
   dropout_rate: 0.1
   dim_fc_out: 61
   alpha: 5e-7
