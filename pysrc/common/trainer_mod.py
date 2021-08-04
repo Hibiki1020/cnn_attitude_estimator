@@ -220,7 +220,7 @@ class Trainer:
                         torch.set_printoptions(edgeitems=10000)
                         #print(roll_inf)
                         #print(label_pitch)
-                        print(roll_loss)
+                        #print(roll_loss)
 
                         #roll_loss = torch.mean( -label_roll * logged_roll_inf )
                         #pitch_loss = torch.mean( -label_pitch * logged_pitch_inf )
