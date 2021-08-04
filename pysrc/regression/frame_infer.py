@@ -288,8 +288,8 @@ class CNNAttitudeEstimator:
         #plt.bar(value_dict, roll_hist_array)
         #plt.show()
 
-        np_roll_hist_array = np.array(roll_hist_array).reshape([1, 361])
-        np_pitch_hist_array = np.array(pitch_hist_array).reshape([1, 361])
+        np_roll_hist_array = np.array(roll_hist_array).reshape([1, self.dim_fc_out])
+        np_pitch_hist_array = np.array(pitch_hist_array).reshape([1, self.dim_fc_out])
 
         two_hist_array = np.matmul(np_roll_hist_array.T, np_pitch_hist_array)
         #two_hist_array = self.numpy_2d_softmax(two_hist_array)
