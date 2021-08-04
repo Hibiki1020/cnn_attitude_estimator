@@ -17,24 +17,24 @@ class Network(nn.Module):
         self.dim_fc_out = dim_fc_out
 
         self.roll_fc = nn.Sequential(
-            nn.Linear(self.dim_fc_in, 300),
+            nn.Linear(self.dim_fc_in, 200),
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
-            nn.Linear( 300, 150),
+            nn.Linear( 200, 120),
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
-            nn.Linear( 150, self.dim_fc_out),
+            nn.Linear( 120, self.dim_fc_out),
             nn.Softmax(dim=1)
         )
 
         self.pitch_fc = nn.Sequential(
-            nn.Linear(self.dim_fc_in, 300),
+            nn.Linear(self.dim_fc_in, 200),
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
-            nn.Linear( 300, 150),
+            nn.Linear( 200, 120),
             nn.ReLU(inplace=True),
             nn.Dropout(p=dropout_rate),
-            nn.Linear( 150, self.dim_fc_out),
+            nn.Linear( 120, self.dim_fc_out),
             nn.Softmax(dim=1)
         )
 
