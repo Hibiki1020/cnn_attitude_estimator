@@ -368,10 +368,8 @@ class CNNAttitudeEstimator:
                 tmp_roll = self.array_to_value_simple(roll_output_array)
                 tmp_pitch = self.array_to_value_simple(pitch_output_array)
 
-                #roll_hist_array += roll_output_array[0]
-                #pitch_hist_array += pitch_output_array[0]
-                roll_hist_array += roll_output_array
-                pitch_hist_array += pitch_output_array
+                roll_hist_array += roll_output_array[0]
+                pitch_hist_array += pitch_output_array[0]
 
                 tmp_result = [tmp_roll, tmp_pitch]
                 
