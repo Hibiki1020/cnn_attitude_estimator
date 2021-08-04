@@ -181,8 +181,10 @@ class Trainer:
                     self.net.eval()
                 
                 ##skip
+                '''
                 if (epoch == 0) and (phase== "train"):
                     continue
+                '''
 
                 #if ((epoch%2)==0) and (phase== "valid") and (epoch > 0):
                 #    continue
