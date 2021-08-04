@@ -208,8 +208,10 @@ class Trainer:
                         logged_roll_inf, logged_pitch_inf, roll_inf, pitch_inf = self.net(inputs)
 
                         if self.loss_function == "CrossEntropyLoss":
-                            roll_loss = torch.mean( -label_roll * logged_roll_inf )
-                            pitch_loss = torch.mean( -label_pitch * logged_pitch_inf )
+                            #roll_loss = torch.mean( -label_roll * logged_roll_inf )
+                            #pitch_loss = torch.mean( -label_pitch * logged_pitch_inf )
+                            roll_loss = -1 * torch.sum(label_roll * logged_roll_inf)
+                            pitch_loss = -1 * torch.sum(label_pitch * logged_pitch_inf)
                         elif self.loss_function == "MSELoss":
                             roll_loss = self.computeLoss(roll_inf, label_roll)
                             pitch_loss = self.computeLoss(pitch_inf, label_pitch)
