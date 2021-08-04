@@ -7,6 +7,7 @@ graph_path: "/graph"
 
 train:
   - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/range_30_30/dir2_image70000/"
+  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/range_30_30/dir1_image35000/"
 #  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_01_image70000/"
 #  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_02_image140000/"
 #  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_03_image140000/"
