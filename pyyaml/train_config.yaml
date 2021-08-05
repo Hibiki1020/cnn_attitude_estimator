@@ -1,6 +1,6 @@
 method_name: "regression"
 
-save_top_path: "/home/ssd_dir/cnn_attitude_estimator_log/range_30/test1"
+save_top_path: "/home/cnn_attitude_estimator_log/range_30/test2"
 weights_path: "/weights"
 log_path: "/log"
 graph_path: "/graph"
@@ -30,7 +30,7 @@ hyperparameter:
   mean_element: 0.5
   std_element: 0.5
   hor_fov_deg: 70
-  optimizer_name: "AdamW"
+  optimizer_name: "SGD" #SGD or Adam or AdamW
   loss_function: "CrossEntropyLoss" #CrossEntropyLoss or MSELoss .
   lr_cnn: 1e-5
   lr_roll_fc: 1e-4
