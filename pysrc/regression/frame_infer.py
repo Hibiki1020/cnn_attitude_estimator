@@ -425,7 +425,7 @@ class CNNAttitudeEstimator:
             plt.rcParams['agg.path.chunksize'] = 10000
 
             plt.grid()
-            #plt.show()
+            plt.show()
 
             self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
 
