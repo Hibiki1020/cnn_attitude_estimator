@@ -6,22 +6,12 @@ log_path: "/log"
 graph_path: "/graph"
 
 train:
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30/range_30_30_color/dir1_image84000/"
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30/range_30_30_color/dir2_image300000/"
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30/range_30_30/dir2_image70000/"
   - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/range_30_30/dir2_image70000/"
   - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/range_30_30/dir1_image35000/"
   - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/range_30_30/dir3_image350000/"
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_01_image70000/"
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_02_image140000/"
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_03_image140000/"
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image70000"
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_04_image140000/"
 valid:
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30/range_30_30_color/valid_image5000/"
   - "/home/ssd_dir/AirSimNH/AirSimNH/range_30/range_30_30/valid_image5000/"
-#  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/range_30_30/dir1_image35000/"
-#  - "/home/ssd_dir/AirSimNH/AirSimNH/2021_06_02_image70000/"
+
 csv_name: "image_attitude.csv"
 
 index_csv_path: "/home/ros_catkin_ws/src/cnn_attitude_estimator/index_dict/index_dict_-30_30_range_step1deg.csv"
