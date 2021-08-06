@@ -6,10 +6,8 @@ log_path: "/log"
 graph_path: "/graph"
 
 train:
-  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30/range_30_30_color/dir1_image42000/"
-  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30/range_30_30_color/dir2_image84000/"
-  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30/range_30_30_color/dir3_image300000/"
-  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30/range_30_30_color/dir4_image25000/"
+  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30/range_30_30_color/dir1_image84000/"
+  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30/range_30_30_color/dir2_image300000/"
 #  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30/range_30_30/dir2_image70000/"
 #  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/range_30_30/dir2_image70000/"
 #  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/range_30_30/dir1_image35000/"
