@@ -384,7 +384,7 @@ class CNNAttitudeEstimator:
             roll_hist = self.array_to_value_simple_hist(roll_hist_array)
             pitch_hist = self.array_to_value_simple_hist(pitch_hist_array)
 
-            print(roll_hist)
+            #print(roll_hist)
 
             np_result = np.array(result)
 
