@@ -10,7 +10,7 @@ train:
   - "/home/ssd_dir/AirSimNH/AirSimNH/range_30_30/dir1_image35000/"
   - "/home/ssd_dir/AirSimNH/AirSimNH/range_30_30/dir3_image210000/"
 valid:
-  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30/range_30_30/valid_image5000/"
+  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30_30/valid_image5000/"
 
 csv_name: "image_attitude.csv"
 
