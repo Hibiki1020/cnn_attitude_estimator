@@ -1,6 +1,6 @@
 method_name: "regression"
 
-save_top_path: "/home/cnn_attitude_estimator_log/range_30/test5"
+save_top_path: "/home/cnn_attitude_estimator_log/range_30/dgx_test1"
 weights_path: "/weights"
 log_path: "/log"
 graph_path: "/graph"
