@@ -60,7 +60,7 @@ class VerifyInfer:
         print("Average Roll Variance  :" + str(acc_roll_variance))
         print("Average Pitch Variance :" + str(acc_pitch_variance))
 
-        plt.scatter(self.roll_variance, roll_diff_list)
+        plt.scatter(roll_diff_list, self.roll_variance)
         plt.show()
 
 if __name__ == '__main__':
