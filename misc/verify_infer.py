@@ -53,11 +53,11 @@ if __name__ == '__main__':
     FLAGS, unparsed = parser.parse_known_args()
     #Load yaml file
     try:
-        print("Opening yaml file %s", FLAGS.frame_infer_config)
-        CFG = yaml.safe_load(open(FLAGS.frame_infer_config, 'r'))
+        print("Opening yaml file %s", FLAGS.verify_infer)
+        CFG = yaml.safe_load(open(FLAGS.verify_infer, 'r'))
     except Exception as e:
         print(e)
-        print("Error yaml file %s", FLAGS.frame_infer_config)
+        print("Error yaml file %s", FLAGS.verify_infer)
         quit()
 
     verify_infer = VerifyInfer(CFG)
