@@ -265,7 +265,10 @@ class CNNAttitudeEstimator:
         return value
         '''
 
-        value = output_array[0][max_index]*self.value_dict[max_index]
+        for value, label in zip(output_array[0], self.value_dict):
+            value += value * label
+
+        #value = output_array[0][max_index]*self.value_dict[max_index]
         return value
 
     def save_csv(self, result_csv):
