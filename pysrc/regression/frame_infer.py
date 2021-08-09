@@ -56,6 +56,7 @@ class CNNAttitudeEstimator:
         self.std_element = float(CFG["std_element"])
         self.dim_fc_out = int(CFG["dim_fc_out"])
         self.dropout_rate = float(CFG["dropout_rate"])
+        self.enable_dropout = bool(CFG["enable_dropout"])
         self.corner_threshold = int(CFG["corner_threshold"])
 
         self.color_img_cv = np.empty(0)
@@ -67,6 +68,9 @@ class CNNAttitudeEstimator:
         self.img_transform = self.getImageTransform(self.resize, self.mean_element, self.std_element)
         self.net = self.getNetwork(self.resize, self.weights_path, self.dim_fc_out, self.dropout_rate)
 
+        if self.enable_dropout==True:
+            self.do_mc_dropout()
+
         self.value_dict = []
 
         with open(self.index_dict_path) as fd:
@@ -75,6 +79,11 @@ class CNNAttitudeEstimator:
                 num = float(row[0])
                 self.value_dict.append(num)
         
+    def do_mc_dropout(self):
+        #enable dropout when inference
+        for module in self.net.modules():
+            if module.__class__.__name__.startswith('Dropout'):
+                module.train()
 
     def getImageTransform(self,resize,mean_element,std_element):
 
@@ -416,7 +425,7 @@ class CNNAttitudeEstimator:
             print("Roll Variance :" + str(roll_var))
             print("Pitch Variance:" + str(pitch_var))
 
-            '''
+            
             np_value_dict = np.array(self.value_dict)
             roll_x = self.generate_data(np_value_dict, roll_hist_array)
 
@@ -445,7 +454,7 @@ class CNNAttitudeEstimator:
             plt.show()
 
             self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
-            '''
+            
 
 
             cov = np.cov(np_result)
