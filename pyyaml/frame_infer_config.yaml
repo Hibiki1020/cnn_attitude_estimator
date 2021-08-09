@@ -17,6 +17,6 @@ resize: 224
 mean_element: 0.5
 std_element: 0.5
 dim_fc_out: 61
-enable_dropout: True
+enable_dropout: False
 dropout_rate: 0.1
 corner_threshold: 30
