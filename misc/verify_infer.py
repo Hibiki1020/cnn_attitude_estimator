@@ -60,6 +60,8 @@ class VerifyInfer:
         print("Average Roll Variance  :" + str(acc_roll_variance))
         print("Average Pitch Variance :" + str(acc_pitch_variance))
 
+        plt.xlabel("Diff")
+        plt.ylabel("Variance")
         plt.scatter(roll_diff_list, self.roll_variance)
         plt.show()
 
