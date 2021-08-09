@@ -354,6 +354,9 @@ class CNNAttitudeEstimator:
             roll_hist_array = []
             pitch_hist_array = []
 
+            roll_value_array = []
+            pitch_value_array = []
+
             for i in range(self.dim_fc_out):
                 tmp = 0.0
                 roll_hist_array.append(tmp)
@@ -376,6 +379,9 @@ class CNNAttitudeEstimator:
                 roll_result_list.append(tmp_roll)
                 pitch_result_list.append(tmp_pitch)
 
+                roll_value_array.append(tmp_roll)
+                pitch_value_array.append(tmp_pitch)
+
                 result.append(tmp_result)
 
             roll_hist_array /= float(len(windows))
@@ -394,10 +400,18 @@ class CNNAttitudeEstimator:
             roll = roll_hist
             pitch = pitch_hist
 
+            np_roll_value_array = np.array(roll_value_array)
+            np_pitch_value_array = np.array(pitch_value_array)
+
+            roll_var = np.var(np_roll_value_array)
+            pitch_var = np.var(np_pitch_value_array)
+
             print("Infered Roll:  " + str(roll) +  "[deg]")
             print("GT Roll:       " + str(ground_truth[1]) + "[deg]")
             print("Infered Pitch: " + str(pitch) + "[deg]")
             print("GT Pitch:      " + str(ground_truth[2]) + "[deg]")
+            print("Roll Variance :" + str(roll_var))
+            print("Pitch Variance:" + str(pitch_var))
 
             '''
             np_value_dict = np.array(self.value_dict)
@@ -435,7 +449,7 @@ class CNNAttitudeEstimator:
             
 
             #Image roll pitch GTroll GTpitch
-            tmp_result_csv = [ground_truth[0], roll, pitch, ground_truth[1], ground_truth[2]]
+            tmp_result_csv = [ground_truth[0], roll, pitch, ground_truth[1], ground_truth[2], roll_var, pitch_var]
             result_csv.append(tmp_result_csv)
 
             print("Period [s]: ", time.time() - start_clock)
