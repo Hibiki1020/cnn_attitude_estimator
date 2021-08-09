@@ -45,6 +45,8 @@ class VerifyInfer:
 
         print("Average Roll Difference  :" + str(acc_roll_diff) + " [deg]")
         print("Average Pitch Difference :" + str(acc_pitch_diff) + " [deg]")
+        print("Average Roll Variance  :" + str(acc_roll_variance))
+        print("Average Pitch Variance :" + str(acc_pitch_variance))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser("./verify_infer.py")
