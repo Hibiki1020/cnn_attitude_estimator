@@ -25,6 +25,8 @@ class VerifyInfer:
     def spin(self):
         acc_roll_diff = 0.0
         acc_pitch_diff = 0.0
+        acc_roll_variance = 0.0
+        acc_pitch_variance = 0.0
         size_of_csv = float(len(self.data_list))
 
         for row in self.data_list:
@@ -33,6 +35,10 @@ class VerifyInfer:
 
             acc_roll_diff += tmp_roll_diff
             acc_pitch_diff += tmp_pitch_diff
+
+            acc_roll_variance += float(row[5])
+            acc_pitch_variance += float(row[6])
+
         
         acc_roll_diff = acc_roll_diff/size_of_csv
         acc_pitch_diff = acc_pitch_diff/size_of_csv
