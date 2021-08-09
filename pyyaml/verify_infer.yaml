@@ -1,2 +1,2 @@
-infer_log_top_path: "/home/ssd_dir/cnn_attitude_estimator_log/infer_log/range_30/2021_08_09_Building99/"
+infer_log_top_path: "/home/ssd_dir/cnn_attitude_estimator_log/infer_log/range_30/2021_08_09_variance_AirSimNH/"
 infer_log_file_name: "frame_infer_relust.csv"
