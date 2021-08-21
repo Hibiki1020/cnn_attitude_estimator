@@ -452,9 +452,9 @@ class CNNAttitudeEstimator:
 
             plt.grid()
             plt.show()
-
+'''
             self.show_fig(roll_hist_array, pitch_hist_array, self.value_dict, windows[1])
-            '''
+            
 
 
             cov = np.cov(np_result)

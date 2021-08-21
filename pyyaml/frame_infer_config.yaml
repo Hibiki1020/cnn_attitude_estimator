@@ -1,6 +1,6 @@
 method_name: "frame_infer"
 
-infer_dataset_top_directory: "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/infer_image_range_30_30/dir1_infer_image1000"
+infer_dataset_top_directory: "/home/ssd_dir/airsim_dataset_kawai/AbandonedPark/2021_06_05_image3392"
 csv_name: "image_attitude.csv"
 
 weights_top_directory: "/home/ssd_dir/cnn_attitude_estimator_log/range_30/dgx_test1/"
