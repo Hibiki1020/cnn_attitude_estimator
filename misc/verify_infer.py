@@ -55,6 +55,9 @@ class VerifyInfer:
         acc_roll_diff = acc_roll_diff/size_of_csv
         acc_pitch_diff = acc_pitch_diff/size_of_csv
 
+        acc_roll_variance = acc_roll_variance/size_of_csv
+        acc_pitch_variance = acc_pitch_variance/size_of_csv
+
         print("Average Roll Difference  :" + str(acc_roll_diff) + " [deg]")
         print("Average Pitch Difference :" + str(acc_pitch_diff) + " [deg]")
         print("Average Roll Variance  :" + str(acc_roll_variance))
