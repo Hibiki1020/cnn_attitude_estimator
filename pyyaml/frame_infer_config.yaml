@@ -6,7 +6,7 @@ csv_name: "image_attitude.csv"
 weights_top_directory: "/home/ssd_dir/cnn_attitude_estimator_log/range_30/train_luffy_35000/"
 weights_file_name: "weights.pth"
 
-infer_log_top_directory: "/home/ssd_dir/cnn_attitude_estimator_log/infer_log/range_30/2021_08_09_mc_dropout/"
+infer_log_top_directory: "/home/ssd_dir/cnn_attitude_estimator_log/infer_log/range_30/test_08_24_luffy/"
 infer_log_file_name: "frame_infer_relust.csv"
 
 index_dict_name: "index_dict_-30_30_range_step1deg.csv"
