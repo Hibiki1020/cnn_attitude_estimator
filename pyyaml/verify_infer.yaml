@@ -1,2 +1,2 @@
-infer_log_top_path: "/home/ssd_dir/deep_gravity/infer_log/test_08_25/"
+infer_log_top_path: "/home/ssd_dir/num_regression_attitude_estimator_log/infer_log/test_08_28_mle/"
 infer_log_file_name: "frame_infer_relust.csv"
