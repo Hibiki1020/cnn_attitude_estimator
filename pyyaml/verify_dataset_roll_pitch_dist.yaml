@@ -1,5 +1,6 @@
 dataset:
-  - "/media/amsl/96fde31e-3b9b-4160-8d8a-a4b913579ca21/airsim_dataset_kawai/AirSimNH/normal_distribution_data1_image_70000/"
-  - "/media/amsl/96fde31e-3b9b-4160-8d8a-a4b913579ca21/airsim_dataset_kawai/AirSimNH/normal_distribution_data2_image_490000/"
+  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30_30/dir2_image70000/"
+  - "/home/ssd_dir/airsim_dataset_kawai/AirSimNH/range_30_30/dir1_image35000/"
+  - "/home/ssd_dir/AirSimNH/AirSimNH/range_30_30/dir3_image210000/"
 
 csv_name: "image_attitude.csv"

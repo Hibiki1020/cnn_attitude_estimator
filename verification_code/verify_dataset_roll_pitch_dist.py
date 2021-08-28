@@ -35,7 +35,7 @@ class VerifyDataset:
         fig = plt.figure()
         ax = fig.add_subplot(111)
 
-        histogram = ax.hist2d(roll, pitch, bins=[np.linspace(-180, 180, 50), np.linspace(-180, 180, 50)], cmap=cm.jet)
+        histogram = ax.hist2d(roll, pitch, bins=[np.linspace(-30, 30, 50), np.linspace(-30, 30, 50)], cmap=cm.jet)
         ax.set_xlabel('Roll')
         ax.set_ylabel('Pitch')
         ax.set_title('Distribution of Roll and Pitch in dataset')
