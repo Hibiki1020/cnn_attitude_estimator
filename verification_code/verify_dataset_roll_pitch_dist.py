@@ -38,7 +38,7 @@ class VerifyDataset:
         histogram = ax.hist2d(roll, pitch, bins=[np.linspace(-30, 30, 50), np.linspace(-30, 30, 50)], cmap=cm.jet)
         ax.set_xlabel('Roll')
         ax.set_ylabel('Pitch')
-        ax.set_title('Distribution of Roll and Pitch in dataset')
+        #ax.set_title('Distribution of Roll and Pitch in dataset')
 
         fig.colorbar(histogram[3], ax=ax)
         plt.show()
