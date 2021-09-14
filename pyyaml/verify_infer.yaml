@@ -1,2 +1,2 @@
-infer_log_top_path: "/home/ssd_dir/num_regression_attitude_estimator_log/infer_log/test_09_14_regression_building/"
+infer_log_top_path: "/home/ssd_dir/num_regression_attitude_estimator_log/infer_log/test_09_14_mle_building/"
 infer_log_file_name: "frame_infer_relust.csv"
