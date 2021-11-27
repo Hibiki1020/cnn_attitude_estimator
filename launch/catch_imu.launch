@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="cnn_attitude_estimator" name="convert_quaternion_to_rpy" type="convert_quaternion_to_rpy.py" output="screen"/>
+</launch>
