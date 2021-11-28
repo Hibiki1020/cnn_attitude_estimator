@@ -135,6 +135,14 @@ class CNNAttitudeEstimator:
             new_state_dict[k] = v
 
         net.load_state_dict(new_state_dict)
+
+        params = 0
+        for p in net.parameters():
+            if p.requires_grad:
+                params += p.numel()
+        
+        print(params)
+
         return net
 
     def spin(self):
