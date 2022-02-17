@@ -352,6 +352,9 @@ class CNNAttitudeEstimator:
 
         infer_count = 0
 
+        diff_total_roll = 0.0
+        diff_total_pitch = 0.0
+
         for (img_path, ground_truth) in zip(image_data_list, ground_truth_list):
             print("---------Inference at " + str(infer_count) + "---------")
             infer_count += 1
@@ -420,6 +423,9 @@ class CNNAttitudeEstimator:
             roll = roll_hist
             pitch = pitch_hist
 
+            diff_roll = np.abs(roll - ground_truth[1])
+            diff_pitch = np.abs(pitch - ground_truth[2])
+
             np_roll_value_array = np.array(roll_value_array)
             np_pitch_value_array = np.array(pitch_value_array)
 
@@ -432,6 +438,8 @@ class CNNAttitudeEstimator:
             print("GT Pitch:      " + str(ground_truth[2]) + "[deg]")
             print("Roll Variance :" + str(roll_var))
             print("Pitch Variance:" + str(pitch_var))
+            print("Diff Roll: " + str(diff_roll) + " [deg]")
+            print("Diff Pitch: " + str(diff_pitch) + " [deg]")
 
             '''
             np_value_dict = np.array(self.value_dict)
@@ -475,6 +483,9 @@ class CNNAttitudeEstimator:
             print("Period [s]: ", time.time() - start_clock)
             print("---------------------")
 
+        print("Inference Test Has Done....")
+        print("Average of Error of Roll : " + str(diff_total_roll/float(infer_count)) + " [deg]")
+        print("Average of Error of Pitch: " + str(diff_total_pitch/float(infer_count)) + " [deg]")
         return result_csv
 
 if __name__ == '__main__':
