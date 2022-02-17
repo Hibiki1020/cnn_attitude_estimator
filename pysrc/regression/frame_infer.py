@@ -352,8 +352,8 @@ class CNNAttitudeEstimator:
 
         infer_count = 0
 
-        diff_total_roll = 0.0
-        diff_total_pitch = 0.0
+        diff_total_roll = 0
+        diff_total_pitch = 0
 
         for (img_path, ground_truth) in zip(image_data_list, ground_truth_list):
             print("---------Inference at " + str(infer_count) + "---------")
@@ -426,6 +426,9 @@ class CNNAttitudeEstimator:
             diff_roll = np.abs(roll - ground_truth[1])
             diff_pitch = np.abs(pitch - ground_truth[2])
 
+            diff_total_roll += diff_roll
+            diff_total_pitch += diff_pitch
+
             np_roll_value_array = np.array(roll_value_array)
             np_pitch_value_array = np.array(pitch_value_array)
 
@@ -440,6 +443,8 @@ class CNNAttitudeEstimator:
             print("Pitch Variance:" + str(pitch_var))
             print("Diff Roll: " + str(diff_roll) + " [deg]")
             print("Diff Pitch: " + str(diff_pitch) + " [deg]")
+
+            print("Total" + str(diff_total_roll))
 
             '''
             np_value_dict = np.array(self.value_dict)
