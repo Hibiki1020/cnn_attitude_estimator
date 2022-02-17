@@ -444,7 +444,7 @@ class CNNAttitudeEstimator:
             print("Diff Roll: " + str(diff_roll) + " [deg]")
             print("Diff Pitch: " + str(diff_pitch) + " [deg]")
 
-            print("Total" + str(diff_total_roll))
+            #print("Total" + str(diff_total_roll))
 
             '''
             np_value_dict = np.array(self.value_dict)
